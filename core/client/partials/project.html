@@ -1,0 +1,34 @@
+<div class="container-fluid">
+
+		<h2> Liste de vos projets </h2>
+
+		<ul>
+			<li ng-repeat="project in projects">
+				<a href="#/project/{{project.id}}"> {{ project.name }} </a>
+			</li>
+		</ul>
+
+		<h1>Ajouter un projet</h1>
+		<form class="form-horizontal">
+
+	        <label for="firstname">Nom du projet</label>
+	        <input type="text" id="firstname"  ng-model="project.name" required>
+			
+			<button type="submit" ng-click="addProject()">Ajouter le projet</button>
+
+		</form>
+
+		<div id="flash" ng-show="flash">
+	        {{ flash }}
+	    </div>
+
+	    <h2> Liste de vos invitations : </h2>
+
+	    <div id="invitations">
+	    	<div id="invit" ng-repeat="invit in invits">
+	    		Invitation projet : {{ invit.name }} <a ng-click="acceptInvit(invit)" class="button">Accepter l'invitation</a>
+	    		 <a ng-click="refuseInvit(invit)" class="button">Refuser l'invitation</a> <br/>
+	    	</div>
+	    </div>
+
+</div>

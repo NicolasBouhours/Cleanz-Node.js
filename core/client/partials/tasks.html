@@ -1,0 +1,54 @@
+<div class="container-fluid">
+
+	<nav class="top-bar">
+		<ul>
+			<li class="divider"><a href="#/project/{{ projectId }}/tasks"> Taches</a></li>
+			<li class="divider"><a href="#/project/{{ projectId }}/documents"> Documents</a></li>
+			<li class="divider"><a href="#/project/{{ projectId }}/meetings"> Réunion</a></li>
+			<li class="divider"><a href="#/project/{{ projectId }}/logs"> Journal</a></li>
+			<li class="divider"><a href="#/project/{{ projectId }}/users"> Utilisateurs</a></li>
+			<li class="divider"><a href="#/project/{{ projectId }}/stats"> Statistiques</a></li>
+			<li class="divider"><a href="#/project/{{ projectId }}/params"> Paramètres</a></li>
+		</ul>
+	</nav>
+
+		<h2> Bienvenue sur les taches de votre projet {{ projectId}} </h2>
+
+		<h4> Liste des vos taches </h4>
+
+		<div id="project" ng-repeat="task in tasks" >
+			<p><a href="#/project/{{ projectId }}/tasks/{{ task.id }}"> {{ task.name }} {{ task.description }} {{ task.dateLaunch }} {{ task.dateEnd }} {{ task.progress}} {{ task.importance_name }}</a> </p>
+		</div>
+
+		<div id="flash" ng-show="flash">
+        	{{ flash }}
+   		</div>
+
+		<h4>Ajouter une tache</h4>
+
+			<form class="form-horizontal">
+
+	        <label for="name">Nom de la tache</label>
+	        <input type="text" id="name"  ng-model="task.name" required>
+
+	        <label for="description">description de la tache</label>
+	        <textarea name="ameliorer" id="ameliorer" size="300" ng-model="task.description" required></textarea>
+			
+			<label for="dateS"> Date de début</label>
+	        <input type="date" id="dateS" ng-model="task.dateLaunch" />
+
+	        <label for="dateE"> Date de fin</label>
+	        <input type="date" id="dateE" ng-model="task.dateEnd" />
+
+	        <input type="radio" name="importance" id="urgent" value="Urgente" ng-model="task.importance_name"/> <label for="urgent">Urgent</label> <br />
+       		<input type="radio" name="importance" id="haute" value="Haute" ng-model="task.importance_name" /> <label for="haute">Haute</label>    <br />
+     		<input type="radio" name="importance" id="moyenne" value="Moyenne" ng-model="task.importance_name" /> <label for="moyenne">Moyenne</label><br />
+     		<input type="radio" name="importance" id="basse" value="Basse" ng-model="task.importance_name" /> <label for="basse">Basse</label>    <br />
+
+
+			
+			<button type="submit" ng-click="addTask()">Ajouter la tache</button>
+
+		</form>
+
+</div>

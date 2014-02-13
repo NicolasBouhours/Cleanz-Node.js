@@ -1,0 +1,17 @@
+<h1>Connexion</h1>
+<form class="form-horizontal">
+
+        <label class="control-label" for="email">Email</label>
+        <input type="text" id="email"  ng-model="user.email" required>
+
+        <label class="control-label" for="password">Mot de passe :</label>
+        <input type="password" id="password" ng-model="user.password" required>
+
+        <button type="submit" ng-click="login()">Se connecter</button>
+
+    </div>
+</form>
+
+ <div id="flash" ng-show="flash">
+     {{ flash }}
+</div>

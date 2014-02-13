@@ -1,0 +1,48 @@
+    <nav class="top-bar">
+        <ul>
+            <li class="divider"><a href="#/project/{{ projectId }}/tasks"> Taches</a></li>
+            <li class="divider"><a href="#/project/{{ projectId }}/documents"> Documents</a></li>
+            <li class="divider"><a href="#/project/{{ projectId }}/meetings"> Réunion</a></li>
+            <li class="divider"><a href="#/project/{{ projectId }}/tasks"> Taches</a></li>
+            <li class="divider"><a href="#/project/{{ projectId }}/users"> Utilisateurs</a></li>
+            <li class="divider"><a href="#/project/{{ projectId }}/stats"> Statistiques</a></li>
+            <li class="divider"><a href="#/project/{{ projectId }}/params"> Paramètres</a></li>
+        </ul>
+    </nav>
+
+<h1>Modification de vos informations personnelles</h1>
+<h4> Vos informations personelles</h4>
+<form class="form-horizontal">
+		<label class="control-label" for="email">Prénom :</label>
+        <input type="text" id="email"  ng-model="user.firstName" required>
+
+        <label class="control-label" for="email">Nom :</label>
+        <input type="text" id="email"  ng-model="user.lastName" required>
+
+        <label class="control-label" for="email">Numéro de téléphone :</label>
+        <input type="text" id="email"  ng-model="user.phone" required>
+
+        <button type="submit" ng-click="editInfoUser()">Modifier mes informations personnelles</button>
+
+     <div id="flash" ng-show="flash">
+        {{ flash }}
+    </div>
+</form>
+
+<h4> Modification de votre mot de passe </h4>
+<form class="form-horizontal">
+
+        <label class="control-label" for="email">Mot de passe actuel</label>
+        <input type="password" id="password" ng-model="user.password" required>
+
+        <label class="control-label" for="password">Mot de passe :</label>
+        <input type="password" id="password" ng-model="user.password1" required>
+
+        <label class="control-label" for="password">Mot de passe :</label>
+        <input type="password" id="password" ng-model="user.password2" required>
+
+        <button type="submit" ng-click="editPasswordUser()">Modifier mon mot de passe</button>
+     <div id="flashpwd" ng-show="flashpwd">
+        {{ flashpwd }}
+    </div>
+</form>

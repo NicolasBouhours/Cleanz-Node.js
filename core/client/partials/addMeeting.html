@@ -1,0 +1,43 @@
+	<nav class="top-bar">
+		<ul>
+			<li class="divider"><a href="#/project/{{ projectId }}/tasks"> Taches</a></li>
+			<li class="divider"><a href="#/project/{{ projectId }}/documents"> Documents</a></li>
+			<li class="divider"><a href="#/project/{{ projectId }}/meetings"> Réunion</a></li>
+			<li class="divider"><a href="#/project/{{ projectId }}/tasks"> Taches</a></li>
+			<li class="divider"><a href="#/project/{{ projectId }}/users"> Utilisateurs</a></li>
+			<li class="divider"><a href="#/project/{{ projectId }}/stats"> Statistiques</a></li>
+			<li class="divider"><a href="#/project/{{ projectId }}/params"> Paramètres</a></li>
+		</ul>
+	</nav>
+
+	<h4>Ajouter une réunion</h4>
+
+		<form class="form-horizontal">
+
+	        <label for="name">Nom de la tache</label>
+	        <input type="text" id="name"  ng-model="meeting.name" required>
+
+	        <label for="description">description de la réunion</label>
+	        <textarea name="ameliorer" id="ameliorer" size="500" ng-model="meeting.description" required></textarea>
+
+	        <label for="place">Lieu de la réunion</label>
+	        <input type="text" id="place"  ng-model="meeting.place" required>
+					
+			<label for="dateS"> Date de début</label>
+
+	        <input type="date" id="dateS" ng-model="meeting.date" />
+
+	        <label for="dateS"> Heure de début</label>
+	        <input type="time" id="dateS" ng-model="meeting.time" />
+
+
+			<label for="duree">Durée</label>
+	        <input type="text" id="duree"  ng-model="meeting.duree" required>
+
+			<button type="submit" ng-click="addMeeting()">Ajouter la réunion</button>
+
+		</form>
+
+		<div id="flash" ng-show="flash">
+	        {{ flash }}
+	    </div>

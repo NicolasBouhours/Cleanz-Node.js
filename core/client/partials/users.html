@@ -1,0 +1,17 @@
+<div class="container-fluid">
+
+                Search : <input ng-model="query"/>
+
+                <ul>
+                        <li ng-repeat="user in users | filter: query">
+                                <p> {{ user.firstName + " " + user.lastName }} </p>
+                        </li>
+                </ul>
+
+                <a href="#/project" class="button">Voir mes projets</a><br/>
+
+                <a href="#/editinfo" class="button">Modifier les informations personnelles</a><br/>
+
+                 <button type="submit" ng-click="logout()">Se déconnecter</button>
+
+</div>
