@@ -57,7 +57,6 @@ function setup(server) {
 	server.use(express.urlencoded());
 	server.use(express.methodOverride());
 	server.use(server.router);
-	server.use(require('stylus').middleware(path.join(__dirname, 'public')));
 	server.use(express.static(path.join(__dirname, 'public')));
 
 	// development only
@@ -66,8 +65,8 @@ function setup(server) {
 	}
 
 	// Include routes
-	server.get('/', routes.index);
-	server.get('/users', user.list);
+	routes.api(server);
+	routes.auth(server);
 
 	http.createServer(server).listen(server.get('port'), function(){
 	  console.log('Express server listening on port ' + server.get('port'));
