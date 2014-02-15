@@ -6,6 +6,7 @@ var http = require('http');
 var path = require('path');
 var hbs = require('express-hbs');
 var mongoose = require('mongoose');
+var mongoStore = require('connect-mongo')(express);
 
 function setup(server) {
 
@@ -18,6 +19,8 @@ function setup(server) {
 	server.set('port', process.env.PORT || 3000);
 	server.set('views', path.join(__dirname, 'views'));
 	server.set('view engine', 'hbs');
+	server.use(express.cookieParser());
+	server.use(express.session({secret: "This is a secret"}));
 	server.use(express.favicon());
 	server.use(express.logger('dev'));
 	server.use(express.json());
@@ -25,6 +28,10 @@ function setup(server) {
 	server.use(express.methodOverride());
 	server.use(server.router);
 	server.use(express.static(path.join(__dirname, '../client')));
+
+	server.get('/yolo', function(req,res) {
+		req.session.yolo = 'salut';
+	});
 
 	// development only
 	if ('development' == server.get('env')) {
@@ -35,7 +42,7 @@ function setup(server) {
 	routes.api(server);
 	routes.auth(server);
 
-	// Connect app to Mongoose Databse
+	// Connect app to Mongoose Database
 	mongoose.connect('mongodb://localhost/cleanz', function(err) {
 		if (err) { throw err; }
 	});

@@ -117,13 +117,13 @@ Cleanz.factory('AuthenticationService', function($http, $location, SessionServic
 
   return {
     login: function(creditentials) {
-      var login = $http.post('auth/login', creditentials);
+      var login = $http.post('/cleanz/login', creditentials);
       login.success(cacheSession);
       login.error(loginError);
       return login;
   },
     logout: function() {
-      var logout = $http.get('auth/logout');
+      var logout = $http.get('/cleanz/logout');
       logout.success(uncacheSession);
       return logout;
     },
