@@ -11,7 +11,9 @@ UserController.controller('UsersList', function($scope, AuthenticationService, $
 
     // User to Database
     $scope.register = function() {
- 	    $http.post('cleanz/api/users/add', $scope.user).success();
+ 	    $http.post('cleanz/api/users/add', $scope.user).success(function(data) {
+        $scope.flash = data.flash;
+      });
     }
 
     //Logout User

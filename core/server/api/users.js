@@ -82,15 +82,23 @@ users = {
     // insert user into database and return flash message
     create: function add(req, res) {
         var user = new User(req.body);
-            User.findOne().sort({'_id': -1}).limit(1).findOne(function(err,usr) {
-                var newId = parseInt(usr.id) + 1;
-                user._id = newId;
-                user.save(function(err){
-                    if (err) { res.json({'flash': 'Nous n\'avons pas pu enregistrer votre utilisateur'}); }
-                    res.json({'flash': 'Votre utilisateur a été crée avec succès.'});
-                });
-        });
 
+        User.findOne().sort({'_id': -1}).limit(1).findOne(function(err,usr) {
+            var newId = parseInt(usr.id) + 1;
+            user._id = newId;
+
+            User.findOne({email: user.email}, function(err, usr) {
+                if (usr === null) {
+                    user.save(function(err){
+                        if (err) { res.json({'flash': 'Nous n\'avons pas pu enregistrer votre utilisateur'}) }; 
+                        res.json({'flash': 'Votre utilisateur a été crée avec succès.'});
+                     });
+                 }
+                else {
+                    return res.json({'flash': 'Un utilisateur utilise déja cet email' });
+                }
+            });
+        });
     },
 
 };
