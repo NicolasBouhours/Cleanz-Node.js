@@ -1,10 +1,23 @@
-<html>
+<!DOCTYPE html>
+<html lang="en" ng-app="Cleanz">
 	<head>
-		<title>Cleanz, Outil de gesiton de projet</title>
+	    <meta charset="utf-8">
+	    <title>Outil de gestion de projet</title>
+	    <link href="app/css/foundation.css" rel="stylesheet">
+	    <link href="app/css/style.css" rel="stylesheet">
 	</head>
 	<body>
-		<h2>Bienvenue sur mon application de gestion de projet</h2>
-		<p>Cleans, Outil de gestion de projet open-source en Node.Js powered with AngularJs</p>
-		{{ title }}
+		<h2> Bienvenue sur mon outil de gestion de projets </h2>
+
+		 <div ng-view></div>
+
+
+		<script src="app/lib/underscore.js"></script>
+		<script src="app/lib/angular.js"></script>
+		<script src="app/lib/angular-route.js"></script>
+		<script src="app/js/app.js"></script>
+		<script src="app/js/controllers.js"></script>
+
+
 	</body>
 </html>

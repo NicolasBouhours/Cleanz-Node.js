@@ -1,13 +1,24 @@
 // Routes for our api
 
 var api = require('../api');
+var mongoose = require('mongoose');
+var User = require('../models/users');
 
 module.exports = function(server) {
 
 	// Page Launch
 	server.get('/', function(req,res) {
+	/*	User.findOne().sort({'_id': -1}).limit(1).findOne(function(err,usr) {
+			var newId = parseInt(usr.id) + 1;
+			var u = new User({_id: newId,firstName:'Martin', lastName:'Dazin', password:'mart49', email:'m.dazin@iia-laval.fr', phone:'0663636514'});
+			u.save(function(err){
+				console.log(err);
+			});
+
+		});*/
 		  res.render('index', { title: 'Express Node.Js' });
 	});
+	server.post('/cleanz/api/users/add', api.users.create);
 /*
 	// Route for Project
 	server.get('cleanz/api/projects/list', api.projects.list);

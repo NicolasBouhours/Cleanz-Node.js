@@ -5,13 +5,13 @@ var UserController = angular.module('UserController', []);
 UserController.controller('UsersList', function($scope, AuthenticationService, $http, $location) {
    
     // List of all users
-   $http.get('listUsers').success(function(users) {
+   $http.get('cleanz/api/users/list').success(function(users) {
      $scope.users = users;
     });
 
     // User to Database
     $scope.register = function() {
- 		$http.post('register', $scope.user).success();
+ 	    $http.post('cleanz/api/users/add', $scope.user).success();
     }
 
     //Logout User
@@ -212,20 +212,10 @@ ProjectController.controller('Logs', function($scope, $http, $routeParams) {
 
 // Document Controller
 // List of our Logs
-ProjectController.controller('Documents', function($scope, $http, $routeParams, upload) {
+ProjectController.controller('Documents', function($scope, $http, $routeParams) {
 
     $scope.projectId = $routeParams.projectId;
 
-  $scope.addFile = function () {
-      upload({
-        url: 'project/addDocument/' + $routeParams.projectId,
-        method: 'POST',
-        data: {
-          name: $scope.file.name,
-          file: $scope.file.file, // a jqLite type="file" element, upload() will extract all the files from the input and put them into the FormData object before sending.
-        }
-      });
-    }
 });
 
 /*

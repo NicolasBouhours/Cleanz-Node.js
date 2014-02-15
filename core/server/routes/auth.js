@@ -4,11 +4,10 @@ var api = require('../api');
 var auth = require('../controllers')
 
 module.exports = function(server) {
-/*
+
 	// Route for users
-	server.get('cleanz/api/users/list', api.users.list);
-	server.post('cleanz/api/users/add', api.users.create);
-	server.get('cleanz/api/users/:id', api.users.read);
+	 server.get('/cleanz/api/users/list', api.users.list);
+	/*server.get('cleanz/api/users/:id', api.users.read);
 	server.post('cleanz/api/users/:id', api.users.edit);
 	server.del('cleanz/api/users/:id', api.users.delete);
 

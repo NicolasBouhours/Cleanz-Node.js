@@ -10,7 +10,3 @@ module.exports = {
     api: api,
     auth: auth
 };
-
-exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
-};

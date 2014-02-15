@@ -1,13 +1,12 @@
 // Definition of Routes, Controllers and Services
-var myApp = angular.module('MyApp', [
+var Cleanz = angular.module('Cleanz', [
   'ngRoute',
   'UserController',
   'ProjectController',
-  'lr.upload',
 ]);
  
 // Router
-myApp.config(['$routeProvider',
+Cleanz.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/', {
@@ -65,7 +64,7 @@ myApp.config(['$routeProvider',
 
 
  // Routes wich require Auth
-myApp.run(function($rootScope, $location, AuthenticationService) {
+Cleanz.run(function($rootScope, $location, AuthenticationService) {
 
   var routesThatRequireAuth = ['/project', '/editinfo'];
 
@@ -77,7 +76,7 @@ myApp.run(function($rootScope, $location, AuthenticationService) {
 });
 
 // Flash Service
-myApp.factory('FlashService', function($rootScope) {
+Cleanz.factory('FlashService', function($rootScope) {
   return {
     show: function(message) {
       $rootScope.flash = message;
@@ -89,7 +88,7 @@ myApp.factory('FlashService', function($rootScope) {
 });
 
 // Session Service
-myApp.factory('SessionService', function() {
+Cleanz.factory('SessionService', function() {
   return {
     get: function(key) {
       return sessionStorage.getItem(key);
@@ -104,7 +103,7 @@ myApp.factory('SessionService', function() {
 });
 
 // Authentification Service
-myApp.factory('AuthenticationService', function($http, $location, SessionService, FlashService) {
+Cleanz.factory('AuthenticationService', function($http, $location, SessionService, FlashService) {
   var cacheSession = function() {
     SessionService.set('authenticated', true);
   };
