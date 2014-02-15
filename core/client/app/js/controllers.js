@@ -34,7 +34,7 @@ UserController.controller('Login', function($scope, AuthenticationService, $loca
 // Edition for user's information
 UserController.controller('EditUserInfo', function($scope, $http) {
     // Get information about our user
-    $http.get('infoUser').success(function(user) {
+    $http.get('/cleanz/api/users').success(function(user) {
         $scope.user = user;
     });
 

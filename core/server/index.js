@@ -6,7 +6,6 @@ var http = require('http');
 var path = require('path');
 var hbs = require('express-hbs');
 var mongoose = require('mongoose');
-var mongoStore = require('connect-mongo')(express);
 
 function setup(server) {
 
@@ -28,10 +27,6 @@ function setup(server) {
 	server.use(express.methodOverride());
 	server.use(server.router);
 	server.use(express.static(path.join(__dirname, '../client')));
-
-	server.get('/yolo', function(req,res) {
-		req.session.yolo = 'salut';
-	});
 
 	// development only
 	if ('development' == server.get('env')) {

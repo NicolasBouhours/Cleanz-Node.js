@@ -5,14 +5,15 @@ var auth = require('../controllers')
 
 module.exports = function(server) {
 
-	// Route for users
-	 server.get('/cleanz/api/users/list', api.users.list);
-	/*server.get('/cleanz/api/users/:id', api.users.read);
-	server.post('/cleanz/api/users/:id', api.users.edit);
-	server.del('/cleanz/api/users/:id', api.users.delete);
+	// ## Route for users
+	server.get('/cleanz/api/users/list', api.users.list);
+	server.post('/cleanz/api/users/add', api.users.create);
+	server.get('/cleanz/api/users', api.users.read);
+	server.put('/cleanz/api/users', api.users.edit);
+  //	server.del('/cleanz/api/users', api.users.delete);
 
-	// Route for sessions
-	*/
+	// ## Route for sessions
 	server.post('/cleanz/login', auth.authController.login);
 	server.get('/cleanz/logout', auth.authController.logout);
+
 };

@@ -15,8 +15,8 @@ users = {
 
 
     // #### Read
-    read: function read(req,res) {
-
+    read: function read(req,res, id) {
+        return res.json(req.session.user);
     },
 
 

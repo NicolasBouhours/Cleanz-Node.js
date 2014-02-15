@@ -18,7 +18,6 @@ module.exports = function(server) {
 		});*/
 		  res.render('index', { title: 'Express Node.Js' });
 	});
-	server.post('/cleanz/api/users/add', api.users.create);
 /*
 	// Route for Project
 	server.get('cleanz/api/projects/list', api.projects.list);
