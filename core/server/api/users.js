@@ -101,6 +101,16 @@ users = {
         });
     },
 
+    // #### Delete
+
+    // delete user to database
+    delete: function delete(req,res) {
+        User.findOne(req.session._id).remove();
+        req.session.destroy();
+
+        return res.json({'flash': 'Votre compte a été supprimé avec succès'});
+    },
+
 };
 
 module.exports = users;
