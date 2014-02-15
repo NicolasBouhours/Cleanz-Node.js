@@ -31,11 +31,9 @@ users = {
     // edit one user into database and return flash message
     edit: function edit(req, res) {
         var newU = new User(req.body);
-        console.log(newU);
-        console.log("--------------------------------------------");
 
+        // update firstName, lastName and phone and save it to database
         User.findOne(req.session.user._id, function(err, usr) {
-            console.log(usr);
             usr.firstName = newU.firstName;
             usr.lastName = newU.lastName;
             usr.phone = newU.phone;
@@ -43,9 +41,40 @@ users = {
             usr.save(function (err, usrS) {
                 if (err) { return res.json({'flash': err}); }
                 res.json({'flash': 'Vos informations personnelles ont bien été modifiés'});
+                req.session.user = usrS;
             });
         });
 
+    },
+
+    // #### Edit Password
+
+    //edit user password and return flash message
+    editPassword: function editPassword(req,res) {
+
+        var oldPw = req.body.oldPassword;
+        var newPw = req.body.password1;
+        var newPw2 = req.body.password2
+
+        //verify if two new password are the same
+        if (newPw != newPw2) {
+            return res.json({'flash': 'Veuillez entrer deux mots de passes identiques'});
+        }
+        else {
+            User.findOne(req.session.user._id, function(err, usr) {
+                // verify if old password is good
+                if (oldPw != usr.password) {
+                    return res.json({'flash': 'Votre ancien mot de passe n\'est pas correct'});
+                }
+                else {
+                    usr.password = newPw;
+                    usr.save(function (err, usrS) {
+                        if (err) { return res.json({'flash': err}); }
+                        res.json({'flash': 'Vos mot de passe a été modifié avec succès'});
+                    });
+                }
+            });
+        }
     },
 
     // #### Create

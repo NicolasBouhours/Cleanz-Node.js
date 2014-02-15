@@ -9,6 +9,7 @@ module.exports = function(server) {
 	server.get('/cleanz/api/users/list', api.users.list);
 	server.post('/cleanz/api/users/add', api.users.create);
 	server.get('/cleanz/api/users', api.users.read);
+	server.put('/cleanz/api/users/editPassword', api.users.editPassword);
 	server.put('/cleanz/api/users', api.users.edit);
   //	server.del('/cleanz/api/users', api.users.delete);
 
