@@ -5,13 +5,15 @@ var UserController = angular.module('UserController', []);
 UserController.controller('UsersList', function($scope, AuthenticationService, $http, $location) {
    
     // List of all users
-   $http.get('listUsers').success(function(users) {
+   $http.get('cleanz/api/users/list').success(function(users) {
      $scope.users = users;
     });
 
     // User to Database
     $scope.register = function() {
- 		$http.post('register', $scope.user).success();
+ 	    $http.post('cleanz/api/users/add', $scope.user).success(function(data) {
+        $scope.flash = data.flash;
+      });
     }
 
     //Logout User
@@ -34,28 +36,32 @@ UserController.controller('Login', function($scope, AuthenticationService, $loca
 // Edition for user's information
 UserController.controller('EditUserInfo', function($scope, $http) {
     // Get information about our user
-    $http.get('infoUser').success(function(user) {
+    var getInfoUser = function () { 
+      $http.get('/cleanz/api/users').success(function(user) {
         $scope.user = user;
     });
+  }
 
 
     
     //Edit all user information without password
     $scope.editInfoUser = function() {
-        $http.post('user/editInfo', $scope.user).success(function(user) {
+        $http.put('/cleanz/api/users', $scope.user).success(function(user) {
             $scope.user = user;
             $scope.flash = user.flash;
+            getInfoUser();
         });
     }
 
     //Edit user password
     $scope.editPasswordUser = function() {
-        $http.post('user/editPassword', $scope.user).success(function(data) {
+        $http.put('/cleanz/api/users/editPassword', $scope.user).success(function(data) {
             $scope.flashpwd = data.flash;
         }).error(function(data) {
             $scope.flashpwd = data.flash;
         });
     }
+    getInfoUser();
     
 });
 
@@ -212,20 +218,10 @@ ProjectController.controller('Logs', function($scope, $http, $routeParams) {
 
 // Document Controller
 // List of our Logs
-ProjectController.controller('Documents', function($scope, $http, $routeParams, upload) {
+ProjectController.controller('Documents', function($scope, $http, $routeParams) {
 
     $scope.projectId = $routeParams.projectId;
 
-  $scope.addFile = function () {
-      upload({
-        url: 'project/addDocument/' + $routeParams.projectId,
-        method: 'POST',
-        data: {
-          name: $scope.file.name,
-          file: $scope.file.file, // a jqLite type="file" element, upload() will extract all the files from the input and put them into the FormData object before sending.
-        }
-      });
-    }
 });
 
 /*
