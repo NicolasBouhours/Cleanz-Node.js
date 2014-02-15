@@ -6,8 +6,9 @@ var User = require('../models/users');
 users = {
 
     // #### List
+
+    // returns list of all users
     list: function list(req,res) {
-        // returns list of all users
         User.find(function(err, users) {
             return res.json(users);
         });
@@ -15,8 +16,13 @@ users = {
 
 
     // #### Read
+
+    // return user information to json
     read: function read(req,res, id) {
-        return res.json(req.session.user);
+        User.findOne(req.session.user._id, function(err,usr) {
+            if (err) return res.json({'flash': 'Impossible d\'afficher vos informations'});
+            return res.json(usr);
+        });
     },
 
 
@@ -24,6 +30,21 @@ users = {
 
     // edit one user into database and return flash message
     edit: function edit(req, res) {
+        var newU = new User(req.body);
+        console.log(newU);
+        console.log("--------------------------------------------");
+
+        User.findOne(req.session.user._id, function(err, usr) {
+            console.log(usr);
+            usr.firstName = newU.firstName;
+            usr.lastName = newU.lastName;
+            usr.phone = newU.phone;
+
+            usr.save(function (err, usrS) {
+                if (err) { return res.json({'flash': err}); }
+                res.json({'flash': 'Vos informations personnelles ont bien été modifiés'});
+            });
+        });
 
     },
 

@@ -34,17 +34,20 @@ UserController.controller('Login', function($scope, AuthenticationService, $loca
 // Edition for user's information
 UserController.controller('EditUserInfo', function($scope, $http) {
     // Get information about our user
-    $http.get('/cleanz/api/users').success(function(user) {
+    var getInfoUser = function () { 
+      $http.get('/cleanz/api/users').success(function(user) {
         $scope.user = user;
     });
+  }
 
 
     
     //Edit all user information without password
     $scope.editInfoUser = function() {
-        $http.post('user/editInfo', $scope.user).success(function(user) {
+        $http.put('/cleanz/api/users', $scope.user).success(function(user) {
             $scope.user = user;
             $scope.flash = user.flash;
+            getInfoUser();
         });
     }
 
@@ -56,6 +59,7 @@ UserController.controller('EditUserInfo', function($scope, $http) {
             $scope.flashpwd = data.flash;
         });
     }
+    getInfoUser();
     
 });
 
