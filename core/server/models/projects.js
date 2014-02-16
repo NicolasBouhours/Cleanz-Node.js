@@ -4,9 +4,9 @@ var Schema = mongoose.Schema;
 
 // ## Create Project Schema
 var projectSchema = new Schema({
-	_id: { type: Number, required: true },
+	id: { type: Number, required: true },
 	name: { type: String, required: true },
-	_creator: { type: Number, ref: 'User' },
+	_creator: { type: Schema.Types.ObjectId, ref: 'User' },
 	created_at: { type: Date, default: Date.now },
 	tasks : [{ type: Schema.Types.ObjectId, ref: 'Task'}],
 	meetings: [{ type: Schema.Types.ObjectId, ref: 'Meeting'}],
