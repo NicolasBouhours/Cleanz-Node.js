@@ -2,7 +2,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-
 var userSchema = new Schema({
 	id: { type: Number, required: true },
 	firstName:  { type: String, required: true },
@@ -11,7 +10,7 @@ var userSchema = new Schema({
 	phone: { type: String, required: true },
 	password: { type: String, required: true },
 	created_at: { type: Date, default: Date.now },
-	projects: [{ type: Schema.Types.ObjectId, ref: 'Project', type: Schema.Types.ObjectId, ref: 'Duty' }],
+	projects: [{ type: Schema.Types.ObjectId, ref: 'Project'}, { type: Schema.Types.ObjectId, ref: 'Duty'}],
 });
 
 // Users Models

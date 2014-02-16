@@ -1,6 +1,7 @@
 // Get Mongoose
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var User = require('./users');
 
 // ## Create Project Schema
 var projectSchema = new Schema({

@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 
 var dutySchema = new Schema({
-	_id: { type: Number, required: true },
+	id: { type: Number, required: true },
 	name: { type: String, required: true },
 	_project: { type: Number, ref: 'Project', required: true },
 });

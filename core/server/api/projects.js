@@ -67,7 +67,7 @@ projects = {
 
 	// edit information to database and return flash message
 	edit: function edit(req, res) {
-
+		
 	},
 
 	// #### Delete

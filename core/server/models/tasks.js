@@ -1,10 +1,11 @@
 // Get Mongoose
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var Project = require('./projects');
 
 
 var taskSchema = new Schema({
-	_id: { type: Number, required: true },
+	id: { type: Number, required: true },
 	name: { type: String, required: true },
 	description: { type: String },
 	progress: { type: Number, min: 0, max: 100, required: true },

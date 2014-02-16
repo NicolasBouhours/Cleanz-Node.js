@@ -89,8 +89,8 @@ var ProjectController = angular.module('ProjectController', []);
     $scope.addProject = function() {
         $http.post('/cleanz/api/projects/add', $scope.project).success(function(data) {
             $scope.flash = data.flash;
+            $scope.getProjects();
         });
-        $scope.getProjects();
     }
 
     // Accept invitation

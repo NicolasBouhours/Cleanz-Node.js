@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 
 var meetingSchema = new Schema({
-	_id: { type: Number, required: true },
+	id: { type: Number, required: true },
 	name: { type: String, required: true },
 	description: { type: String },
 	dateStart: { type: Date, required: true },

@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 
 var bugSchema = new Schema({
-	_id: { type: Number, required: true },
+	id: { type: Number, required: true },
 	name: { type: String, required: true },
 	description: { type: String },
 	created_at: { type: Date, default: Date.now },

@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 
 var documentSchema = new Schema({
-	_id: { type: Number, required: true },
+	id: { type: Number, required: true },
 	name: { type: String, required: true},
 	size: { type: Number },
 	description: { type: String },
