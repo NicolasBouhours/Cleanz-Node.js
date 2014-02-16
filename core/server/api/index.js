@@ -1,12 +1,14 @@
 // # Cleanz Data API
 // Provides access to the data model
 
-var users = require('./users');
-var projects = require('./projects');
+var users 			= require('./users'),
+	projects 		= require('./projects'),
+	invits 			= require('./invits');
 
 
 // ## Public API
 module.exports = {
     users: users,
     projects: projects,
+    invits: invits,
 };

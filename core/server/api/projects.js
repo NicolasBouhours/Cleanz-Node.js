@@ -15,17 +15,17 @@ projects = {
 	// return list of all projects for one user
 	list: function list(req, res) {
 
-		Project.find({ _creator: req.session.user._id}).exec(function(err, pro) {
+		User.findOne({id: req.session.user.id}).select('projects').populate('projects.project').where('projects.valid', 1).exec(function(err, usr) {
 			if (err) return handleError(err);
-			return res.json(pro);
+				return res.json(usr);
 		});
 	},
 
 	// #### Read
 
 	// return detail of one project
-	read: function read(req, res) {
-
+	read: function read(req, res, id) {
+		console.log(id);
 	},
 
 	// #### Create
@@ -48,11 +48,11 @@ projects = {
 
 				// save project
 				pro._creator = usr._id;
-				pro.save(function(err, project) {
+				pro.save(function(err, pro) {
 					if (err) { console.log(err); return res.json({'flash': 'Impossible de crée le projet'}); }
 
 						// add project to user's project list
-						usr.projects.push(project);
+						usr.projects.push({ project: pro, valid: 1});
 						usr.save(function(err) {
 							if (err) { console.log(err); return res.json({'flash': 'Impossible de crée le projet'}); }
 							else { return res.json({'flash': 'Votre projet a été crée avec succès'}); }
@@ -77,6 +77,26 @@ projects = {
 
 	},
 
+	// #### Add User 
+
+	// send invitation to user for join project
+	addUser: function addUser(req,res) {
+
+		//get user
+		User.findOne({email: req.body.email}, function(err, usr) {
+
+			//get project
+			Project.findOne({id: req.body.projectId }, function(err, pro) {
+
+				//add project into user's project list
+				usr.projects.push({ project: pro, valid: 0});
+				usr.save(function(err) {
+					if (err) { console.log(err); return res.json({'flash': 'Impossible d\'inviter l\'utilisateur'}); }
+					else { return res.json({'flash': 'L\' utilisateur a été invité a rejoindre le projet.'}); }
+				});	
+			});
+		});
+	},
 };
 
 module.exports = projects;
