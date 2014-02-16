@@ -83,9 +83,12 @@ users = {
     create: function add(req, res) {
         var user = new User(req.body);
 
-        User.findOne().sort({'_id': -1}).limit(1).findOne(function(err,usr) {
-            var newId = parseInt(usr.id) + 1;
-            user._id = newId;
+        User.findOne().sort({'id': -1}).limit(1).findOne(function(err,usr) {
+            if (usr === null) { user.id = 0; }
+            else {
+                var newId = parseInt(usr.id) + 1;
+                user.id = newId;
+            }
 
             User.findOne({email: user.email}, function(err, usr) {
                 if (usr === null) {
@@ -103,8 +106,8 @@ users = {
 
     // #### Delete
 
-    // delete user to database
-    delete: function delete(req,res) {
+    // delete user to database and return flash message
+    delete: function remove(req, res) {
         User.findOne(req.session._id).remove();
         req.session.destroy();
 

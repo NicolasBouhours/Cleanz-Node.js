@@ -13,6 +13,7 @@ UserController.controller('UsersList', function($scope, AuthenticationService, $
     $scope.register = function() {
  	    $http.post('cleanz/api/users/add', $scope.user).success(function(data) {
         $scope.flash = data.flash;
+        $location.path('/login');
       });
     }
 
@@ -72,7 +73,7 @@ var ProjectController = angular.module('ProjectController', []);
  ProjectController.controller('ProjectsList', function($scope, $http, $location) {
     // List of all project of one user
     $scope.getProjects = function() {
-            $http.get('project/list').success(function(projects) {
+            $http.get('/cleanz/api/projects/list').success(function(projects) {
             $scope.projects = projects;
         });
     }
@@ -86,11 +87,10 @@ var ProjectController = angular.module('ProjectController', []);
     
     // Project to Database
     $scope.addProject = function() {
-        $http.post('project/addProject', $scope.project).success(function(data) {
+        $http.post('/cleanz/api/projects/add', $scope.project).success(function(data) {
             $scope.flash = data.flash;
+            $scope.getProjects();
         });
-        $pro = $scope.project;
-        $scope.projects.push({'name': $scope.project.name});
     }
 
     // Accept invitation
