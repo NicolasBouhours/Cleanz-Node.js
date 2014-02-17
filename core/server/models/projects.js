@@ -9,7 +9,7 @@ var projectSchema = new Schema({
 	name: { type: String, required: true },
 	_creator: { type: Schema.Types.ObjectId, ref: 'User' },
 	created_at: { type: Date, default: Date.now },
-	tasks : [{ type: Schema.Types.ObjectId, ref: 'Task'}],
+	tasks: [{ type: Schema.Types.ObjectId, ref: 'Task'}],
 	meetings: [{ type: Schema.Types.ObjectId, ref: 'Meeting'}],
 	bugs: [{ type: Schema.Types.ObjectId, ref: 'Bug'}],
 	documents: [{ type: Schema.Types.ObjectId, ref: 'Document'}],

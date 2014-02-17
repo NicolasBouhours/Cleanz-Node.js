@@ -9,9 +9,9 @@ var documentSchema = new Schema({
 	size: { type: Number },
 	description: { type: String },
 	created_at: { type: Date, default: Date.now },
-	_creator: { type: Number, ref: 'User', required: true },
-	_project: { type: Number, ref: 'Project', required: true},
-	_category: { type: Number, ref: 'Category'},
+	_creator: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+	_project: { type: Schema.Types.ObjectId, ref: 'Project', required: true},
+	_category: { type: Schema.Types.ObjectId, ref: 'Category'},
 });
 
 // Users Models

@@ -95,15 +95,16 @@ var ProjectController = angular.module('ProjectController', []);
 
     // Accept invitation
     $scope.acceptInvit = function(invit) {
-        $http.get('project/acceptInvitation/' + invit.id).success(function(data) {
+        $http.put('cleanz/api/invits/' + invit.id).success(function(data) {
             $scope.flash = data.flash;
             $scope.getProjects();
+            $scope.getInvitations();
         })
     }
     
     // Refuse invitation
     $scope.refuseInvit = function(invit) {
-        $http.get('project/refuseInvitation/' + invit.id).success(function(data) {
+        $http.delete('cleanz/api/invits/' + invit.id).success(function(data) {
             $scope.flash = data.flash;
             $scope.getInvitations();
         });
@@ -133,20 +134,22 @@ var ProjectController = angular.module('ProjectController', []);
      $scope.projectId = $routeParams.projectId;
 
      // List of Tasks for our project
-     $http.get('project/getTasks/' + $routeParams.projectId).success(function(tasks) {
+     $scope.getTasks = function() {
+        $http.get('cleanz/api/tasks/list/' + $scope.projectId).success(function(tasks) {
         $scope.tasks = tasks;
-     });
-
+       });
+     }
 
      // Task to Dabatase
      $scope.addTask = function() {
         $scope.task.projectId = $scope.projectId;
-        $http.post('project/addTask', $scope.task).success(function(data) {
+        $http.post('cleanz/api/tasks/add', $scope.task).success(function(data) {
             $scope.flash = data.flash;
+            $scope.getTasks();
         });  
-        $scope.tasks.push({'name': $scope.task.name, 'description': $scope.task.description, 'progress': '0',
-        'dateLaunch': $scope.task.dateLaunch, 'dateEnd': $scope.task.dateEnd, 'importance_name': $scope.task.importance_name});
      }
+
+     $scope.getTasks();
  });
 
  // Management for task Page
@@ -156,18 +159,19 @@ var ProjectController = angular.module('ProjectController', []);
      $scope.projectId = $routeParams.projectId;
 
      // Detail of our Task
-     $http.get('project/getTask/' + $routeParams.taskId).success(function(task) {
+     $http.get('/cleanz/api/tasks/' + $routeParams.taskId).success(function(task) {
         $scope.task = task;
-     });
-
-     //List of Comments for our Task
-      $http.get('project/task/' + $routeParams.taskId + '/getComments').success(function(comments) {
-        $scope.comments = comments;
+        var date = new Date(task.dateStart);
+        var dateE = new Date(task.dateEnd);
+        // format date
+        $scope.task.dateStart = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate();
+        $scope.task.dateEnd = dateE.getFullYear() + '-' + dateE.getMonth() + '-' + dateE.getDate();
+        $scope.task.importance = task._importance.id;
      });
 
      // Update Task to Database
      $scope.updateTask = function() {
-        $http.post('project/updateTask/' + $routeParams.taskId, $scope.task).success(function(data) {
+        $http.put('/cleanz/api/tasks/' + $routeParams.taskId, $scope.task).success(function(data) {
             $scope.flash = data.flash;
         });
      }

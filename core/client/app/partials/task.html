@@ -17,7 +17,7 @@
 		<h4> Votre tache </h4>
 
 		<div id="project" >
-			<p> {{ name }} {{ description }} {{ task.dateLaunch }} {{ task.dateEnd }} {{ task.progress}} {{ task.importance_name }} </p>
+			<p> {{ task.name }} {{ task.description }} {{ task.dateStart | date:'yyyy-MM-dd'}} {{ task.dateEnd | date:'yyyy-MM-dd'}} {{ task.progress}} {{ task._importance.name }} </p>
 		</div>
 
 		<div id="flash" ng-show="flash">
@@ -35,7 +35,7 @@
 	        <textarea name="ameliorer" id="ameliorer" size="300" ng-model="task.description" required></textarea>
 			
 			<label for="dateS"> Date de début</label>
-	        <input type="date" id="dateS" ng-model="task.dateLaunch" />
+	        <input type="date" id="dateS" ng-model="task.dateStart" />
 
 	        <label for="dateE"> Date de fin</label>
 	        <input type="date" id="dateE" ng-model="task.dateEnd" />
@@ -43,10 +43,10 @@
 	        <label for="progress"> Progression </label>
 	        <input type="text" id="progress" ng-model="task.progress" />
 
-	        <input type="radio" name="importance" id="urgent" value="Urgente" ng-model="task.importance_name"/> <label for="urgent">Urgent</label> <br />
-       		<input type="radio" name="importance" id="haute" value="Haute" ng-model="task.importance_name" /> <label for="haute">Haute</label>    <br />
-     		<input type="radio" name="importance" id="moyenne" value="Moyenne" ng-model="task.importance_name" /> <label for="moyenne">Moyenne</label><br />
-     		<input type="radio" name="importance" id="basse" value="Basse" ng-model="task.importance_name" /> <label for="basse">Basse</label>    <br />
+	        <input type="radio" name="importance" id="urgent" value="3" ng-model="task.importance"/> <label for="urgent">Urgent</label> <br />
+       		<input type="radio" name="importance" id="haute" value="2" ng-model="task.importance" /> <label for="haute">Haute</label>    <br />
+     		<input type="radio" name="importance" id="moyenne" value="1" ng-model="task.importance" /> <label for="moyenne">Moyenne</label><br />
+     		<input type="radio" name="importance" id="basse" value="0" ng-model="task.importance" /> <label for="basse">Basse</label>    <br />
 
 
 			

@@ -8,9 +8,9 @@ var logSchema = new Schema({
 	name: { type: String, required: true },
 	logId: { type: Number, required: true},
 	created_at: { type: Date, default: Date.now },
-	_creator: { type: Number, ref: 'User', required: true },
-	_project: { type: Number, ref: 'Project', required: true },
-	_logmessage: { type: Number, ref: 'LogMessage', required: true },
+	_creator: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+	_project: { type: Schema.Types.ObjectId, ref: 'Project', required: true },
+	_logmessage: { type: Schema.Types.ObjectId, ref: 'LogMessage', required: true },
 });
 
 // Users Models

@@ -9,11 +9,11 @@ var bugSchema = new Schema({
 	description: { type: String },
 	created_at: { type: Date, default: Date.now },
 	progress: { type: Number, min: 0, max: 100 },
-	_creator: { type: Number, ref: 'User', required: true },
-	_category: { type: Number, ref: 'Category' },
+	_creator: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+	_category: { type: Schema.Types.ObjectId, ref: 'Category' },
 	comments: [{ type: Schema.Types.ObjectId, ref: 'Comment'}],
-	_project: { type: Number, ref: 'Project', required:true },
-	_task: { type: Number, ref: 'Task' },
+	_project: { type: Schema.Types.ObjectId, ref: 'Project', required:true },
+	_task: { type: Schema.Types.ObjectId, ref: 'Task' },
 });
 
 // Users Models

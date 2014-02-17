@@ -9,8 +9,8 @@ var meetingSchema = new Schema({
 	description: { type: String },
 	dateStart: { type: Date, required: true },
 	duree: { type: Number },
-	_creator: { type: Number, ref: 'User', required: true },
-	_project: { type: Number, ref: 'Project', required: true },
+	_creator: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+	_project: { type: Schema.Types.ObjectId, ref: 'Project', required: true },
 });
 
 // Users Models
