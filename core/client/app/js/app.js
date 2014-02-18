@@ -1,9 +1,9 @@
 // ## Definition of Routes, Controllers and Services
-var Cleanz = angular.module('Cleanz', [
-  'ngRoute',
-  'UserController',
-  'ProjectController',
-]);
+  var Cleanz = angular.module('Cleanz', [
+    'ngRoute',
+    'UserController',
+    'ProjectController',
+  ]);
  
 // ## Router
 Cleanz.config(['$routeProvider',
