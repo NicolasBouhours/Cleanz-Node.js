@@ -4,7 +4,7 @@
 
 		<ul>
 			<li ng-repeat="project in projects">
-				<a href="#/project/{{project.id}}"> {{ project.name }} </a>
+				<a href="#/project/{{project.project.id}}"> {{ project.project.name }} </a>
 			</li>
 		</ul>
 
@@ -26,8 +26,8 @@
 
 	    <div id="invitations">
 	    	<div id="invit" ng-repeat="invit in invits">
-	    		Invitation projet : {{ invit.name }} <a ng-click="acceptInvit(invit)" class="button">Accepter l'invitation</a>
-	    		 <a ng-click="refuseInvit(invit)" class="button">Refuser l'invitation</a> <br/>
+	    		Invitation projet : {{ invit.project.name }} <a ng-click="acceptInvit(invit.project)" class="button">Accepter l'invitation</a>
+	    		 <a ng-click="refuseInvit(invit.project)" class="button">Refuser l'invitation</a> <br/>
 	    	</div>
 	    </div>
 

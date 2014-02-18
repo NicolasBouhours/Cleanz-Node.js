@@ -1,4 +1,4 @@
-// Module dependencies
+// ## Module dependencies
 var express = require('express');
 var routes = require('./routes');
 var models = require('./models');
@@ -42,20 +42,19 @@ function setup(server) {
 		if (err) { throw err; }
 	});
 
-	// Test mongoose Finish
+	// Now create server
 	http.createServer(server).listen(server.get('port'), function(){
 	  console.log('Express server listening on port ' + server.get('port'));
 	});
 }
 
  
-// Initializes the ghost application.
+// ## Initialize Cleanz
 function init(app) {
     if (!app) {
         app = express();
     }
 
-    // The server and its dependencies require a populated config
     setup(app);
 }
 
