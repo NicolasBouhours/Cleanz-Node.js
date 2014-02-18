@@ -153,7 +153,7 @@ var ProjectController = angular.module('ProjectController', []);
  });
 
  // Management for task Page
- ProjectController.controller('ProjectTask', function($scope, $http, $location, $routeParams) {
+ ProjectController.controller('ProjectTask', function($scope, $http, $location, $routeParams, DateService) {
 
      $scope.taskId = $routeParams.taskId;
      $scope.projectId = $routeParams.projectId;
@@ -163,9 +163,11 @@ var ProjectController = angular.module('ProjectController', []);
         $scope.task = task;
         var date = new Date(task.dateStart);
         var dateE = new Date(task.dateEnd);
+
         // format date
-        $scope.task.dateStart = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate();
-        $scope.task.dateEnd = dateE.getFullYear() + '-' + dateE.getMonth() + '-' + dateE.getDate();
+        $scope.task.dateStart = DateService.format(date);
+        $scope.task.dateEnd = DateService.format(dateE);
+
         $scope.task.importance = task._importance.id;
      });
 
@@ -228,24 +230,3 @@ ProjectController.controller('Documents', function($scope, $http, $routeParams) 
     $scope.projectId = $routeParams.projectId;
 
 });
-
-/*
-        var fd = new FormData()
-        fd.append("file", $scope.file)
-        var xhr = new XMLHttpRequest()
-        xhr.open("POST", "project/addDocument/" + $routeParams.projectId)
-        xhr.send(fd)
-        */
-
-                 /* $http.post('project/addDocument/' + $routeParams.projectId, $scope.file).success(function(data) {
-            $scope.flash=data.flash;
-          });*/
-
-/*
-    $scope.addFile= function() {
-
-         $http.post('project/addDocument/' + $routeParams.projectId, $scope.file).success(function(data) {
-            $scope.flash=data.flash;
-          });
-    };
-    */
