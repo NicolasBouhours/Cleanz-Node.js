@@ -1,7 +1,4 @@
-// # Cleanz bootloader
-// Orchestrates the loading of Ghost
-// When run from command line.
-
+// ## Cleanz bootloader
 
 function startCleanz(app) {
         var cleanz = require('./server');

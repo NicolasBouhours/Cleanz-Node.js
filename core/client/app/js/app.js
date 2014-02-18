@@ -1,11 +1,11 @@
-// Definition of Routes, Controllers and Services
+// ## Definition of Routes, Controllers and Services
 var Cleanz = angular.module('Cleanz', [
   'ngRoute',
   'UserController',
   'ProjectController',
 ]);
  
-// Router
+// ## Router
 Cleanz.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
@@ -63,7 +63,7 @@ Cleanz.config(['$routeProvider',
   }]);
 
 
- // Routes wich require Auth
+ // ## Routes wich require Auth
 Cleanz.run(function($rootScope, $location, AuthenticationService) {
 
   var routesThatRequireAuth = ['/project', '/editinfo'];
@@ -75,7 +75,7 @@ Cleanz.run(function($rootScope, $location, AuthenticationService) {
   });
 });
 
-// Flash Service
+// ## Flash Service
 Cleanz.factory('FlashService', function($rootScope) {
   return {
     show: function(message) {
@@ -87,7 +87,7 @@ Cleanz.factory('FlashService', function($rootScope) {
   }
 });
 
-// Session Service
+// ## Session Service
 Cleanz.factory('SessionService', function() {
   return {
     get: function(key) {
@@ -102,7 +102,7 @@ Cleanz.factory('SessionService', function() {
   };
 });
 
-// Authentification Service
+// ## Authentification Service
 Cleanz.factory('AuthenticationService', function($http, $location, SessionService, FlashService) {
   var cacheSession = function() {
     SessionService.set('authenticated', true);
@@ -133,3 +133,22 @@ Cleanz.factory('AuthenticationService', function($http, $location, SessionServic
   };
 });
 
+// ## Format date
+Cleanz.factory('DateService', function() {
+  return {
+    format: function(date) {
+      if (date.getMonth() < 10 && date.getDate() < 10) {
+        return date.getFullYear() + '-0' + (date.getMonth() + 1) + '-0' + date.getDate();
+      }
+      else if (date.getMonth() < 10) {
+        return date.getFullYear() + '-0' + (date.getMonth() + 1) + '-' + date.getDate(); 
+      }
+      else if (date.getDate() < 10) {
+        return date.getFullYear() + '-' + (date.getMonth() + 1) + '-0' + date.getDate();         
+      }
+      else {
+        return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();    
+      }
+    }
+  };
+});
