@@ -36,8 +36,8 @@ module.exports = function(server) {
 	//server.del('/cleanz/api/meetings/:id', api.meetings.delete);
 
 	// Route for Comments
-	//server.post('/cleanz/api/comments/add', api.comments.create);
-	//server.get('/cleanz/api/comments/list/:id', api.comments.list);
+	server.post('/cleanz/api/comments/add', api.comments.create);
+	server.get('/cleanz/api/comments/list/:id', api.comments.list);
 
 	// Route for Invits
 	server.get('/cleanz/api/invits/list', api.invits.list);

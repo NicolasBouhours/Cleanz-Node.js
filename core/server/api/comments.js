@@ -10,6 +10,17 @@ var Comment = require('../models/comments');
 // ## Tasks 
 comments = {
 
+	// #### List
+
+	// get list of all comment for one task
+	list: function list(req, res) {
+		Task.findOne({id: req.params.id}, function(err, task) {
+			Comment.find({_task: task._id}).populate('_creator','_id firstName lastName').exec(function(err, coms) {
+				return res.json(coms);
+			});
+		});
+	},
+
 	// #### Create
 
 	// store comment into database and return flash message
@@ -19,27 +30,31 @@ comments = {
 
 		// get id for comment
 		 Comment.findOne().sort({'id': -1}).limit(1).findOne(function(err,com) {
-		 	if (pr === null) { comment.id = 0; }
+		 	if (com === null) { comment.id = 0; }
 		 	else {
 	            var newId = parseInt(com.id) + 1;
 	            comment.id = newId;
 	        }
+	        console.log(comment);
 
-	        // save comment to database
-	        comment.save(function(err,c) {
+        	// add it to task comment's list
+        	Task.findOne({id: req.body.taskId}, function(err, t) {
+        		if (err) console.log(err);
 
-	        	// add it to task comment's list
-	        	Task.find({id: req.body.projectId}, function(err, t) {
-	        		if (err) console.log(err);
-	        		t.comments.push(c);
+        		comment._task = t._id;
+        		comment._creator = req.session.user._id;
+        		comment.save(function(err,c) {
+        			if (err) console.log(err);
+
+        			t.comments.push(c);
 
 	        		// save task
 	        		t.save(function(err) {
 	        			if (err) console.log(err);
-	        			return res.json({'flash'} : 'Votre commentaire a bien été ajouté');
+	        			return res.json({'flash' : 'Votre commentaire a bien été ajouté'});
 	        		});
-	        	});
-	        });
+        		});
+        	});
 
 	    });
 
