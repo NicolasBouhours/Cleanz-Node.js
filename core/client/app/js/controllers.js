@@ -71,6 +71,7 @@ var ProjectController = angular.module('ProjectController', []);
 
 // List of project for users
  ProjectController.controller('ProjectsList', function($scope, $http, $location) {
+
     // List of all project of one user
     $scope.getProjects = function() {
             $http.get('/cleanz/api/projects/list').success(function(data) {

@@ -62,14 +62,22 @@ Cleanz.config(['$routeProvider',
         templateUrl: 'app/partials/bugs.html',
         controller: 'Bugs'
        }).
+        when ('/project/:projectId/bugs/:bugId', {
+        templateUrl: 'app/partials/bug.html',
+        controller: 'Bug'
+       }).
        when ('/project/:projectId/addBug', {
         templateUrl: 'app/partials/addBug.html',
         controller: 'addBug'
        }).
-       when ('/project/:projectId/editBug', {
+       when ('/project/:projectId/editBug/:bugId', {
         templateUrl: 'app/partials/editBug.html',
-        controller: 'editBug'
-       });
+        controller: 'EditBug'
+       }).
+        otherwise({
+        redirectTo: '/'
+      });
+
   }]);
 
 

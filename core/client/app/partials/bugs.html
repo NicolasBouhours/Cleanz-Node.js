@@ -18,8 +18,11 @@
 		<h4> Liste des vos bugs</h4>
 
 		<div id="bug" ng-repeat="bug in bugs" >
-			<p><a href="#/project/{{ projectId }}/bugs/{{ bug.id }}"> {{ bug.name }} {{ bug.description }} {{ bug.created_at }}  {{ bug.resolve}} {{ bug._creator.firstName }} {{ bug._creator.lastName }}</a> </p>
+			<p><a href="#/project/{{ projectId }}/bugs/{{ bug.id }}"> {{ bug.name }} {{ bug.description }} {{ bug.created_at | date:'yyyy-MM-dd' }}  {{ bug.resolve}} {{ bug._creator.firstName }} {{ bug._creator.lastName }}  {{ bug.resolve }}</a> </p>
 		</div>
+
+		<h4> Commentaires sur votre bug </h4>
+		
 
 		<div id="flash" ng-show="flash">
         	{{ flash }}

@@ -98,7 +98,14 @@ bugs = {
 	// delete a bug into database
 	delete: function remove(req, res) {
 		Bug.findOne({id: req.params.id}, function(err, bug) {
-			bug.remove();
+			console.log(bug._creator);
+			console.log(req.session.user._id);
+			if (bug._creator == req.session.user._id) {
+				bug.remove();
+			}
+			else {
+				return res.json({'flash': 'Seul le créateur du bug a le droit de le supprimer'});
+			}
 
 			return res.json({'flash': 'Votre bug a été supprimé'});
 		});	
