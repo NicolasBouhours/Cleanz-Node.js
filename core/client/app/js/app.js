@@ -3,6 +3,7 @@ var Cleanz = angular.module('Cleanz', [
   'ngRoute',
   'UserController',
   'ProjectController',
+  'BugController',
 ]);
  
 // ## Router
@@ -57,9 +58,18 @@ Cleanz.config(['$routeProvider',
         templateUrl: 'app/partials/documents.html',
         controller: 'Documents'
        }).
-      otherwise({
-        redirectTo: '/'
-      });
+       when ('/project/:projectId/bugs', {
+        templateUrl: 'app/partials/bugs.html',
+        controller: 'Bugs'
+       }).
+       when ('/project/:projectId/addBug', {
+        templateUrl: 'app/partials/addBug.html',
+        controller: 'addBug'
+       }).
+       when ('/project/:projectId/editBug', {
+        templateUrl: 'app/partials/editBug.html',
+        controller: 'editBug'
+       });
   }]);
 
 
