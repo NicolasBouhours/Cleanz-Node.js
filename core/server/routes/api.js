@@ -4,6 +4,7 @@ var api = require('../api');
 var mongoose = require('mongoose');
 var User = require('../models/users');
 var Importance = require('../models/importances');
+var LogMessage = require('../models/logsmessages');
 
 module.exports = function(server) {
 
@@ -65,6 +66,47 @@ module.exports = function(server) {
 		imp1.save();
 		imp2.save();
 		imp3.save();
+
+		var l1 = new LogMessage({id: 0, name: 'a crée la tache'});
+		var l2 = new LogMessage({id: 1, name: 'a modifié la tache'});
+		var l3 = new LogMessage({id: 2, name: 'a supprimé la tache'});
+		var l4 = new LogMessage({id: 3, name: 'a terminé la tache'});
+		var l5 = new LogMessage({id: 4, name: 'a ajouté la réunion'});
+		var l6 = new LogMessage({id: 5, name: 'a modifié la réunion'});
+		var l7 = new LogMessage({id: 6, name: 'a supprimé la réunion'});
+		var l8 = new LogMessage({id: 7, name: 'a ajouté le document'});
+		var l9 = new LogMessage({id: 8, name: 'a modifié le document'});
+		var l10 = new LogMessage({id: 9, name: 'a supprimé le document'});
+		var l11 = new LogMessage({id: 10, name: 'a ajouté le bug'});
+		var l12 = new LogMessage({id: 11, name: 'a modifié le bug'});
+		var l13 = new LogMessage({id: 12, name: 'a supprimé le bug'});
+		var l14 = new LogMessage({id: 13, name: 'a ajouté la catégorie'});
+		var l15 = new LogMessage({id: 14, name: 'a supprimé la catégorie'});
+		var l16 = new LogMessage({id: 15, name: 'a rejoint le projet'});
+		var l17 = new LogMessage({id: 16, name: 'a quitté le projet'});
+		var l18 = new LogMessage({id: 17, name: 'a commenté la tache'});
+		var l19 = new LogMessage({id: 18, name: 'a commenté le bug'});
+
+		l1.save();
+		l2.save();
+		l3.save();
+		l4.save();
+		l5.save();
+		l6.save();
+		l7.save();
+		l8.save();
+		l9.save();
+		l10.save();
+		l11.save();
+		l12.save();
+		l13.save();
+		l14.save();
+		l15.save();
+		l16.save();
+		l17.save();
+		l18.save();
+		l19.save();
+
 
 		return res.json({'flash': 'Base de donnée remplie'});
 	});
