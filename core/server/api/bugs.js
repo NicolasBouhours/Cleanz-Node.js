@@ -1,12 +1,12 @@
-// # Cleanz Data API 
+// # Cleanz Data API
 // Provides access to the data model for bugs
 
 // ## Dependencies
 var mongoose = require('mongoose');
 var Bug = require('../models/bugs');
-var User = require('../models/users');
 var Project = require('../models/projects');
-var Task = require('../models/tasks');
+var Log = require('../models/logs');
+var LogApi = require('../api/logs');
 
 // ## Bugs 
 bugs = {
@@ -65,7 +65,12 @@ bugs = {
 						pro.bugs.push(b);
 						pro.save(function(err, pr) {
 							if (err) return console.log(err);
-								return res.json({'flash': 'Vous venez d\'ajouté le bug' + b.name});
+
+							// add into logs
+							var log = new Log({'name': b.name,'_creator': req.session.user._id, '_project': pr._id});
+							LogApi.create(log, 10);
+
+							return res.json({'flash': 'Vous venez d\'ajouté le bug' + b.name});
 						});
 				});
 	        });

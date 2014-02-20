@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var User = require('../models/users');
 var Importance = require('../models/importances');
 var LogMessage = require('../models/logsmessages');
+var logs = require('../models/logs');
 
 module.exports = function(server) {
 
@@ -51,10 +52,10 @@ module.exports = function(server) {
 	server.get('/cleanz/api/bugs/:id', api.bugs.read);
 	server.put('/cleanz/api/bugs/:id', api.bugs.edit);
 	server.del('/cleanz/api/bugs/:id', api.bugs.delete);
-/*
+
 	// Route for Logs
 	server.get('/cleanz/api/logs/list/:id', api.logs.list);
-	*/
+	
 
 	server.get('/cleanz/init', function(req, res) {
 		var imp0 = new Importance({id: 0, name: 'Basse'});

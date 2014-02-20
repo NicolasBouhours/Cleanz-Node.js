@@ -6,7 +6,6 @@ var Schema = mongoose.Schema;
 var logSchema = new Schema({
 	id: { type: Number, required: true },
 	name: { type: String, required: true },
-	logId: { type: Number, required: true},
 	created_at: { type: Date, default: Date.now },
 	_creator: { type: Schema.Types.ObjectId, ref: 'User', required: true },
 	_project: { type: Schema.Types.ObjectId, ref: 'Project', required: true },
