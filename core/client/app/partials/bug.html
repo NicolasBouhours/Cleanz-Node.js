@@ -13,12 +13,19 @@
 		</ul>
 	</nav>
 
-		<h2> Journal de votre projets </h2>
+		<h2> Bienvenue sur les bugs</h2>
 
-		<div id="logs">
-			<div id="log" ng-repeat="log in logs">
-				<p> {{ log.firstName }} {{ log.lastName }} {{ log.message }} {{ log.name }} </p>
-			</div>
+		<h4> Votre bug </h4>
+
+		<div id="project" >
+         <p>{{ bug.name }} {{ bug.description }} {{ bug.created_at | date:'yyyy-MM-dd' }}  {{ bug.resolve}} {{ bug._creator.firstName }} {{ bug._creator.lastName }}  {{ bug.resolve }} </p>
 		</div>
 
+		<br/> 
+		<a href="#/project/:projectId/editBug/{{ bug.id }}" class="button"> Modifier le bug </a>
+		<br/>
+
+		<div id="flash" ng-show="flash">
+	        {{ flash }}
+	    </div>
 </div>

@@ -1,9 +1,18 @@
 // ## Definition of Routes, Controllers and Services
+<<<<<<< HEAD
   var Cleanz = angular.module('Cleanz', [
     'ngRoute',
     'UserController',
     'ProjectController',
   ]);
+=======
+var Cleanz = angular.module('Cleanz', [
+  'ngRoute',
+  'UserController',
+  'ProjectController',
+  'BugController',
+]);
+>>>>>>> dev
  
 // ## Router
 Cleanz.config(['$routeProvider',
@@ -57,9 +66,26 @@ Cleanz.config(['$routeProvider',
         templateUrl: 'app/partials/documents.html',
         controller: 'Documents'
        }).
-      otherwise({
+       when ('/project/:projectId/bugs', {
+        templateUrl: 'app/partials/bugs.html',
+        controller: 'Bugs'
+       }).
+        when ('/project/:projectId/bugs/:bugId', {
+        templateUrl: 'app/partials/bug.html',
+        controller: 'Bug'
+       }).
+       when ('/project/:projectId/addBug', {
+        templateUrl: 'app/partials/addBug.html',
+        controller: 'addBug'
+       }).
+       when ('/project/:projectId/editBug/:bugId', {
+        templateUrl: 'app/partials/editBug.html',
+        controller: 'EditBug'
+       }).
+        otherwise({
         redirectTo: '/'
       });
+
   }]);
 
 

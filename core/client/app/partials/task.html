@@ -6,6 +6,7 @@
 			<li class="divider"><a href="#/project/{{ projectId }}/documents"> Documents</a></li>
 			<li class="divider"><a href="#/project/{{ projectId }}/meetings"> Réunion</a></li>
 			<li class="divider"><a href="#/project/{{ projectId }}/logs"> Journal</a></li>
+			<li class="divider"><a href="#/project/{{ projectId }}/bugs"> Bugs</a></li>
 			<li class="divider"><a href="#/project/{{ projectId }}/users"> Utilisateurs</a></li>
 			<li class="divider"><a href="#/project/{{ projectId }}/stats"> Statistiques</a></li>
 			<li class="divider"><a href="#/project/{{ projectId }}/params"> Paramètres</a></li>
@@ -57,8 +58,8 @@
 
 		<h4> Liste des commentaires </h4>
 		<div id="comments">
-			<div id="comment" ng-repeat="comment in comments">
-				{{ comment.description }} {{ comment.created_at }} par {{ comment.firstName }} {{ comment.lastName }}
+			<div id="comment" ng-repeat="com in comments">
+				{{ com.description }} {{ com.created_at }} par {{ com._creator.firstName }} {{ com._creator.lastName }}
 			</div>
 		</div>
 

@@ -71,6 +71,7 @@ var ProjectController = angular.module('ProjectController', []);
 
 // List of project for users
  ProjectController.controller('ProjectsList', function($scope, $http, $location) {
+
     // List of all project of one user
     $scope.getProjects = function() {
             $http.get('/cleanz/api/projects/list').success(function(data) {
@@ -171,6 +172,13 @@ var ProjectController = angular.module('ProjectController', []);
         $scope.task.importance = task._importance.id;
      });
 
+     // Get comments for our task
+     $scope.getComments = function() {
+      $http.get('/cleanz/api/comments/list/' + $routeParams.taskId).success(function(comments) {
+        $scope.comments = comments;
+      });
+     }
+
      // Update Task to Database
      $scope.updateTask = function() {
         $http.put('/cleanz/api/tasks/' + $routeParams.taskId, $scope.task).success(function(data) {
@@ -180,10 +188,14 @@ var ProjectController = angular.module('ProjectController', []);
 
      //Add comment to Databae
      $scope.addComment = function() {
-        $http.post('project/task/' + $routeParams.taskId + '/addComment', $scope.comment).success(function(data) {
+      $scope.comment.taskId = $routeParams.taskId
+        $http.post('cleanz/api/comments/add', $scope.comment).success(function(data) {
             $scope.flash = data.flash;
+            $scope.getComments();
         });
      }
+
+     $scope.getComments();
  });
 
  // Adding meetings

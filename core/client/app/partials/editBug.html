@@ -13,12 +13,23 @@
 		</ul>
 	</nav>
 
-		<h2> Journal de votre projets </h2>
+	<h4>Editer une bug</h4>
 
-		<div id="logs">
-			<div id="log" ng-repeat="log in logs">
-				<p> {{ log.firstName }} {{ log.lastName }} {{ log.message }} {{ log.name }} </p>
-			</div>
-		</div>
+			<form class="form-horizontal">
 
+	        <label for="name">Nom du bug</label>
+	        <input type="text" id="name"  ng-model="bug.name" required>
+
+	        <label for="description">description du bug</label>
+	        <textarea name="ameliorer" id="ameliorer" size="600" ng-model="bug.description" required></textarea>
+
+			<button type="submit" ng-click="editBug()">Modifié le bug</button>
+
+		</form> <br/>
+
+		<a ng-click="removeBug()"> Supprimer le bug</a>
+
+		<div id="flash" ng-show="flash">
+	        {{ flash }}
+	    </div>
 </div>

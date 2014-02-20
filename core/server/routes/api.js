@@ -36,21 +36,21 @@ module.exports = function(server) {
 	//server.del('/cleanz/api/meetings/:id', api.meetings.delete);
 
 	// Route for Comments
-	//server.post('/cleanz/api/comments/add', api.comments.create);
-	//server.get('/cleanz/api/comments/list/:id', api.comments.list);
+	server.post('/cleanz/api/comments/add', api.comments.create);
+	server.get('/cleanz/api/comments/list/:id', api.comments.list);
 
 	// Route for Invits
 	server.get('/cleanz/api/invits/list', api.invits.list);
 	server.put('/cleanz/api/invits/:id', api.invits.accept);
 	server.del('/cleanz/api/invits/:id', api.invits.refuse);
-/*
+
 	// Route for Bugs
 	server.get('/cleanz/api/bugs/list/:id', api.bugs.list);
 	server.post('/cleanz/api/bugs/add', api.bugs.create);
 	server.get('/cleanz/api/bugs/:id', api.bugs.read);
 	server.put('/cleanz/api/bugs/:id', api.bugs.edit);
 	server.del('/cleanz/api/bugs/:id', api.bugs.delete);
-
+/*
 	// Route for Logs
 	server.get('/cleanz/api/logs/list/:id', api.logs.list);
 	*/
