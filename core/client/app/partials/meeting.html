@@ -14,14 +14,15 @@
 		</nav>
 
 
-		<h4> Liste des vos réunions </h4>
+		<h4> Detail de votre réunion </h4>
 
-		<div id="meeting" ng-repeat="meeting in meetings" >
 
-			<p><a href="#/project/{{ projectId }}/meetings/{{ meeting.id }}"> {{ meeting.name }} {{ meeting.description }} {{ meeting.dateStart | date:'yyyy-MM-dd' }} {{ meeting.timeStart }} {{ meeting.duree }}</a> </p>
+		<p>{{ meeting.name }} {{ meeting.description }} {{ meeting.dateStart | date:'yyyy-MM-dd' }} {{ meeting.timeStart }} {{ meeting.duree }}</p>
 
 		</div>
 
-		<a href="#/project/{{ projectId }}/addMeeting" class="button">Ajouter une réunion</a>
+		<br/>
+
+		<a class="button" href='#/project/{{ projectId }}/editMeeting/{{ meeting.id }}'>Modifier la réunion</a>
 
 	</div>

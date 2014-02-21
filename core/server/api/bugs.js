@@ -91,8 +91,13 @@ bugs = {
 			bug.description = req.body.description;
 
 			// save it
-			bug.save(function(err) {
+			bug.save(function(err, b) {
 				if (err) console.log(err);
+
+				// add into logs
+				var log = new Log({'name': b.name,'_creator': req.session.user._id, '_project': b._project});
+				LogApi.create(log, 11);
+
 				return res.json({'flash': 'Votre bug a été modifié'});
 			});
 		});
@@ -103,9 +108,13 @@ bugs = {
 	// delete a bug into database
 	delete: function remove(req, res) {
 		Bug.findOne({id: req.params.id}, function(err, bug) {
-			console.log(bug._creator);
-			console.log(req.session.user._id);
+
 			if (bug._creator == req.session.user._id) {
+				// add into logs
+				var log = new Log({'name': bug.name,'_creator': req.session.user._id, '_project': bug._project});
+				LogApi.create(log, 12);
+
+				// remove it
 				bug.remove();
 			}
 			else {

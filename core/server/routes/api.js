@@ -31,11 +31,11 @@ module.exports = function(server) {
 	//server.del('/cleanz/api/tasks/:id', api.tasks.delete);
 
 	// Route for Meetings
-	//server.get('/cleanz/api/meetings/list/:id', api.meetings.list);
-	//server.post('/cleanz/api/meetings/add', api.meetings.create);
-	//server.get('/cleanz/api/meetings/:id', api.meetings.read);
-	//server.put('/cleanz/api/meetings/:id', api.meetings.edit);
-	//server.del('/cleanz/api/meetings/:id', api.meetings.delete);
+	server.get('/cleanz/api/meetings/list/:id', api.meetings.list);
+	server.post('/cleanz/api/meetings/add', api.meetings.create);
+	server.get('/cleanz/api/meetings/:id', api.meetings.read);
+	server.put('/cleanz/api/meetings/:id', api.meetings.edit);
+	server.del('/cleanz/api/meetings/:id', api.meetings.delete);
 
 	// Route for Comments
 	server.post('/cleanz/api/comments/add', api.comments.create);
