@@ -70,7 +70,7 @@ MeetingController.controller('EditMeeting', function($scope, $http, $routeParams
 	$scope.removeMeeting = function() {
 		$http.delete('/cleanz/api/meetings/' + $routeParams.meetingId).success(function(data) {
 			$scope.flash = data.flash;
-			$location.path('/project/' + $routeParams.projectId + 'meetings');
+			$location.path('/project/' + $routeParams.projectId + '/meetings');
 		});
 	}
 });

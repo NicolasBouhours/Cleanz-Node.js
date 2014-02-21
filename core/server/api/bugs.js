@@ -118,7 +118,7 @@ bugs = {
 				bug.remove();
 			}
 			else {
-				return res.json({'flash': 'Seul le créateur du bug a le droit de le supprimer'});
+				return res.json({'flash': 'Seul le créateur du bug a le droit de la supprimer'});
 			}
 
 			return res.json({'flash': 'Votre bug a été supprimé'});

@@ -8,6 +8,7 @@ var Project = require('../models/projects');
 var Task = require('../models/tasks');
 var Importance = require('../models/importances');
 var Log = require('../models/logs');
+var LogApi = require('../api/logs');
 
 // ## Tasks 
 tasks = {
@@ -50,7 +51,7 @@ tasks = {
 
 		// attribute info to task
 		task.id = id;
-		task._creator = req.session.user._id;
+		task._creator = req.session.user.id;
 		task._project = req.body.projectId;
 		task.progress = 0;
 		
