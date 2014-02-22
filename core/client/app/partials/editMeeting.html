@@ -4,6 +4,7 @@
 			<li class="divider"><a href="#/project/{{ projectId }}/documents"> Documents</a></li>
 			<li class="divider"><a href="#/project/{{ projectId }}/meetings"> Réunion</a></li>
 			<li class="divider"><a href="#/project/{{ projectId }}/logs"> Journal</a></li>
+			<li class="divider"><a href="#/project/{{ projectId }}/bugs"> Bugs</a></li>
 			<li class="divider"><a href="#/project/{{ projectId }}/users"> Utilisateurs</a></li>
 			<li class="divider"><a href="#/project/{{ projectId }}/stats"> Statistiques</a></li>
 			<li class="divider"><a href="#/project/{{ projectId }}/params"> Paramètres</a></li>
@@ -24,18 +25,24 @@
 	        <input type="text" id="place"  ng-model="meeting.place" required>
 			
 			<label for="dateS"> Date de début</label>
-	        <input type="date" id="dateS" ng-model="meeting.date" />
+	        <input type="date" id="dateS" ng-model="meeting.dateStart" />
 
-	        <label for="dateS"> Heure de début</label>
-	        <input type="time" id="dateS" ng-model="meeting.time" />
 
-			<label for="duree">Durée</label>
-	        <input type="text" id="duree"  ng-model="meeting.duree" required>
+	        <label for="dateT"> Heure de début</label>
+	        <input type="text" id="dateT" ng-model="meeting.timeStart" />
 
-			<button type="submit" ng-click="modifyMeeting()">Modifier la réunion</button>
+	        <label for="duree"> Durée</label>
+	        <input type="text" id="duree" ng-model="meeting.duree" />
+
+			<button type="submit" ng-click="editMeeting()">Modifier la réunion</button>
 
 		</form>
+
+	    <br/>
+		<a class="buttin" ng-click="removeMeeting()">Supprimer la réunion </a>
+	    <br/>
 
 		<div id="flash" ng-show="flash">
 	        {{ flash }}
 	    </div>
+

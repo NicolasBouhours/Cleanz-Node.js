@@ -6,7 +6,9 @@ var users 			= require('./users'),
 	invits 			= require('./invits'),
 	tasks 			= require('./tasks'),
 	comments		= require('./comments'),
-	bugs 			= require('./bugs');
+	bugs 			= require('./bugs'),
+    logs            = require('./logs'),
+    meetings        = require('./meetings');
 
 
 // ## Public API
@@ -16,6 +18,7 @@ module.exports = {
     invits: invits,
     tasks: tasks,
     comments: comments,
-    bugs:
-     bugs,
+    bugs: bugs,
+    logs: logs,
+    meetings: meetings,
 };

@@ -6,6 +6,8 @@ var mongoose = require('mongoose');
 var User = require('../models/users');
 var Task = require('../models/tasks');
 var Comment = require('../models/comments');
+var Log = require('../models/logs');
+var LogApi = require('../api/logs');
 
 // ## Tasks 
 comments = {
@@ -51,6 +53,11 @@ comments = {
 	        		// save task
 	        		t.save(function(err) {
 	        			if (err) console.log(err);
+
+	        			//save it into logs
+        				// add into logs
+						var log = new Log({'name': t.name,'_creator': req.session.user._id, '_project': t._id});
+						LogApi.create(log, 17);
 	        			return res.json({'flash' : 'Votre commentaire a bien été ajouté'});
 	        		});
         		});

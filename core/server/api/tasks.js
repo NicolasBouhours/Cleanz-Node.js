@@ -7,6 +7,8 @@ var User = require('../models/users');
 var Project = require('../models/projects');
 var Task = require('../models/tasks');
 var Importance = require('../models/importances');
+var Log = require('../models/logs');
+var LogApi = require('../api/logs');
 
 // ## Tasks 
 tasks = {
@@ -37,18 +39,17 @@ tasks = {
 	// store task into database and return flash message
 	create: function add(req, res) {
 		var task = new Task(req.body);
-		var id = 0;
+		var newId = 0;
 
 		// get id for project
 		Task.findOne().sort({'id': -1}).limit(1).findOne(function(err,ta) {
-		 	if (ta === null) { id = 0; }
+		 	if (ta === null) { newId = 0; }
 		 	else {
-	             id = parseInt(ta.id) + 1;
+	             newId = parseInt(ta.id) + 1;
+	             task.id = newId;
 	        }
 	    });
 
-		// attribute info to task
-		task.id = id;
 		task._creator = req.session.user.id;
 		task._project = req.body.projectId;
 		task.progress = 0;
@@ -65,6 +66,11 @@ tasks = {
 				// save task into project's list
 				Project.findOne({'id': req.body.projectId}, function(err, pro){
 					if (err) return handleError(err);
+
+					// add into logs
+					var log = new Log({'name': t.name,'_creator': req.session.user._id, '_project': pro._id});
+					LogApi.create(log, 1);
+
 					pro.tasks.push(t);
 					pro.save(function(err, pr) {
 						if (err) return handleError(err);
@@ -91,6 +97,25 @@ tasks = {
         		ta._importance = i._id;
 	            ta.save(function (err, taS) {
 
+	            	if (ta.progress == 100) {	
+
+	            		//find Importane name
+	            		Importance.findOne({id: 4}, function(err, imp) {
+	            			// search if log already exist
+		            		Log.findOne({'name' : ta.name, '_logmessage': imp._id})
+		            		// add into logs
+							var log = new Log({'name': ta.name,'_creator': req.session.user._id, '_project': ta._project});
+							LogApi.create(log, 4);
+	            		});
+
+	            	}else {
+
+		            	 // add into logs
+						var log = new Log({'name': ta.name,'_creator': req.session.user._id, '_project': ta._project});
+						LogApi.create(log, 2);
+	            	}
+
+
 	                res.json({'flash': 'Votre tache a bien été modifié'});
 	            });
         	})
@@ -102,10 +127,22 @@ tasks = {
 	// remove task into database and return flash message
 	delete: function remove(req, res) {
 
-		Task.find(req.params.id, function(err, ta) {
-			ta.remove(function(err) {
-				if (err) console.log(err);
-					res.json({'flash': 'Votre tache a été supprimé'});
+		//find task
+		Task.findOne(req.params.id, function(err, ta) {
+
+			//find project for get his _id
+			Project.findOne({id: ta._project}, funtion(err, pro) {
+
+				// add into logs
+				var log = new Log({'name': ta.name,'_creator': req.session.user._id, '_project': pro._id});
+				LogApi.create(log, 3);
+
+				// remove task
+				ta.remove(function(err) {
+					if (err) console.log(err);
+
+						res.json({'flash': 'Votre tache a été supprimé'});
+				});
 			});
 		});
 	},

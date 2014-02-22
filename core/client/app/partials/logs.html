@@ -17,7 +17,7 @@
 
 		<div id="logs">
 			<div id="log" ng-repeat="log in logs">
-				<p> {{ log.firstName }} {{ log.lastName }} {{ log.message }} {{ log.name }} </p>
+				<p> {{ log._creator.firstName }} {{ log._creator.lastName }} {{ log._logmessage.name }} {{ log.name }} </p>
 			</div>
 		</div>
 

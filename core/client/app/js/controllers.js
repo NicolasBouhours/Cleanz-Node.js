@@ -229,8 +229,8 @@ ProjectController.controller('Logs', function($scope, $http, $routeParams) {
 
 
     //List of our logs
-    $http.get('project/getLogs/' + $routeParams.projectId).success(function(data) {
-      $scope.logs = data.logs;
+    $http.get('/cleanz/api/logs/list/' + $routeParams.projectId).success(function(logs) {
+      $scope.logs = logs  ;
     });
 
 });

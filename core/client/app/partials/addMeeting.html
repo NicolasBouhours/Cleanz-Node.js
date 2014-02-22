@@ -15,7 +15,7 @@
 
 		<form class="form-horizontal">
 
-	        <label for="name">Nom de la tache</label>
+	        <label for="name">Nom de la réunion</label>
 	        <input type="text" id="name"  ng-model="meeting.name" required>
 
 	        <label for="description">description de la réunion</label>
@@ -25,16 +25,14 @@
 	        <input type="text" id="place"  ng-model="meeting.place" required>
 					
 			<label for="dateS"> Date de début</label>
+	        <input type="date" id="dateS" ng-model="meeting.dateStart" />
 
-	        <input type="date" id="dateS" ng-model="meeting.date" />
+	        <label for="dateT"> Heure de début</label>
+	        <input type="text" id="dateT" ng-model="meeting.timeStart" />
 
-	        <label for="dateS"> Heure de début</label>
-	        <input type="time" id="dateS" ng-model="meeting.time" />
-
-
-			<label for="duree">Durée</label>
-	        <input type="text" id="duree"  ng-model="meeting.duree" required>
-
+	        <label for="duree"> Duree</label>
+	        <input type="text" id="duree" ng-model="meeting.duree" />
+ 
 			<button type="submit" ng-click="addMeeting()">Ajouter la réunion</button>
 
 		</form>
