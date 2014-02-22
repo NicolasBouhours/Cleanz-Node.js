@@ -6,6 +6,7 @@ var Cleanz = angular.module('Cleanz', [
   'ProjectController',
   'BugController',
   'MeetingController',
+  'angularFileUpload',
 ]);
 
 // ## Router

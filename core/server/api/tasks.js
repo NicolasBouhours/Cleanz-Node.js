@@ -103,9 +103,12 @@ tasks = {
 	            		Importance.findOne({id: 4}, function(err, imp) {
 	            			// search if log already exist
 		            		Log.findOne({'name' : ta.name, '_logmessage': imp._id})
+
 		            		// add into logs
-							var log = new Log({'name': ta.name,'_creator': req.session.user._id, '_project': ta._project});
-							LogApi.create(log, 4);
+		            		Project.findOne({id: ta._project}, function(err, pro) {
+								var log = new Log({'name': ta.name,'_creator': req.session.user._id, '_project': pro._id});
+								LogApi.create(log, 4);
+		            		});
 	            		});
 
 	            	}else {
@@ -131,7 +134,7 @@ tasks = {
 		Task.findOne(req.params.id, function(err, ta) {
 
 			//find project for get his _id
-			Project.findOne({id: ta._project}, funtion(err, pro) {
+			Project.findOne({id: ta._project}, function(err, pro) {
 
 				// add into logs
 				var log = new Log({'name': ta.name,'_creator': req.session.user._id, '_project': pro._id});
