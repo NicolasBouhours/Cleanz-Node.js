@@ -39,18 +39,17 @@ tasks = {
 	// store task into database and return flash message
 	create: function add(req, res) {
 		var task = new Task(req.body);
-		var id = 0;
+		var newId = 0;
 
 		// get id for project
 		Task.findOne().sort({'id': -1}).limit(1).findOne(function(err,ta) {
-		 	if (ta === null) { id = 0; }
+		 	if (ta === null) { newId = 0; }
 		 	else {
-	             id = parseInt(ta.id) + 1;
+	             newId = parseInt(ta.id) + 1;
+	             task.id = newId;
 	        }
 	    });
 
-		// attribute info to task
-		task.id = id;
 		task._creator = req.session.user.id;
 		task._project = req.body.projectId;
 		task.progress = 0;
@@ -128,16 +127,22 @@ tasks = {
 	// remove task into database and return flash message
 	delete: function remove(req, res) {
 
-		Task.find(req.params.id, function(err, ta) {
+		//find task
+		Task.findOne(req.params.id, function(err, ta) {
 
-			// add into logs
-			var log = new Log({'name': ta.name,'_creator': req.session.user._id, '_project': ta._project});
-			LogApi.create(log, 3);
+			//find project for get his _id
+			Project.findOne({id: ta._project}, funtion(err, pro) {
 
-			ta.remove(function(err) {
-				if (err) console.log(err);
+				// add into logs
+				var log = new Log({'name': ta.name,'_creator': req.session.user._id, '_project': pro._id});
+				LogApi.create(log, 3);
 
-					res.json({'flash': 'Votre tache a été supprimé'});
+				// remove task
+				ta.remove(function(err) {
+					if (err) console.log(err);
+
+						res.json({'flash': 'Votre tache a été supprimé'});
+				});
 			});
 		});
 	},
