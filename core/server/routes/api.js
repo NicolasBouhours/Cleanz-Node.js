@@ -25,7 +25,7 @@ module.exports = function(server) {
 
 	// Route for Documents
 	//server.get('/cleanz/api/documents/list/:id', api.documents.list);
-	server.post('/cleanz/api/documents/add', api.documents.create);
+	server.post('/cleanz/api/documents/add/:id', api.documents.create);
 
 	// Route for Tasks
 	server.get('/cleanz/api/tasks/list/:id', api.tasks.list);

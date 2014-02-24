@@ -19,7 +19,7 @@ function setup(server) {
 	server.set('views', path.join(__dirname, 'views'));
 	server.set('view engine', 'hbs');
 	server.use(express.cookieParser());
-	server.use(express.bodyParser({ keepExtensions: true, uploadDir: 'C:/Users/Nico/Desktop/Cleanz/content' }));
+	server.use(express.bodyParser());
 	server.use(express.session({secret: "This is a secret"}));
 	server.use(express.favicon());
 	server.use(express.logger('dev'));

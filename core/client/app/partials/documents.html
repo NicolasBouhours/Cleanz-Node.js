@@ -15,9 +15,13 @@
 
 	<h4> Ajouter un document </h4>
 
-	<div ng-controller="MyCtrl">
-	  <input type="file" ng-file-select="onFileSelect($files)" multiple>
-	</div>
+	<label for="name">Nom du document</label>
+	<input type="text" id="name"  ng-model="file.name" required>
+
+	<label for="description">description du document</label>
+	<textarea name="ameliorer" id="ameliorer" size="500" ng-model="file.description" required></textarea>
+
+	 <input type="file" ng-file-select="onFileSelect($files)">
 
 	<div id="flash" ng-show="flash">
 	    {{ flash }}
