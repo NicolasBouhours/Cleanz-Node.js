@@ -17,7 +17,6 @@ tasks = {
 
 	// return list of all tasks for one projet
 	list: function list(req, res) {
-		console.log(req.params.id);
 		Task.find({_project: 0}).populate('_importance').exec(function(err, tasks) {
 			if (err) console.log(err);
 			return res.json(tasks);

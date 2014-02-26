@@ -6,6 +6,7 @@ var Schema = mongoose.Schema;
 var documentSchema = new Schema({
 	id: { type: Number, required: true },
 	name: { type: String, required: true},
+	description: { type: String },
 	size: { type: Number },
 	type: { type: String },
 	created_at: { type: Date, default: Date.now },

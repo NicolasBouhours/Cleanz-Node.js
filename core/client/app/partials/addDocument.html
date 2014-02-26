@@ -1,6 +1,4 @@
-<div class="container-fluid">
-
-	<nav class="top-bar">
+	<nav class="top-bar" > 
 		<ul>
 			<li class="divider"><a href="#/project/{{ projectId }}/tasks"> Taches</a></li>
 			<li class="divider"><a href="#/project/{{ projectId }}/documents"> Documents</a></li>
@@ -12,23 +10,18 @@
 			<li class="divider"><a href="#/project/{{ projectId }}/params"> Paramètres</a></li>
 		</ul>
 	</nav>
+	
+	<h4> Liste de vos documents </h4>
 
-		<h2> Liste des bugs de votre projet {{ projectId}} </h2>
+	<h4> Ajouter un document </h4>
 
-		<h4> Liste des vos documents</h4>
 
-		<div id="doc" ng-repeat="doc in docs" >
-			<p><a href="C:\Users\Nico\Desktop\Cleanz\content\0\accueil.png" ng-click="getDocument(doc)"> {{ doc.name }} {{ doc.description }} {{ doc.created_at | date:'yyyy-MM-dd' }}  {{ doc.size}} {{ bug._creator.firstName }} {{ bug._creator.lastName }} </a> </p>
-		<a href="/cleanz/api/documents/get/{{ doc.id }}">download</a>
-		</div>
+	<label for="description">description du document</label>
+	<textarea name="ameliorer" id="ameliorer" size="500" ng-model="file.description" required></textarea>
 
-		
-
-		<div id="flash" ng-show="flash">
-        	{{ flash }}
-   		</div>
-
-   		<br/>
-   		<a href="#/project/{{ projectId }}/addDocument"> Ajouter un Document</a>
-
-</div>
+	<input type="file" ng-file-select="onFileSelect($files)">
+	
+	<a class="button"> Envoyer le fichier</a>
+	<div id="flash" ng-show="flash">
+	    {{ flash }}
+	</div>
