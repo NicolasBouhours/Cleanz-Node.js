@@ -49,7 +49,20 @@ documents = {
 		        }
 		        
 				var path_temp = req.files.file.path;
-				var target_path = 'C:/Users/Nico/Desktop/Cleanz/content/' + doc.id;
+				var target_path = 'C:/Users/Nico/Desktop/Cleanz/content/' + pro.id + '/' + doc.name;
+				target_foler = 'C:/Users/Nico/Desktop/Cleanz/content/' + pro.id;
+				console.log(target_path);
+				fs.exists(target_foler, function(exists) {
+					if (exists) console.log('dossier ok');
+					else {
+						fs.mkdir(target_foler);
+					}
+				});
+
+
+				fs.exists(target_path, function(exists) {
+					if (exists) console.log('ce fichier existe déja');
+				});
 
 				// store document
 				fs.rename(path_temp, target_path, function(err) {
