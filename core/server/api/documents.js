@@ -29,6 +29,16 @@ documents = {
 		});
 	},
 
+	// #### Read
+
+	// return information about our document
+	read: function read(req, res) {
+
+		Document.findOne({id: req.params.id}, function(err, doc) {
+			return res.json(doc);
+		});
+	},
+
 	// #### Download file
 
 	//send file to user when he want download him
@@ -113,7 +123,42 @@ documents = {
 
 	// edit comment information into database and return flash message
 	edit: function edit(req, res) {
+		console.log(req.body);
+		//find document
+		Document.findOne({id: req.params.id}, function(err, doc) {
+			if (err) console.log(err);
 
+			//dinc document
+			Project.findOne({_id: doc._project}, function(err, pro) {
+
+				doc.description = req.body.description;
+
+				//if user change name
+				if (doc.name != req.body.name) {
+	
+
+					var target_pathBase = 'C:/Users/Nico/Desktop/Cleanz/content/' + pro.id + '/' + doc.name;
+					var target_path = 'C:/Users/Nico/Desktop/Cleanz/content/' + pro.id + '/' + req.body.name;
+					doc.name = req.body.name;
+					//rename file
+					fs.exists(target_path, function(exists) {
+						if (exists) return res.json({'flash': 'Ce fichier existe déja.'});
+						else {
+							fs.rename(target_pathBase, target_path, function(err) {
+								if (err) console.log(err);
+								
+							});
+						}
+					});
+				}
+
+				// save changes into database
+				doc.save(function(err) {
+					if (err) console.log(err);
+					return res.json({'flash': 'Votre document a été modifié'});
+				});
+			});
+		});
 	},
 
 	// #### Delete
@@ -121,6 +166,21 @@ documents = {
 	// remove comment into database and return flash message
 	delete: function remove(req, res) {
 
+		//find document
+		Document.findOne({id: req.params.id}, function(err, doc) {
+
+			//find project
+			Project.findOne({_id: doc._project}, function(err, pro) {
+
+				var target_path = 'C:/Users/Nico/Desktop/Cleanz/content/' + pro.id + '/' + doc.name;
+				doc.remove();
+
+				fs.unlink(target_path, function(err) {
+					if (err) console.log(err);
+					return res.json({'flash': 'Votre document a été supprimé'});
+				});
+			});
+		});
 	},
 };
 

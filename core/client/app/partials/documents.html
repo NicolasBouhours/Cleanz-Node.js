@@ -19,7 +19,8 @@
 
 		<div id="doc" ng-repeat="doc in docs" >
 			<p><a href="C:\Users\Nico\Desktop\Cleanz\content\0\accueil.png" ng-click="getDocument(doc)"> {{ doc.name }} {{ doc.description }} {{ doc.created_at | date:'yyyy-MM-dd' }}  {{ doc.size}} {{ bug._creator.firstName }} {{ bug._creator.lastName }} </a> </p>
-		<a href="/cleanz/api/documents/get/{{ doc.id }}">download</a>
+			<a href="/cleanz/api/documents/get/{{ doc.id }}">download</a>
+			<a ng-click="getDoc(doc)"> Modifier le document</a>
 		</div>
 
 		
@@ -30,5 +31,21 @@
 
    		<br/>
    		<a href="#/project/{{ projectId }}/addDocument"> Ajouter un Document</a>
+
+   		<h4> Modifier le document </h4>
+		
+		<div id="modifDoc">
+			<form>
+				<label for="name"> Nom du document : </label>
+				<input type="text" ng-model="doc.name" id="name"/>
+
+				<label for="descr"> Description du document : </label>
+				<textarea name="descr" id="descr" ng-model="doc.description" cols="30" rows="50"></textarea>
+
+				<button type="submit" class="button" ng-click="editDoc(doc)">Modifié le document</button>
+			</form>
+			<a ng-click="deleteDoc(doc)" class="button">Supprimer le document</a>
+
+		</div>
 
 </div>

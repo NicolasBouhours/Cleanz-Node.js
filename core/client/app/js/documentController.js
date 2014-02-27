@@ -18,6 +18,24 @@ DocumentController.controller('Documents', function($scope, $http, $routeParams)
 		});
 	}
 
+	$scope.getDoc = function(doc) {
+		$http.get('/cleanz/api/documents/' + doc.id).success(function(doc) {
+			$scope.doc = doc;
+		});
+	}
+
+	$scope.editDoc = function(doc) {
+		$http.put('/cleanz/api/documents/' + $scope.doc.id, $scope.doc).success(function(data) {
+			$scope.flash = data.flash;
+		});
+	}
+
+	$scope.deleteDoc = function(doc) {
+		$http.delete('/cleanz/api/documents/' + $scope.doc.id).success(function(data) {
+			$scope.flash = data.flash;
+		});
+	}
+
 	$scope.getDocuments();
 });
 
@@ -26,11 +44,18 @@ DocumentController.controller('AddDocument', function($scope, $http, $routeParam
 
 	$scope.projectId = $routeParams.projectId;
 
+	var fileUpload;
+
+	 $scope.onFileSelec = function($files) {
+		fileUpload = $files;
+		$scope.flash = 'coucou';
+	 }
+
 	//send file to api
-    $scope.onFileSelect = function($files) {
+    $scope.onFileSelect = function() {
     //$files: an array of files selected, each file has name, size, and type.
-    for (var i = 0; i < $files.length; i++) {
-      var $file = $files[i];
+    for (var i = 0; i < fileUpload.length; i++) {
+      var $file = fileUpload[i];
       $upload.upload({
         url: '/cleanz/api/documents/add/' + $routeParams.projectId + '?descr=' + $scope.file.description,
         file: $file,
