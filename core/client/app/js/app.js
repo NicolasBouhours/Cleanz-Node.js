@@ -6,6 +6,8 @@ var Cleanz = angular.module('Cleanz', [
   'ProjectController',
   'BugController',
   'MeetingController',
+  'DocumentController',
+  'angularFileUpload',
 ]);
 
 // ## Router
@@ -64,9 +66,13 @@ Cleanz.config(['$routeProvider',
         templateUrl: 'app/partials/logs.html',
         controller: 'Logs'
        }).
-       when ('/project/:projectId/documents', {
+        when ('/project/:projectId/documents', {
         templateUrl: 'app/partials/documents.html',
         controller: 'Documents'
+       }).
+       when ('/project/:projectId/addDocument', {
+        templateUrl: 'app/partials/addDocument.html',
+        controller: 'AddDocument'
        }).
        when ('/project/:projectId/bugs', {
         templateUrl: 'app/partials/bugs.html',

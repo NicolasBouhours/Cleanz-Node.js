@@ -235,10 +235,3 @@ ProjectController.controller('Logs', function($scope, $http, $routeParams) {
 
 });
 
-// Document Controller
-// List of our Logs
-ProjectController.controller('Documents', function($scope, $http, $routeParams) {
-
-    $scope.projectId = $routeParams.projectId;
-
-});

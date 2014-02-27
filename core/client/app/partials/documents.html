@@ -1,5 +1,6 @@
+<div class="container-fluid">
 
-	<nav class="top-bar" > 
+	<nav class="top-bar">
 		<ul>
 			<li class="divider"><a href="#/project/{{ projectId }}/tasks"> Taches</a></li>
 			<li class="divider"><a href="#/project/{{ projectId }}/documents"> Documents</a></li>
@@ -11,20 +12,40 @@
 			<li class="divider"><a href="#/project/{{ projectId }}/params"> Paramètres</a></li>
 		</ul>
 	</nav>
-	
-	<h4> Liste de vos documents </h4>
 
-	<h4> Ajouter un document </h4>
+		<h2> Liste des bugs de votre projet {{ projectId}} </h2>
 
-	<form class="form-horizontal" enctype="multipart/form-data">
-			<label class="control-label" for="name">Nom :</label>
-	        <input type="text" id="name"  ng-model="file.name" required>
-			<label class="control-label" for="file">Veuillez choisir un fichier :</label>
-	        <input type="file" id="file"  ng-model="file.file" required>
+		<h4> Liste des vos documents</h4>
 
-	        <button type="submit" ng-click="addFile()">Ajouter le fichier</button>
-	</form>
+		<div id="doc" ng-repeat="doc in docs" >
+			<p><a href="C:\Users\Nico\Desktop\Cleanz\content\0\accueil.png" ng-click="getDocument(doc)"> {{ doc.name }} {{ doc.description }} {{ doc.created_at | date:'yyyy-MM-dd' }}  {{ doc.size}} {{ bug._creator.firstName }} {{ bug._creator.lastName }} </a> </p>
+			<a href="/cleanz/api/documents/get/{{ doc.id }}">download</a>
+			<a ng-click="getDoc(doc)"> Modifier le document</a>
+		</div>
 
-	<div id="flash" ng-show="flash">
-	    {{ flash }}
-	</div>
+		
+
+		<div id="flash" ng-show="flash">
+        	{{ flash }}
+   		</div>
+
+   		<br/>
+   		<a href="#/project/{{ projectId }}/addDocument"> Ajouter un Document</a>
+
+   		<h4> Modifier le document </h4>
+		
+		<div id="modifDoc">
+			<form>
+				<label for="name"> Nom du document : </label>
+				<input type="text" ng-model="doc.name" id="name"/>
+
+				<label for="descr"> Description du document : </label>
+				<textarea name="descr" id="descr" ng-model="doc.description" cols="30" rows="50"></textarea>
+
+				<button type="submit" class="button" ng-click="editDoc(doc)">Modifié le document</button>
+			</form>
+			<a ng-click="deleteDoc(doc)" class="button">Supprimer le document</a>
+
+		</div>
+
+</div>

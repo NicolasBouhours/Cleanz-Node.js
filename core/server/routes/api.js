@@ -22,7 +22,15 @@ module.exports = function(server) {
 	server.post('/cleanz/api/project/addUser', api.projects.addUser);
 	
 	//server.del('/cleanz/api/project/delUser', api.projects.delUser);
-	
+
+	// Route for Documents
+	server.get('/cleanz/api/documents/list/:id', api.documents.list);
+	server.post('/cleanz/api/documents/add/:id', api.documents.create);
+	server.get('/cleanz/api/documents/get/:id', api.documents.download);
+	server.get('/cleanz/api/documents/:id', api.documents.read);
+	server.put('/cleanz/api/documents/:id', api.documents.edit);
+	server.del('/cleanz/api/documents/:id', api.documents.delete);
+
 	// Route for Tasks
 	server.get('/cleanz/api/tasks/list/:id', api.tasks.list);
 	server.get('/cleanz/api/tasks/:id', api.tasks.read);

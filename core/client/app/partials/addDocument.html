@@ -1,0 +1,27 @@
+	<nav class="top-bar" > 
+		<ul>
+			<li class="divider"><a href="#/project/{{ projectId }}/tasks"> Taches</a></li>
+			<li class="divider"><a href="#/project/{{ projectId }}/documents"> Documents</a></li>
+			<li class="divider"><a href="#/project/{{ projectId }}/meetings"> Réunion</a></li>
+			<li class="divider"><a href="#/project/{{ projectId }}/logs"> Journal</a></li>
+			<li class="divider"><a href="#/project/{{ projectId }}/bugs"> Bugs</a></li>
+			<li class="divider"><a href="#/project/{{ projectId }}/users"> Utilisateurs</a></li>
+			<li class="divider"><a href="#/project/{{ projectId }}/stats"> Statistiques</a></li>
+			<li class="divider"><a href="#/project/{{ projectId }}/params"> Paramètres</a></li>
+		</ul>
+	</nav>
+	
+	<h4> Liste de vos documents </h4>
+
+	<h4> Ajouter un document </h4>
+
+
+	<label for="description">description du document</label>
+	<textarea name="ameliorer" id="ameliorer" size="500" ng-model="file.description" required></textarea>
+
+	<input type="file" ng-file-select="onFileSelec($files)" >
+	
+	<a class="button" ng-click="onFileSelect()"> Envoyer le fichier</a>
+	<div id="flash" ng-show="flash">
+	    {{ flash }}
+	</div>

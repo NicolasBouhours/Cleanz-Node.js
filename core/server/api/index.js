@@ -8,7 +8,8 @@ var users 			= require('./users'),
 	comments		= require('./comments'),
 	bugs 			= require('./bugs'),
     logs            = require('./logs'),
-    meetings        = require('./meetings');
+    meetings        = require('./meetings'),
+    documents       = require('./documents');
 
 
 // ## Public API
@@ -21,4 +22,5 @@ module.exports = {
     bugs: bugs,
     logs: logs,
     meetings: meetings,
+    documents: documents,
 };
