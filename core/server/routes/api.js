@@ -16,10 +16,10 @@ module.exports = function(server) {
 
 	// Route for Project
 	server.get('/cleanz/api/projects/list', api.projects.list);
-	//server.del('/cleanz/api/projects/:id', api.projects.delete);
+	server.del('/cleanz/api/projects/:id', api.projects.delete);
 	server.post('/cleanz/api/projects/add', api.projects.create);
 	server.get('/cleanz/api/projects/:id', api.projects.read);
-	server.post('/cleanz/api/project/addUser', api.projects.addUser);
+
 	
 	//server.del('/cleanz/api/project/delUser', api.projects.delUser);
 
@@ -51,6 +51,7 @@ module.exports = function(server) {
 
 	// Route for Invits
 	server.get('/cleanz/api/invits/list', api.invits.list);
+	server.post('/cleanz/api/invits/add', api.invits.create);
 	server.put('/cleanz/api/invits/:id', api.invits.accept);
 	server.del('/cleanz/api/invits/:id', api.invits.refuse);
 

@@ -10,10 +10,10 @@ var userSchema = new Schema({
 	phone: { type: String, required: true },
 	password: { type: String, required: true },
 	created_at: { type: Date, default: Date.now },
+	invits: [{ type: Schema.Types.ObjectId, ref: 'Project'}],
 	projects: [{
 		project: { type: Schema.Types.ObjectId, ref: 'Project' }, 
-		duty: { type: Schema.Types.ObjectId, ref: 'Duty' }, 
-		valid: { type: Number, required: true },
+		duty: { type: Schema.Types.ObjectId, ref: 'Duty' }
 	}],
 });
 

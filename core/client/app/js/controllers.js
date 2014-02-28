@@ -82,7 +82,7 @@ var ProjectController = angular.module('ProjectController', []);
     // List of our invitation
    $scope.getInvitations = function() {
         $http.get('cleanz/api/invits/list').success(function(data) {
-            $scope.invits = data.projects;
+            $scope.invits = data.invits;
         });
     } 
     
@@ -123,7 +123,7 @@ var ProjectController = angular.module('ProjectController', []);
     // Send invitation for one user
     $scope.addProjectUser = function() {
       $scope.userAdd.projectId = $routeParams.projectId;
-        $http.post('cleanz/api/project/addUser', $scope.userAdd).success(function(data) {
+        $http.post('cleanz/api/invits/add', $scope.userAdd).success(function(data) {
             $scope.flash = data.flash;
         });
     }
