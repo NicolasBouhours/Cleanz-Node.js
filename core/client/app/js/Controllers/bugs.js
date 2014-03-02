@@ -1,3 +1,4 @@
+// ## Create BugController
 var BugController = angular.module('BugController', []);
 
 // ## Controller for bugs.html

@@ -93,7 +93,7 @@ users = {
             User.findOne({email: user.email}, function(err, usr) {
                 if (usr === null) {
                     user.save(function(err){
-                        if (err) { res.json({'flash': 'Nous n\'avons pas pu enregistrer votre utilisateur'}) }; 
+                        if (err) console.log(err);
                         res.json({'flash': 'Votre utilisateur a été crée avec succès.'});
                      });
                  }
