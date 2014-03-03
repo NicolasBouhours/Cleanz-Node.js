@@ -8,7 +8,7 @@ authController = {
 
 	// #### Login
 	login: function login(req, res) {
-
+		req.session.user = null;
 		User.findOne({ email: req.body.email, password: req.body.password}, function(err,usr) {
 			if (usr != null) {
 				req.session.user = usr;

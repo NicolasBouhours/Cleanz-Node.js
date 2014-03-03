@@ -92,27 +92,32 @@ documents = {
 
 
 				fs.exists(target_path, function(exists) {
-					if (exists) console.log('ce fichier existe déja');
-				});
-
-				// store document
-				fs.rename(path_temp, target_path, function(err) {
-					if (err) throw err;
-
-					fs.unlink(path_temp, function() {
-						if (err) throw err;
-						return res.json({'flash': ' Votre fichier a été ajouté.'});
-					});
+					if (exists) return res.json({'flash': 'Ce fichier existe déja'});
 				});
 
 				// save document into database
-				doc.save(function(d, err) {
-					if (err) console.log(err)
+				doc.save(function(err, d) {
+					if (err) return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
 					else {
-						return res.json({'flash': 'Votre document a été ajouté'});
+
+						// store document
+						fs.rename(path_temp, target_path, function(err) {
+							if (err) throw err;
+
+							fs.unlink(path_temp, function() {
+								if (err) throw err;
+								return res.json({'flash': ' Votre fichier a été ajouté.'});
+							});
+						});
 
 						pro.documents.push(d);
 						pro.save();
+
+						// add into logs
+						var log = new Log({'name': d.name,'_creator': req.session.user._id, '_project': d._project});
+						LogApi.create(log, 7);
+
+						return res.json({'flash': 'Votre document a été ajouté'});
 					}
 				});
 			});
@@ -153,8 +158,13 @@ documents = {
 				}
 
 				// save changes into database
-				doc.save(function(err) {
-					if (err) console.log(err);
+				doc.save(function(err, d) {
+					if (err) return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
+
+					// add into logs
+					var log = new Log({'name': d.name,'_creator': req.session.user._id, '_project': d._project});
+					LogApi.create(log, 8);
+
 					return res.json({'flash': 'Votre document a été modifié'});
 				});
 			});
@@ -173,6 +183,11 @@ documents = {
 			Project.findOne({_id: doc._project}, function(err, pro) {
 
 				var target_path = 'C:/Users/Nico/Desktop/Cleanz/content/' + pro.id + '/' + doc.name;
+
+				// add into logs
+				var log = new Log({'name': doc.name,'_creator': req.session.user._id, '_project': doc._project});
+				LogApi.create(log, 9);
+				
 				doc.remove();
 
 				fs.unlink(target_path, function(err) {

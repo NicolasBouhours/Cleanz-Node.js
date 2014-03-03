@@ -8,15 +8,31 @@ var Project = require('../models/projects');
 
 // ## Invits
 invits = {
-
 	// #### List
 
 	// get list of invitation for one user
 	list: function list(req, res) {
-		User.findOne({id: req.session.user.id}).select('projects').where('projects.valid', 0)
-		.populate('projects.project').exec(function(err, usr) {
-			if (err) return handleError(err);
-			return res.json(usr);
+		User.findOne({id: req.session.user.id}).select('invits').populate('invits').exec(function(err, invits) {
+			if (err) console.log(err);
+			return res.json(invits);
+		});
+	},
+
+	// #### Create
+
+	// create an invitation
+	create: function add(req, res) {
+		console.log(req.body);
+		//find user
+		User.findOne({email: req.body.email},function(err, usr) {
+
+			//find project
+			Project.findOne({id: req.body.projectId}, function(err, pro) {
+
+				usr.invits.push(pro._id);
+				usr.save();
+				return res.json({'flash': 'L\'utilisateur a été invité a rejoindre le projet'});
+			});
 		});
 	},
 
@@ -25,27 +41,28 @@ invits = {
 	// accept invitation and return flash message
 	accept: function accept(req, res) {
 
-		//get invits
-		User.findOne({id: req.session.user.id}).select('projects').populate('projects.project')
-		.where('projects.project.id', req.params.id).exec(function(err, usr) {
+		//get user
+		User.findOne({_id: req.session.user._id}, function(err, usr) {
 
-			//change validation to 1
-			usr.projects[0].valid = 1;
-			usr.save(function(err, u){
-				if (err) return handleError(err);
+			//get project
+			Project.findOne({id: req.params.id}, function(err, pro) {
 
-				//add user to Project's list
-				Project.findOne({'id': usr.projects[0].project.id}, function(err, pro){
-					if (err) return handleError(err);
-					User.findOne({id: req.session.user.id}, function(err,user) {
-						if (err) return handleError(err);
-						pro.users.push(user);
-						pro.save(function(err, pr) {
-							if (err) return handleError(err);
-							return res.json({'flash': 'Vous venez de rejoindre le projet ' + usr.projects[0].project.name});
-						});
-					});
-				});
+				//add user to project
+				pro.users.push(usr._id);
+				usr.projects.push({ project: pro._id});
+
+				//remove to invit list
+				usr.invits.remove(pro._id);
+
+				//save it
+				pro.save();
+				usr.save();
+
+				// add into logs
+				var log = new Log({'name': usr.firstName + ' ' + usr.lastName,'_creator': req.session.user._id, '_project': pro._id});
+				LogApi.create(log, 15);
+
+				return res.json({'flash': 'Vou avez rejoint le projet ' + pro.name});
 			});
 		});
 	},
@@ -54,17 +71,20 @@ invits = {
 
 	// refuse invitation and return flash message
 	refuse: function refuse(req, res) {
-		//get invits
-		User.findOne({id: req.session.user.id}).select('projects').populate('projects.project')
-		.where('projects.project.id', req.params.id).exec(function(err, usr) {
 
-			// remove invits to our list
-			usr.projects[0].remove();
-			usr.save(function(err, u){
-				if (err) return handleError(err);
-				return res.json({'flash': 'Vous venez de refuser l\'invitation'});
+		//find user
+		User.findOne({_id: req.session.user._id}, function(err, usr) {
+
+			//find project
+			Project.findOne({id: req.params.id}, function(err, pro) {
+
+				//remove project form list of invitation
+				usr.invits.remove(pro._id);
+				usr.save();
+
+				return res.json({'flash': 'Vous avez refuser l\'invitation au projet ' + pro.name});
 			});
-		});
+		});	
 	},
 };
 

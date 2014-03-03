@@ -2,13 +2,18 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var User = require('./users');
+var validate = require('mongoose-validator').validate;
 
-// ## Create Project Schema
+// ## Validate 
+var nameValidator = [validate('isAlphanumeric')];
+var dateValidator = [validate('isDate')];
+
+// ## Schema
 var projectSchema = new Schema({
 	id: { type: Number, required: true },
-	name: { type: String, required: true },
+	name: { type: String, required: true, validate: nameValidator},
 	_creator: { type: Schema.Types.ObjectId, ref: 'User' },
-	created_at: { type: Date, default: Date.now },
+	created_at: { type: Date, default: Date.now, validate: dateValidator },
 	tasks: [{ type: Schema.Types.ObjectId, ref: 'Task'}],
 	meetings: [{ type: Schema.Types.ObjectId, ref: 'Meeting'}],
 	bugs: [{ type: Schema.Types.ObjectId, ref: 'Bug'}],
