@@ -27,13 +27,17 @@ DocumentController.controller('Documents', function($scope, $http, $routeParams)
 	$scope.editDoc = function(doc) {
 		$http.put('/cleanz/api/documents/' + $scope.doc.id, $scope.doc).success(function(data) {
 			$scope.flash = data.flash;
-		});
+		}).error(function(data) {
+            $scope.flash = data.flash;
+        });
 	}
 
 	$scope.deleteDoc = function(doc) {
 		$http.delete('/cleanz/api/documents/' + $scope.doc.id).success(function(data) {
 			$scope.flash = data.flash;
-		});
+		}).error(function(data) {
+            $scope.flash = data.flash;
+        });
 	}
 
 	$scope.getDocuments();

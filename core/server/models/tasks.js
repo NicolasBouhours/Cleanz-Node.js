@@ -6,9 +6,9 @@ var FormatDate = mongoose.Schema.Types.FormatDate = require('mongoose-schema-for
 var validate = require('mongoose-validator').validate;
 
 // ## Validate 
-var nameValidator = [validate('len', 2, 60), validate('isAlphanumeric')];
-var descrValidator = [validate('isAlphanumeric')];
-var progressValidator = [validate('len', 0, 100), validate('isNumeric')];
+var nameValidator = [validate('isAlphanumeric')];
+var descrValidator = [validate('isDescr')];
+var progressValidator = [validate('isNumeric')];
 var dateValidator = [validate('isDate')];
 
 // ## Schema

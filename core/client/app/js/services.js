@@ -77,3 +77,15 @@ CleanzServices.factory('DateService', function() {
     }
   };
 });
+
+// ## Security Service
+CleanzServices.factory('SecurityService', function($http, $location) {
+	return {
+		checkUserProject: function(id) {
+			var checkUserProject = $http.get('/cleanz/security/' + id);
+			if (login.error) {
+				$location.path('/404');
+			}
+		}
+	};
+});

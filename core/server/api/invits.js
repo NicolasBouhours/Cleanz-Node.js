@@ -58,6 +58,10 @@ invits = {
 				pro.save();
 				usr.save();
 
+				// add into logs
+				var log = new Log({'name': usr.firstName + ' ' + usr.lastName,'_creator': req.session.user._id, '_project': pro._id});
+				LogApi.create(log, 15);
+
 				return res.json({'flash': 'Vou avez rejoint le projet ' + pro.name});
 			});
 		});

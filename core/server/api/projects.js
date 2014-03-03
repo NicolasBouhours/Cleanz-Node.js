@@ -58,7 +58,7 @@ projects = {
 				// save project
 				pro._creator = usr._id;
 				pro.save(function(err, pro) {
-					if (err) return console.log(err);
+					if (err) return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
 
 						// add project to user's project list
 						usr.projects.push({ project: pro});
@@ -87,7 +87,7 @@ projects = {
 			if (err) return handleError(err);
 			pro.name = req.body.name;
 			pro.save(function(err, pro) {
-				if (err) return handleError(err);
+				if (err) return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
 				return res.json({'flash': 'Votre projet a été modifié avec succès'});
 			});
 		});

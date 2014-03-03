@@ -17,4 +17,7 @@ module.exports = function(server) {
 	server.post('/cleanz/login', auth.authController.login);
 	server.get('/cleanz/logout', auth.authController.logout);
 
+	// ## Route for security
+	server.get('/cleanz/security/:id', auth.securityController.checkUserProject);
+
 };

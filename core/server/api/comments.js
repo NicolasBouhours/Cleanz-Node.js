@@ -46,7 +46,7 @@ comments = {
         		comment._task = t._id;
         		comment._creator = req.session.user._id;
         		comment.save(function(err,c) {
-        			if (err) console.log(err);
+        			if (err) return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
 
         			t.comments.push(c);
 
@@ -77,7 +77,7 @@ comments = {
 			com.description = req.body.description;
 
 			com.save(function(err,co){
-				if (err) console.log(err);
+				if (err) return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
 				return res.json({'flash': 'Votre commentaire été modifié'});
 			});
 		});

@@ -87,19 +87,30 @@ Cleanz.config(['$routeProvider',
        when ('/project/:projectId/editBug/:bugId', {
         templateUrl: 'app/partials/editBug.html',
         controller: 'EditBug'
+       }).
+       when('/404', {
+        templateUrl: 'app/partials/404.html'
        });
 
   }]);
 
 
- // ## Routes wich require Auth
-Cleanz.run(function($rootScope, $location, AuthenticationService) {
+ // ## Routes wich require Auth && Security
+Cleanz.run(function($rootScope, $location, $routeParams, AuthenticationService, SecurityService) {
 
   var routesThatRequireAuth = ['/project', '/editinfo'];
+  var routesThatRequireProject = ['/project/'];
 
   $rootScope.$on('$routeChangeStart', function(event, next, current) {
     if(_(routesThatRequireAuth).contains($location.path()) && !AuthenticationService.isLoggedIn()) {
       $location.path('/login');
+
+    }
+
+    if (_(routesThatRequireProject).contains($location.path())) {
+      console.log('coucou secu');
+      SecurityService.checkUserProject($routeParams.projectId);
     }
   });
 });
+

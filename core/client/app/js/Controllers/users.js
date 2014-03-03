@@ -14,6 +14,10 @@ UserController.controller('UsersList', function($scope, AuthenticationService, $
  	    $http.post('cleanz/api/users/add', $scope.user).success(function(data) {
         $scope.flash = data.flash;
         $location.path('/login');
+
+        // if bad information
+      }).error(function(data) {
+            $scope.flash = data.flash;
       });
     }
 
@@ -52,6 +56,8 @@ UserController.controller('EditUserInfo', function($scope, $http) {
             $scope.user = user;
             $scope.flash = user.flash;
             getInfoUser();
+        }).error(function(data) {
+            $scope.flash = data.flash;
         });
     }
 

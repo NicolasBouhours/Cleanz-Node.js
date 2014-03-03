@@ -19,7 +19,9 @@ var TaskController = angular.module('TaskController', []);
         $http.post('cleanz/api/tasks/add', $scope.task).success(function(data) {
             $scope.flash = data.flash;
             $scope.getTasks();
-        });  
+        }).error(function(error) {
+            $scope.flash = error.flash;
+        });
      }
 
      $scope.getTasks();
@@ -55,6 +57,8 @@ var TaskController = angular.module('TaskController', []);
      $scope.updateTask = function() {
         $http.put('/cleanz/api/tasks/' + $routeParams.taskId, $scope.task).success(function(data) {
             $scope.flash = data.flash;
+        }).error(function(data) {
+            $scope.flash = data.flash;
         });
      }
 
@@ -64,6 +68,8 @@ var TaskController = angular.module('TaskController', []);
         $http.post('cleanz/api/comments/add', $scope.comment).success(function(data) {
             $scope.flash = data.flash;
             $scope.getComments();
+        }).error(function(data) {
+            $scope.flash = data.flash;
         });
      }
 

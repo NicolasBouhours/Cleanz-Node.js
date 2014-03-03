@@ -61,7 +61,7 @@ bugs = {
 		        //save bug
 		        console.log(bug);
 	       		bug.save(function(err, b) {
-	        		if (err) console.log(err);
+	        		if (err) return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
 						pro.bugs.push(b);
 						pro.save(function(err, pr) {
 							if (err) return console.log(err);
@@ -92,7 +92,7 @@ bugs = {
 
 			// save it
 			bug.save(function(err, b) {
-				if (err) console.log(err);
+				if (err) return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
 
 				// add into logs
 				var log = new Log({'name': b.name,'_creator': req.session.user._id, '_project': b._project});

@@ -23,6 +23,8 @@ var ProjectController = angular.module('ProjectController', []);
         $http.post('/cleanz/api/projects/add', $scope.project).success(function(data) {
             $scope.flash = data.flash;
             $scope.getProjects();
+        }).error(function(data) {
+            $scope.flash = data.flash;
         });
     }
 
@@ -32,7 +34,9 @@ var ProjectController = angular.module('ProjectController', []);
             $scope.flash = data.flash;
             $scope.getProjects();
             $scope.getInvitations();
-        })
+        }).error(function(data) {
+            $scope.flash = data.flash;
+        });
     }
     
     // Refuse invitation
@@ -40,6 +44,8 @@ var ProjectController = angular.module('ProjectController', []);
         $http.delete('cleanz/api/invits/' + invit.id).success(function(data) {
             $scope.flash = data.flash;
             $scope.getInvitations();
+        }).error(function(data) {
+            $scope.flash = data.flash;
         });
     }
 
@@ -56,6 +62,8 @@ var ProjectController = angular.module('ProjectController', []);
     $scope.addProjectUser = function() {
       $scope.userAdd.projectId = $routeParams.projectId;
         $http.post('cleanz/api/invits/add', $scope.userAdd).success(function(data) {
+            $scope.flash = data.flash;
+        }).error(function(data) {
             $scope.flash = data.flash;
         });
     }

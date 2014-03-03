@@ -26,7 +26,9 @@ MeetingController.controller('AddMeeting', function($scope, $http, $routeParams)
 		$scope.meeting.projectId = $routeParams.projectId;
 		$http.post('/cleanz/api/meetings/add', $scope.meeting).success(function(data) {
 			$scope.flash = data.flash;
-		});
+		}).error(function(data) {
+            $scope.flash = data.flash;
+        });
 	}
 
 });
@@ -63,7 +65,9 @@ MeetingController.controller('EditMeeting', function($scope, $http, $routeParams
 		$scope.meeting.projectId = $routeParams.projectId;
 		$http.put('/cleanz/api/meetings/' + $routeParams.meetingId, $scope.meeting).success(function(data) {
 			$scope.flash = data.flash;
-		});
+		}).error(function(data) {
+            $scope.flash = data.flash;
+        });
 	}
 
 	// remove meeting into database
@@ -71,6 +75,8 @@ MeetingController.controller('EditMeeting', function($scope, $http, $routeParams
 		$http.delete('/cleanz/api/meetings/' + $routeParams.meetingId).success(function(data) {
 			$scope.flash = data.flash;
 			$location.path('/project/' + $routeParams.projectId + '/meetings');
-		});
+		}).error(function(data) {
+            $scope.flash = data.flash;
+        });
 	}
 });

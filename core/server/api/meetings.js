@@ -64,11 +64,11 @@ meetings = {
 
 			// save meeting
 			meeting.save(function(err, me) {
-				if (err) console.log(err); 
+				if (err) return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
 
 					// add into logs
 					var log = new Log({'name': me.name,'_creator': req.session.user._id, '_project': pro._id});
-					LogApi.create(log, 5);
+					LogApi.create(log, 4);
 
 					// save task into project's list
 					pro.meetings.push(me);
@@ -95,7 +95,7 @@ meetings = {
 
         	// save meeting
             me.save(function (err, meet) {
-
+            	if (err) return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
 	        	 // add into logs
 				var log = new Log({'name': meet.name,'_creator': req.session.user._id, '_project': meet._project});
 				LogApi.create(log, 5);

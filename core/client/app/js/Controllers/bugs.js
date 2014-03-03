@@ -26,7 +26,9 @@ BugController.controller('addBug', function($scope, $http, $routeParams) {
 		$scope.bug.projectId = $routeParams.projectId;
 		$http.post('/cleanz/api/bugs/add', $scope.bug).success(function(data) {
 			$scope.flash = data.flash;
-		});
+		}).error(function(data) {
+            $scope.flash = data.flash;
+        });
 	}
 
 });
@@ -59,13 +61,17 @@ BugController.controller('EditBug', function($scope, $http, $routeParams) {
 		$scope.bug.projectId = $routeParams.projectId;
 		$http.put('/cleanz/api/bugs/' + $routeParams.bugId, $scope.bug).success(function(data) {
 			$scope.flash = data.flash;
-		});
+		}).error(function(data) {
+            $scope.flash = data.flash;
+        });
 	}
 
 	// remove bug into database
 	$scope.removeBug = function() {
 		$http.delete('/cleanz/api/bugs/' + $routeParams.bugId).success(function(data) {
 			$scope.flash = data.flash;
-		});
+		}).error(function(data) {
+            $scope.flash = data.flash;
+        });
 	}
 });

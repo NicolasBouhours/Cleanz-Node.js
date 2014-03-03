@@ -41,40 +41,44 @@ tasks = {
 		var newId = 0;
 
 		// get id for project
-		Task.findOne().sort({'id': -1}).limit(1).findOne(function(err,ta) {
-		 	if (ta === null) { newId = 0; }
+		 Task.findOne().sort({'id': -1}).limit(1).findOne(function(err,ta) {
+		 	if (ta === null) { task.id = 0; }
 		 	else {
-	             newId = parseInt(ta.id) + 1;
-	             task.id = newId;
+	            var newId = parseInt(ta.id) + 1;
+	            task.id = newId;
 	        }
-	    });
 
-		task._creator = req.session.user.id;
-		task._project = req.body.projectId;
-		task.progress = 0;
-		
-		// get importance
-		Importance.findOne({id: req.body.importance }, function(err, imp) {
-			impor = imp._id;
-			task._importance = imp._id;
+			task._creator = req.session.user.id;
+			task._project = req.body.projectId;
+			task.progress = 0;
+			
+			// get importance
+			Importance.findOne({id: req.body.importance }, function(err, imp) {
+				impor = imp._id;
+				task._importance = imp._id;
 
-			// save task
-			task.save(function(err, t) {
-				if (err) console.log(err); 
+				// save task
+				task.save(function(err, t) {
+					if (err) {
+						return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
+					}
+					else {
 
-				// save task into project's list
-				Project.findOne({'id': req.body.projectId}, function(err, pro){
-					if (err) return handleError(err);
+						// save task into project's list
+						Project.findOne({'id': req.body.projectId}, function(err, pro){
+							if (err) return handleError(err);
 
-					// add into logs
-					var log = new Log({'name': t.name,'_creator': req.session.user._id, '_project': pro._id});
-					LogApi.create(log, 1);
+							pro.tasks.push(t);
+							pro.save(function(err, pr) {
+								if (err) return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
 
-					pro.tasks.push(t);
-					pro.save(function(err, pr) {
-						if (err) return handleError(err);
-							return res.json({'flash': 'Vous venez d\'ajouté la tache ' + t.name});
-					});
+									// add into logs
+									var log = new Log({'name': t.name,'_creator': req.session.user._id, '_project': pro._id});
+									LogApi.create(log, 0);
+									return res.json({'flash': 'Vous venez d\'ajouté la tache ' + t.name});
+							});
+						});
+					}
 				});
 			});
 		});
@@ -95,27 +99,31 @@ tasks = {
         	Importance.findOne({id: req.body.importance}, function(err, i) {
         		ta._importance = i._id;
 	            ta.save(function (err, taS) {
-
-	            	if (ta.progress == 100) {	
-
-	            		//find Importane name
-	            		Importance.findOne({id: 4}, function(err, imp) {
-	            			// search if log already exist
-		            		Log.findOne({'name' : ta.name, '_logmessage': imp._id})
-
-		            		// add into logs
-		            		Project.findOne({id: ta._project}, function(err, pro) {
-								var log = new Log({'name': ta.name,'_creator': req.session.user._id, '_project': pro._id});
-								LogApi.create(log, 4);
-		            		});
-	            		});
-
-	            	}else {
-
-		            	 // add into logs
-						var log = new Log({'name': ta.name,'_creator': req.session.user._id, '_project': ta._project});
-						LogApi.create(log, 2);
+	            	if (err) {
+	            		return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
 	            	}
+	            	else {
+		            	if (ta.progress == 100) {	
+
+		            		//find Importane name
+		            		Importance.findOne({id: 4}, function(err, imp) {
+		            			// search if log already exist
+			            		Log.findOne({'name' : ta.name, '_logmessage': imp._id})
+
+			            		// add into logs
+			            		Project.findOne({id: ta._project}, function(err, pro) {
+									var log = new Log({'name': ta.name,'_creator': req.session.user._id, '_project': pro._id});
+									LogApi.create(log, 3);
+			            		});
+		            		});
+
+		            	}else {
+
+			            	 // add into logs
+							var log = new Log({'name': ta.name,'_creator': req.session.user._id, '_project': ta._project});
+							LogApi.create(log, 1);
+		            	}
+		            }
 
 
 	                res.json({'flash': 'Votre tache a bien été modifié'});
@@ -137,7 +145,7 @@ tasks = {
 
 				// add into logs
 				var log = new Log({'name': ta.name,'_creator': req.session.user._id, '_project': pro._id});
-				LogApi.create(log, 3);
+				LogApi.create(log, 2);
 
 				// remove task
 				ta.remove(function(err) {
