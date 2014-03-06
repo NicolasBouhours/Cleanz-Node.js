@@ -3,11 +3,9 @@
  * GET Controllers 
  */
 
-var authController 		= require('./authController'),
-	securityController 	= require('./securityController');
+var authController 		= require('./authController');
 
 module.exports = {
     authController: authController,
-    securityController: securityController
 };
 

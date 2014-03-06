@@ -8,7 +8,7 @@ BugController.controller('Bugs', function($scope, $http, $routeParams) {
 
 	// get list of our bugs
 	$scope.getBugs = function() {
-		$http.get('/cleanz/api/bugs/list/' + $routeParams.projectId).success(function(bugs) {
+		$http.get('/cleanz/api/' + $routeParams.projectId + '/bugs/list/' + $routeParams.projectId).success(function(bugs) {
 			$scope.bugs = bugs;
 		});
 	}
@@ -23,7 +23,6 @@ BugController.controller('addBug', function($scope, $http, $routeParams) {
 
 	// get list of our bugs
 	$scope.addBug = function() {
-		$scope.bug.projectId = $routeParams.projectId;
 		$http.post('/cleanz/api/bugs/add', $scope.bug).success(function(data) {
 			$scope.flash = data.flash;
 		}).error(function(data) {

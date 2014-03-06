@@ -1,7 +1,8 @@
 // Route for User Management
 
 var api = require('../api');
-var auth = require('../controllers')
+var auth = require('../controllers');
+var security = require('../middleware/security');
 
 module.exports = function(server) {
 
@@ -18,6 +19,6 @@ module.exports = function(server) {
 	server.get('/cleanz/logout', auth.authController.logout);
 
 	// ## Route for security
-	server.get('/cleanz/security/:id', auth.securityController.checkUserProject);
+	server.get('/cleanz/security/:id', security.checkUserProject);
 
 };
