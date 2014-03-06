@@ -9,8 +9,8 @@ var Cleanz = angular.module('Cleanz', [
 ]);
 
 // ## Router
-Cleanz.config(['$routeProvider',
-  function($routeProvider) {
+Cleanz.config(['$routeProvider','$httpProvider',
+  function($routeProvider, $httpProvider) {
     $routeProvider.
       when('/', {
         templateUrl: 'app/partials/users.html',
@@ -88,29 +88,47 @@ Cleanz.config(['$routeProvider',
         templateUrl: 'app/partials/editBug.html',
         controller: 'EditBug'
        }).
+       when('/403', {
+        templateUrl: 'app/partials/403.html'
+       }).
        when('/404', {
         templateUrl: 'app/partials/404.html'
        });
 
+        $httpProvider.defaults.useXDomain = true;
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
+        var interceptor = ['$rootScope','$location', function (scope, $location) {
+          function success(response) {
+              return response;
+          }
+          function error(response) {
+              var status = response.status;
+              if (status == 403) {
+                  $location.path('/403');
+              }
+          }
+          return function (promise) {
+              return promise.then(success, error);
+          }
+      }];
+      $httpProvider.responseInterceptors.push(interceptor);
+
   }]);
 
 
- // ## Routes wich require Auth && Security
-Cleanz.run(function($rootScope, $location, $routeParams, AuthenticationService, SecurityService) {
+
+ // ## Routes wich require Auth 
+Cleanz.run(function($rootScope, $location, AuthenticationService ) {
 
   var routesThatRequireAuth = ['/project', '/editinfo'];
-  var routesThatRequireProject = ['/project/'];
 
   $rootScope.$on('$routeChangeStart', function(event, next, current) {
     if(_(routesThatRequireAuth).contains($location.path()) && !AuthenticationService.isLoggedIn()) {
-      $location.path('/login');
-
-    }
-
-    if (_(routesThatRequireProject).contains($location.path())) {
-      console.log('coucou secu');
-      SecurityService.checkUserProject($routeParams.projectId);
+            console.log('coucou');
+      $location.path('/register');
     }
   });
 });
+
 
