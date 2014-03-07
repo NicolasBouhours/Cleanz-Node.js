@@ -17,36 +17,36 @@ module.exports = function(server) {
 
 	// ## Route for Project
 	server.get('/cleanz/api/projects/list', api.projects.list);
-	server.del('/cleanz/api/projects/:id', api.projects.delete);
-	server.post('/cleanz/api/projects/add', api.projects.create);
-	server.get('/cleanz/api/projects/:id', api.projects.read);
+	server.del('/cleanz/api/:projectId/projects/:id', api.projects.delete);
+	server.post('/cleanz/api/:projectId/projects/add', api.projects.create);
+	server.get('/cleanz/api/:projectId/projects/:id', api.projects.read);
 	// server.del('/cleanz/api/project/:id', api.projects.delUser);
 
 	// ## Route for Documents
-	server.get('/cleanz/api/documents/list/:id', api.documents.list);
-	server.post('/cleanz/api/documents/add/:id', api.documents.create);
-	server.get('/cleanz/api/documents/get/:id', api.documents.download);
-	server.get('/cleanz/api/documents/:id', api.documents.read);
-	server.put('/cleanz/api/documents/:id', api.documents.edit);
-	server.del('/cleanz/api/documents/:id', api.documents.delete);
+	server.get('/cleanz/api/:projectId/documents/list', api.documents.list);
+	server.post('/cleanz/api/:projectId/documents/add/:id', api.documents.create);
+	server.get('/cleanz/api/:projectId/documents/get/:id', api.documents.download);
+	server.get('/cleanz/api/:projectId/documents/:id', api.documents.read);
+	server.put('/cleanz/api/:projectId/documents/:id', api.documents.edit);
+	server.del('/cleanz/api/:projectId/documents/:id', api.documents.delete);
 
 	// ## Route for Tasks
-	server.get('/cleanz/api/tasks/list/:id', security.checkUserProject, api.tasks.list);
-	server.get('/cleanz/api/tasks/:id', api.tasks.read);
-	server.post('/cleanz/api/tasks/add', api.tasks.create);
-	server.put('/cleanz/api/tasks/:id', api.tasks.edit);
-	//server.del('/cleanz/api/tasks/:id', security.checkUserProject, api.tasks.delete);
+	server.get('/cleanz/api/:projectId/tasks/list', security.checkUserProject, api.tasks.list);
+	server.get('/cleanz/api/:projectId/tasks/:id', security.checkUserProject, api.tasks.read);
+	server.post('/cleanz/api/:projectId/tasks/add', security.checkUserProject, api.tasks.create);
+	server.put('/cleanz/api/:projectId/tasks/:id', security.checkUserProject, api.tasks.edit);
+	//server.del('/cleanz/api/:projectId/tasks/:id', security.checkUserProject, api.tasks.delete);
 
 	// ## Route for Meetings
-	server.get('/cleanz/api/meetings/list/:id', api.meetings.list);
-	server.post('/cleanz/api/meetings/add', api.meetings.create);
-	server.get('/cleanz/api/meetings/:id', api.meetings.read);
-	server.put('/cleanz/api/meetings/:id', api.meetings.edit);
-	server.del('/cleanz/api/meetings/:id', api.meetings.delete);
+	server.get('/cleanz/api/:projectId/meetings/list', security.checkUserProject, api.meetings.list);
+	server.post('/cleanz/api/:projectId/meetings/add', security.checkUserProject, api.meetings.create);
+	server.get('/cleanz/api/:projectId/meetings/:id', security.checkUserProject, api.meetings.read);
+	server.put('/cleanz/api/:projectId/meetings/:id', security.checkUserProject, api.meetings.edit);
+	server.del('/cleanz/api/:projectId/meetings/:id', security.checkUserProject, api.meetings.delete);
 
 	// ## Route for Comments
-	server.post('/cleanz/api/comments/add', api.comments.create);
-	server.get('/cleanz/api/comments/list/:id', api.comments.list);
+	server.post('/cleanz/api/:projectId/comments/add', security.checkUserProject, api.comments.create);
+	server.get('/cleanz/api/:projectId/comments/list/:id', security.checkUserProject, api.comments.list);
 
 	// ## Route for Invits
 	server.get('/cleanz/api/invits/list', api.invits.list);
@@ -55,14 +55,14 @@ module.exports = function(server) {
 	server.del('/cleanz/api/invits/:id', api.invits.refuse);
 
 	// ## Route for Bugs
-	server.get('/cleanz/api/bugs/list/:id', api.bugs.list);
-	server.post('/cleanz/api/bugs/add', api.bugs.create);
-	server.get('/cleanz/api/bugs/:id', api.bugs.read);
-	server.put('/cleanz/api/bugs/:id', api.bugs.edit);
-	server.del('/cleanz/api/bugs/:id', api.bugs.delete);
+	server.get('/cleanz/api/:projectId/bugs/list', security.checkUserProject, api.bugs.list);
+	server.post('/cleanz/api/:projectId/bugs/add', security.checkUserProject, api.bugs.create);
+	server.get('/cleanz/api/:projectId/bugs/:id', security.checkUserProject, api.bugs.read);
+	server.put('/cleanz/api/:projectId/bugs/:id', security.checkUserProject, api.bugs.edit);
+	server.del('/cleanz/api/:projectId/bugs/:id', security.checkUserProject, api.bugs.delete);
 
 	// ## Route for Logs
-	server.get('/cleanz/api/logs/list/:id', api.logs.list);
+	server.get('/cleanz/api/:projectId/logs/list', security.checkUserProject, api.logs.list);
 	
 	// ## Init database 
 	server.get('/cleanz/init', function(req, res) {

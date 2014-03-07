@@ -7,7 +7,7 @@ LogController.controller('Logs', function($scope, $http, $routeParams) {
     $scope.projectId = $routeParams.projectId;
 
     //List of our logs
-    $http.get('/cleanz/api/logs/list/' + $routeParams.projectId).success(function(logs) {
+    $http.get('/cleanz/api/' + $routeParams.projectId + '/logs/list').success(function(logs) {
       $scope.logs = logs  ;
     });
 

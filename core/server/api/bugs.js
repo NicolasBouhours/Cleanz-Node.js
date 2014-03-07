@@ -15,7 +15,7 @@ bugs = {
 
 	// return list of all bugs for one project
 	list: function list(req, res) {
-		Project.findOne({'id':req.params.id}, function(err, pro) {
+		Project.findOne({'id':req.params.projectId}, function(err, pro) {
 			Bug.find({_project: pro._id}).populate('_creator', 'id firstName lastName').exec(function(err, bugs) {
 				if (err) console.log(err);
 				return res.json(bugs);

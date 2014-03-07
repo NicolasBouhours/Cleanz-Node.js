@@ -46,7 +46,7 @@ documents = {
 
 			console.log(req.params.id);
 		// get document
-		Document.findOne({id: req.params.id}, function(err, doc) {
+		Document.findOne({id: req.params.projectId}, function(err, doc) {
 			if (err) console.log(err);
 
 			// get project
