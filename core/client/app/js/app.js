@@ -94,7 +94,7 @@ Cleanz.config(['$routeProvider','$httpProvider',
        when('/404', {
         templateUrl: 'app/partials/404.html'
        });
-
+/*
         $httpProvider.defaults.useXDomain = true;
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
@@ -107,13 +107,16 @@ Cleanz.config(['$routeProvider','$httpProvider',
               if (status == 403) {
                   $location.path('/403');
               }
+              else if (status == 404) {
+                  $location.path('/404');
+              }
           }
           return function (promise) {
               return promise.then(success, error);
           }
       }];
       $httpProvider.responseInterceptors.push(interceptor);
-
+*/
   }]);
 
 
