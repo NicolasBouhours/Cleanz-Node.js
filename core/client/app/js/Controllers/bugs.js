@@ -8,7 +8,7 @@ BugController.controller('Bugs', function($scope, $http, $routeParams) {
 
 	// get list of our bugs
 	$scope.getBugs = function() {
-		$http.get('/cleanz/api/' + $routeParams.projectId + '/bugs/list/' + $routeParams.projectId).success(function(bugs) {
+		$http.get('/cleanz/api/' + $routeParams.projectId + '/bugs/list').success(function(bugs) {
 			$scope.bugs = bugs;
 		});
 	}
@@ -23,7 +23,7 @@ BugController.controller('addBug', function($scope, $http, $routeParams) {
 
 	// get list of our bugs
 	$scope.addBug = function() {
-		$http.post('/cleanz/api/bugs/add', $scope.bug).success(function(data) {
+		$http.post('/cleanz/api/' + $routeParams.projectId + '/bugs/add', $scope.bug).success(function(data) {
 			$scope.flash = data.flash;
 		}).error(function(data) {
             $scope.flash = data.flash;
@@ -39,7 +39,7 @@ BugController.controller('Bug', function($scope, $http, $routeParams) {
 	$scope.bugId = $routeParams.bugId;
 
 	// get detail for one bug
-	$http.get('/cleanz/api/bugs/' + $routeParams.bugId).success(function(bug) {
+	$http.get('/cleanz/api/' + $routeParams.projectId + '/bugs/' + $routeParams.bugId).success(function(bug) {
 		$scope.bug = bug;
 	});
 });
@@ -51,14 +51,14 @@ BugController.controller('EditBug', function($scope, $http, $routeParams) {
 	$scope.bugId = $routeParams.bugId;
 
 	// get detail for one bug
-	$http.get('/cleanz/api/bugs/' + $routeParams.bugId).success(function(bug) {
+	$http.get('/cleanz/api/' + $routeParams.projectId + '/bugs/' + $routeParams.bugId).success(function(bug) {
 		$scope.bug = bug;
 	});
 
 	// modify bug into database
 	$scope.editBug = function() {
 		$scope.bug.projectId = $routeParams.projectId;
-		$http.put('/cleanz/api/bugs/' + $routeParams.bugId, $scope.bug).success(function(data) {
+		$http.put('/cleanz/api/' + $routeParams.projectId + '/bugs/' + $routeParams.bugId, $scope.bug).success(function(data) {
 			$scope.flash = data.flash;
 		}).error(function(data) {
             $scope.flash = data.flash;
@@ -67,7 +67,7 @@ BugController.controller('EditBug', function($scope, $http, $routeParams) {
 
 	// remove bug into database
 	$scope.removeBug = function() {
-		$http.delete('/cleanz/api/bugs/' + $routeParams.bugId).success(function(data) {
+		$http.delete('/cleanz/api/' + $routeParams.projectId + '/bugs/' + $routeParams.bugId).success(function(data) {
 			$scope.flash = data.flash;
 		}).error(function(data) {
             $scope.flash = data.flash;

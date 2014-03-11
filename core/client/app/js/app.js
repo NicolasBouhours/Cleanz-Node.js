@@ -113,7 +113,6 @@ Cleanz.config(['$routeProvider','$httpProvider',
           }
       }];
       $httpProvider.responseInterceptors.push(interceptor);
-
   }]);
 
 

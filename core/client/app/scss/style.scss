@@ -1,0 +1,61 @@
+/** Constants **/
+$red: #ec5148;
+$text: #363634;
+$background: #f9f7ed;
+
+/** CSS **/
+html {
+	font-family: 'Lato', sans-serif; font-weight: 300;
+	color: $text;
+}
+
+body {
+	background-color: $background;
+}
+
+header {
+	width: 100%;
+	padding-top: 0px;
+	background-color: white;
+
+	#nomApp {
+		width: 45%;
+		display: inline-block;
+		vertical-align: top;
+
+		h4 {
+			margin-top: 1%;
+			margin-left: 7%;
+			color: $text;
+			font-size: 32px;
+			letter-spacing: 1px;
+
+			.red {
+				font-style: italic;
+			}
+		}
+	}
+
+	#menuDroite {
+		width: 54%;
+		display: inline-block;
+		vertical-align: top;
+
+		a {
+			text-decoration: none;
+			color: $text;
+		}
+
+		li {
+			margin-top: 2%;
+			text-transform: uppercase;
+			list-style-type: none;
+			display: inline-block;
+			margin-left: 9%;
+		}
+	}
+}
+
+.red {
+	color: $red;
+}

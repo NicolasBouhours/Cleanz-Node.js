@@ -8,7 +8,7 @@ MeetingController.controller('Meetings', function($scope, $http, $routeParams) {
 
 	// get list of our meetings
 	$scope.getMeetings = function() {
-		$http.get('/cleanz/api/meetings/list/' + $routeParams.projectId).success(function(meetings) {
+		$http.get('/cleanz/api/' + $routeParams.projectId + '/meetings/list').success(function(meetings) {
 			$scope.meetings = meetings;
 		});
 	}
@@ -24,7 +24,7 @@ MeetingController.controller('AddMeeting', function($scope, $http, $routeParams)
 	// get list of our meetings
 	$scope.addMeeting = function() {
 		$scope.meeting.projectId = $routeParams.projectId;
-		$http.post('/cleanz/api/meetings/add', $scope.meeting).success(function(data) {
+		$http.post('/cleanz/api/' + $routeParams.projectId + '/meetings/add', $scope.meeting).success(function(data) {
 			$scope.flash = data.flash;
 		}).error(function(data) {
             $scope.flash = data.flash;
@@ -40,7 +40,7 @@ MeetingController.controller('Meeting', function($scope, $http, $routeParams) {
 	$scope.meetingId = $routeParams.meetingId;
 
 	// get detail for one meeting
-	$http.get('/cleanz/api/meetings/' + $routeParams.meetingId).success(function(meeting) {
+	$http.get('/cleanz/api/' + $routeParams.projectId + '/meetings/' + $routeParams.meetingId).success(function(meeting) {
 		$scope.meeting = meeting;
 	});
 });
@@ -52,7 +52,7 @@ MeetingController.controller('EditMeeting', function($scope, $http, $routeParams
 	$scope.meetingId = $routeParams.meetingId;
 
 	// get detail for one meeting
-	$http.get('/cleanz/api/meetings/' + $routeParams.meetingId).success(function(meeting) {
+	$http.get('/cleanz/api/' + $routeParams.projectId + '/meetings/' + $routeParams.meetingId).success(function(meeting) {
 		$scope.meeting = meeting;
 
         // format date
@@ -63,7 +63,7 @@ MeetingController.controller('EditMeeting', function($scope, $http, $routeParams
 	// modify meeting into database
 	$scope.editMeeting = function() {
 		$scope.meeting.projectId = $routeParams.projectId;
-		$http.put('/cleanz/api/meetings/' + $routeParams.meetingId, $scope.meeting).success(function(data) {
+		$http.put('/cleanz/api/' + $routeParams.projectId + '/meetings/' + $routeParams.meetingId, $scope.meeting).success(function(data) {
 			$scope.flash = data.flash;
 		}).error(function(data) {
             $scope.flash = data.flash;
@@ -72,7 +72,7 @@ MeetingController.controller('EditMeeting', function($scope, $http, $routeParams
 
 	// remove meeting into database
 	$scope.removeMeeting = function() {
-		$http.delete('/cleanz/api/meetings/' + $routeParams.meetingId).success(function(data) {
+		$http.delete('/cleanz/api/' + $routeParams.projectId + '/meetings/' + $routeParams.meetingId).success(function(data) {
 			$scope.flash = data.flash;
 			$location.path('/project/' + $routeParams.projectId + '/meetings');
 		}).error(function(data) {

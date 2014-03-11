@@ -16,7 +16,7 @@ logs = {
 	list: function list(req, res) {
 
 		// get project
-		Project.findOne({id: req.params.id}, function(err, pro) {
+		Project.findOne({id: req.params.projectId}, function(err, pro) {
 			if (err) console.log(err);
 			// get logs
 			Log.find({_project: pro._id}).populate('_creator', 'id firstName lastName').populate('_logmessage').exec(function(err, logs) {

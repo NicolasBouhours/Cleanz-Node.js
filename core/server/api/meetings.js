@@ -18,7 +18,7 @@ meetings = {
 	list: function list(req, res) {
 
 		//get prokect
-		Project.findOne({id: req.params.id}, function(err, pro) {
+		Project.findOne({id: req.params.projectId}, function(err, pro) {
 
 			//get meetings
 			Meeting.find({_project: pro._id}).exec(function(err, meetings) {

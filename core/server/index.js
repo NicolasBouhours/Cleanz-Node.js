@@ -6,6 +6,7 @@ var http = require('http');
 var path = require('path');
 var hbs = require('express-hbs');
 var mongoose = require('mongoose');
+var compass = require('node-compass');
 
 function setup(server) {
 

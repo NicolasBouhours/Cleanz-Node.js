@@ -1,4 +1,62 @@
-li {
-	display: inline-block;
-	margin-left: 70px;
+/** Constants **/
+/** CSS **/
+/* line 7, ../scss/style.scss */
+html {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  color: #363634;
+}
+
+/* line 12, ../scss/style.scss */
+body {
+  background-color: #f9f7ed;
+}
+
+/* line 16, ../scss/style.scss */
+header {
+  width: 100%;
+  padding-top: 0px;
+  background-color: white;
+}
+/* line 21, ../scss/style.scss */
+header #nomApp {
+  width: 45%;
+  display: inline-block;
+  vertical-align: top;
+}
+/* line 26, ../scss/style.scss */
+header #nomApp h4 {
+  margin-top: 1%;
+  margin-left: 7%;
+  color: #363634;
+  font-size: 32px;
+  letter-spacing: 1px;
+}
+/* line 33, ../scss/style.scss */
+header #nomApp h4 .red {
+  font-style: italic;
+}
+/* line 39, ../scss/style.scss */
+header #menuDroite {
+  width: 54%;
+  display: inline-block;
+  vertical-align: top;
+}
+/* line 44, ../scss/style.scss */
+header #menuDroite a {
+  text-decoration: none;
+  color: #363634;
+}
+/* line 49, ../scss/style.scss */
+header #menuDroite li {
+  margin-top: 2%;
+  text-transform: uppercase;
+  list-style-type: none;
+  display: inline-block;
+  margin-left: 9%;
+}
+
+/* line 59, ../scss/style.scss */
+.red {
+  color: #ec5148;
 }

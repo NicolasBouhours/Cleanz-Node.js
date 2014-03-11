@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" ng-app=”myApp”>
 	<head>
 	    <meta charset="utf-8">
 	    <title>Outil de gestion de projets</title>
 	    <link href="app/css/foundation.css" rel="stylesheet">
 	    <link href="app/css/app.css" rel="stylesheet" />
 	</head>
-	<body ng-app=”myApp”>
+	<body>
 
 		<div class="container" ng-view></div>
 
