@@ -1,0 +1,5 @@
+http_path= "/"
+css_dir = "core/client/app/css"
+sass_path = "core/client/app/scss"
+images_dir = "core/client/images"
+javascripts_dir = "core/client/javascript"
