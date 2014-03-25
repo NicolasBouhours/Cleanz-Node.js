@@ -1,35 +1,33 @@
 <div class="container-fluid">
 
-	<nav class="top-bar">
-		<ul>
-			<li class="divider"><a href="#/project/{{ projectId }}/tasks"> Taches</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/documents"> Documents</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/meetings"> Réunion</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/logs"> Journal</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/bugs"> Bugs</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/users"> Utilisateurs</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/stats"> Statistiques</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/params"> Paramètres</a></li>
-		</ul>
-	</nav>
+	<div menuleft>
 
-	<h4>Editer une bug</h4>
+	</div>
+	<article>
 
-			<form class="form-horizontal">
+		<div id="editBug">
+			<div class="formCenter">
 
-	        <label for="name">Nom du bug</label>
-	        <input type="text" id="name"  ng-model="bug.name" required>
+			<h4>Editer une bug</h4>
 
-	        <label for="description">description du bug</label>
-	        <textarea name="ameliorer" id="ameliorer" size="600" ng-model="bug.description" required></textarea>
+				<form class="form-horizontal">
 
-			<button type="submit" ng-click="editBug()">Modifié le bug</button>
+			        <label for="name">Nom du bug :</label>
+			        <input type="text" id="name"  ng-model="bug.name" required> <br/> <br/>
 
-		</form> <br/>
+			        <label for="description">Description du bug :</label>
+			        <textarea name="ameliorer" id="ameliorer" size="600" ng-model="bug.description" required></textarea>
 
-		<a ng-click="removeBug()"> Supprimer le bug</a>
+					<button type="submit" class="btn" ng-click="editBug()">Modifié le bug</button>
+					<a ng-click="removeBug()" class="btn"> Supprimer le bug</a>
 
-		<div id="flash" ng-show="flash">
-	        {{ flash }}
-	    </div>
+				</form> <br/>
+
+
+				<div id="flash" ng-show="flash">
+			        {{ flash }}
+			    </div>
+			</div>
+		</div>
+	</article>
 </div>

@@ -1,0 +1,49 @@
+<div class="container-fluid">
+
+	<div menuleft>
+
+	</div>
+	<article>
+
+		<div id="editTask">
+			<div class="formCenter">
+				<div id="flash" ng-show="flash">
+			        {{ flash }}
+			    </div>
+
+				<h4>Editer une Tache</h4>
+
+						<form class="form-horizontal">
+
+			        <label for="name">Nom de la tache :</label>
+			        <input type="text" id="name" ng-model="task.name" required> <br/>
+
+			        <label for="description">description de la tache :</label>
+			        <textarea name="ameliorer" id="ameliorer" size="300" ng-model="task.description" required></textarea> <br/> <br/>
+
+					<div class="dateNext">
+						
+					<label for="dateS"> Date de début :</label>
+			        <input type="date" id="dateS" ng-model="task.dateStart" />
+					</div>
+
+					<div class="dateNext">
+					<label for="dateS"> Date de début :</label>
+			        <input type="date" id="dateS" ng-model="task.dateEnd" />
+			        </div> <br/> 
+					
+					<label for="importance"> Importance :</label> <br/>
+			        <input type="radio" name="importance" id="urgent" value="3" ng-model="task.importance"/> <label for="urgent">Urgent</label> <br />
+		       		<input type="radio" name="importance" id="haute" value="2" ng-model="task.importance" /> <label for="haute">Haute</label>    <br />
+		     		<input type="radio" name="importance" id="moyenne" value="1" ng-model="task.importance" /> <label for="moyenne">Moyenne</label><br />
+		     		<input type="radio" name="importance" id="basse" value="0" ng-model="task.importance" /> <label for="basse">Basse</label>    <br /> 
+
+					<button type="submit" class="btn" ng-click="updateTask()">Mettre a jour la tache</button>
+
+
+				</form>
+			</div>
+		</div>
+	</article>
+
+</div>

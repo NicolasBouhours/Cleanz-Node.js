@@ -26,6 +26,11 @@ invits = {
 		//find user
 		User.findOne({email: req.body.email},function(err, usr) {
 
+			//if user don't exist
+			if(usr == null) {
+				return res.json({'flash': 'Cet utilisateur n\'existe pas'});
+			}
+
 			//find project
 			Project.findOne({id: req.body.projectId}, function(err, pro) {
 

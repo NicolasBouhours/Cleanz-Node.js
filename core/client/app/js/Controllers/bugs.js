@@ -23,13 +23,13 @@ BugController.controller('addBug', function($scope, $http, $routeParams) {
 
 	// get list of our bugs
 	$scope.addBug = function() {
+		$scope.bug.projectId = $routeParams.projectId;
 		$http.post('/cleanz/api/' + $routeParams.projectId + '/bugs/add', $scope.bug).success(function(data) {
 			$scope.flash = data.flash;
 		}).error(function(data) {
             $scope.flash = data.flash;
         });
 	}
-
 });
 
 // ## Controller for bug.html

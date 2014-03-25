@@ -1,24 +1,17 @@
 <div class="container-fluid">
 
-	<nav class="top-bar">
-		<ul>
-			<li class="divider"><a href="#/project/{{ projectId }}/tasks"> Taches</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/documents"> Documents</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/meetings"> Réunion</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/logs"> Journal</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/bugs"> Bugs</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/users"> Utilisateurs</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/stats"> Statistiques</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/params"> Paramètres</a></li>
-		</ul>
-	</nav>
+	<div menuleft>
 
-		<h2> Journal de votre projets </h2>
-
+	</div>
+	<article>
 		<div id="logs">
+		<h2> Journal  </h2> <br/> <br/>
+
+
 			<div id="log" ng-repeat="log in logs">
-				<p> {{ log._creator.firstName }} {{ log._creator.lastName }} {{ log._logmessage.name }} {{ log.name }} </p>
+				<p> <span class="blue">{{ log.created_at | date:'dd/MM/yyyy'}}</span> - <span class="red">{{ log._creator.firstName }} {{ log._creator.lastName }}</span> {{ log._logmessage.name }} <span class="red"> {{ log.name }} </span></p>
 			</div>
 		</div>
-
+	</article>
 </div>
+

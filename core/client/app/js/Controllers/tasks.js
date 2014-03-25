@@ -13,6 +13,14 @@ var TaskController = angular.module('TaskController', []);
        });
      }
 
+     $scope.getTasks();
+ });
+
+// ## Controller for addTask.html 
+TaskController.controller('addTask', function($scope, $http, $routeParams) {
+     
+    $scope.projectId = $routeParams.projectId;
+    
      // Task to Dabatase
      $scope.addTask = function() {
         $scope.task.projectId = $scope.projectId;
@@ -23,9 +31,7 @@ var TaskController = angular.module('TaskController', []);
             $scope.flash = error.flash;
         });
      }
-
-     $scope.getTasks();
- });
+});
 
 // ## Controller for task.html
  TaskController.controller('ProjectTask', function($scope, $http, $location, $routeParams, DateService) {
@@ -74,4 +80,33 @@ var TaskController = angular.module('TaskController', []);
      }
 
      $scope.getComments();
+ });
+
+// ## Controller for EditTask.html
+ TaskController.controller('EditTask', function($scope, $http, $location, $routeParams, DateService) {
+
+     $scope.taskId = $routeParams.taskId;
+     $scope.projectId = $routeParams.projectId;
+
+     // Detail of our Task
+     $http.get('/cleanz/api/' + $routeParams.projectId + '/tasks/' + $routeParams.taskId).success(function(task) {
+        $scope.task = task;
+        var date = new Date(task.dateStart);
+        var dateE = new Date(task.dateEnd);
+
+        // format date
+        $scope.task.dateStart = DateService.format(date);
+        $scope.task.dateEnd = DateService.format(dateE);
+
+        $scope.task.importance = task._importance.id;
+     });
+
+     // Update Task to Database
+     $scope.updateTask = function() {
+        $http.put('/cleanz/api/' + $routeParams.projectId + '/tasks/' + $routeParams.taskId, $scope.task).success(function(data) {
+            $scope.flash = data.flash;
+        }).error(function(data) {
+            $scope.flash = data.flash;
+        });
+     }
  });

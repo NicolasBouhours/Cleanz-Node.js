@@ -1,17 +1,26 @@
-<h1>Connexion</h1>
-<form class="form-horizontal">
 
-        <label class="control-label" for="email">Email</label>
-        <input type="text" id="email"  ng-model="user.email" required>
+<div id="login">
+<br/> <br/>
+	<h2>Connexion</h2>
+	<br/> <br/>
 
-        <label class="control-label" for="password">Mot de passe :</label>
-        <input type="password" id="password" ng-model="user.password" required>
+	<div id="flash" ng-show="flash">
+	     {{ flash }}
+	</div>
+	<br/>
+	<form class="form-horizontal">
 
-        <button type="submit" ng-click="login()">Se connecter</button>
+	        <label class="control-label" for="email">Email</label> <br/>
+	        <input type="text" id="email"  ng-model="user.email" required>
+			 <br/> <br/> <br/>
+	        <label class="control-label" for="password">Mot de passe</label><br/>
+	        <input type="password" id="password" ng-model="user.password" required> <br/>
+	        <br/>
 
-    </div>
-</form>
-
- <div id="flash" ng-show="flash">
-     {{ flash }}
+	        <button type="submit" class="btn" ng-click="login()">Se connecter</button>
+			
+			<br/> <br/>
+			Mot de passe oublié ? <span class="red">Renvoyer un mot de passe</span>
+	    </div>
+	</form>
 </div>

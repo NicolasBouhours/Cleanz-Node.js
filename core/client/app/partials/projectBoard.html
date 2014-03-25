@@ -1,29 +1,23 @@
 <div class="container-fluid">
 
-	<nav class="top-bar">
-		<ul>
-			<li class="divider"><a href="#/project/{{ projectId }}/tasks"> Taches</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/documents"> Documents</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/meetings"> Réunion</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/logs"> Journal</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/bugs"> Bugs</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/users"> Utilisateurs</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/stats"> Statistiques</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/params"> Paramètres</a></li>
-		</ul>
-	</nav>
+	<div menuleft>
 
-		<h2> Bienvenue sur la page de votre projet {{ projectId}} </h2>
+	</div>
+	<article>
 
-		<form class="form-horizontal">
+		<h2> Dashboard </h2> <br/>
+				<div id="flash" ng-show="flash">
+			        {{ flash }}
+			    </div> <br/> <br/>
 
-		<label for="email">Email de l'utilisateur : </label>
-		<input type="text" id="email"  ng-model="userAdd.email" required>
-				
-		<button type="submit" ng-click="addProjectUser()">Ajouter l'utilisateur au projet</button>
+		<div id="addUser">
+			<form class="form-horizontal">
 
-		<div id="flash" ng-show="flash">
-	        {{ flash }}
+				<label for="email">Email de l'utilisateur : </label>
+				<input type="text" id="email"  ng-model="userAdd.email" required>
+						
+				<button type="submit" class="btn" ng-click="addProjectUser()">Ajouter l'utilisateur au projet</button>
+		    </form>
 	    </div>
-
+	</article>
 </div>

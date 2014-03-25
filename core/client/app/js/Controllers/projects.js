@@ -4,6 +4,8 @@ var ProjectController = angular.module('ProjectController', []);
 // ## Controller for project.html
  ProjectController.controller('ProjectsList', function($scope, $http, $location) {
 
+    $scope.showAddTask = false;
+
     // List of all project of one user
     $scope.getProjects = function() {
             $http.get('/cleanz/api/projects/list').success(function(data) {
@@ -23,6 +25,7 @@ var ProjectController = angular.module('ProjectController', []);
         $http.post('/cleanz/api/projects/add', $scope.project).success(function(data) {
             $scope.flash = data.flash;
             $scope.getProjects();
+            $scope.showAddTask = false;
         }).error(function(data) {
             $scope.flash = data.flash;
         });
@@ -47,6 +50,16 @@ var ProjectController = angular.module('ProjectController', []);
         }).error(function(data) {
             $scope.flash = data.flash;
         });
+    }
+
+    // Show addTask form
+    $scope.addTaskShow = function() {
+        $scope.showAddTask = true;
+    }
+
+    // Hide addTask form
+    $scope.addTaskHide = function() {
+        $scope.showAddTask = false;
     }
 
     $scope.getInvitations();

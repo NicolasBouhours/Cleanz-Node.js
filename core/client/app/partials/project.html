@@ -1,34 +1,42 @@
 <div class="container-fluid">
+	<div id="listProjects">
+		<h2> Vos projets </h2> <br/> <br/>
 
-		<h2> Liste de vos projets </h2>
+	    <div class="project" ng-repeat="project in projects">
+			<h5> {{ project.project.name }} </h5> <br/>
+			<p> {{ project.project.users.length }} participants </p>
+			<p> {{ project.project.tasks.length }} taches </p>
+			<a href="#/project/{{project.project.id}}"> Se rendre sur le projet</a>
+		</div>
+		<div  class="project" id="createProject">
+			<a class="btn" ng-click="addTaskShow()"> AJOUTER UN PROJET </a>
+		</div>
 
-		<ul>
-			<li ng-repeat="project in projects">
-				<a href="#/project/{{project.project.id}}"> {{ project.project.name }} </a>
-			</li>
-		</ul>
-
-		<h1>Ajouter un projet</h1>
-		<form class="form-horizontal">
-
-	        <label for="firstname">Nom du projet</label>
-	        <input type="text" id="firstname"  ng-model="project.name" required>
+		<div id="addProject" ng-show="showAddTask">
+			<form class="form-horizontal">
+			<div class="formCenter">
+				 <h4> Créer un projet </h4> <br/> <br/>
+		        <label for="firstname">Nom du projet :</label> 
+		        <input type="text" id="firstname"  ng-model="project.name" required> <br/>
+	        </div>
 			
-			<button type="submit" ng-click="addProject()">Ajouter le projet</button>
+			<button  class="btn" type="submit" ng-click="addProject()">Ajouter le projet</button>
+			<a class="btn" ng-click="addTaskHide()"> Annuler</a>
 
 		</form>
+		</div>
 
 		<div id="flash" ng-show="flash">
 	        {{ flash }}
 	    </div>
 
-	    <h2> Liste de vos invitations : </h2>
+	    <h2> Vos invitations : </h2>
 
 	    <div id="invitations">
 	    	<div id="invit" ng-repeat="invit in invits">
-	    		Invitation projet : {{ invit.name }} <a ng-click="acceptInvit(invit)" class="button">Accepter l'invitation</a>
-	    		 <a ng-click="refuseInvit(invit)" class="button">Refuser l'invitation</a> <br/>
+		    	{{ invit.name }} <a ng-click="acceptInvit(invit)" class="button">Accepter l'invitation</a>
+		    	<a ng-click="refuseInvit(invit)" class="button">Refuser l'invitation</a> <br/>
 	    	</div>
 	    </div>
-
+	</div>
 </div>

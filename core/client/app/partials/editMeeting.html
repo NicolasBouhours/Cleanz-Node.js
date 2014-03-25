@@ -1,48 +1,46 @@
-	<nav class="top-bar">
-		<ul>
-			<li class="divider"><a href="#/project/{{ projectId }}/tasks"> Taches</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/documents"> Documents</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/meetings"> Réunion</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/logs"> Journal</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/bugs"> Bugs</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/users"> Utilisateurs</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/stats"> Statistiques</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/params"> Paramètres</a></li>
-		</ul>
-	</nav>
+	<div menuleft>
 
-	<h4>Modifier une réunion</h4>
+	</div>
 
-		<form class="form-horizontal">
-
-	        <label for="name">Nom de la réunion</label>
-	        <input type="text" id="name"  ng-model="meeting.name" required>
-
-	        <label for="description">description de la réunion</label>
-	        <textarea name="ameliorer" id="ameliorer" size="500" ng-model="meeting.description" required></textarea>
-
-	        <label for="place">Lieu de la réunion</label>
-	        <input type="text" id="place"  ng-model="meeting.place" required>
-			
-			<label for="dateS"> Date de début</label>
-	        <input type="date" id="dateS" ng-model="meeting.dateStart" />
-
-
-	        <label for="dateT"> Heure de début</label>
-	        <input type="text" id="dateT" ng-model="meeting.timeStart" />
-
-	        <label for="duree"> Durée</label>
-	        <input type="text" id="duree" ng-model="meeting.duree" />
-
-			<button type="submit" ng-click="editMeeting()">Modifier la réunion</button>
-
-		</form>
-
-	    <br/>
-		<a class="buttin" ng-click="removeMeeting()">Supprimer la réunion </a>
-	    <br/>
+	<article>
+		<h4>Modifier une réunion</h4>
 
 		<div id="flash" ng-show="flash">
 	        {{ flash }}
-	    </div>
+	    </div> <br/>
+
+		<div id="editMeeting">
+			<div class="formCenter">
+				<form class="form-horizontal">
+
+			        <label for="name">Nom de la réunion</label>
+			        <input type="text" id="name"  ng-model="meeting.name" required>
+
+			        <label for="description">description de la réunion</label>
+			        <textarea name="ameliorer" id="ameliorer" size="500" ng-model="meeting.description" required></textarea>
+
+			        <label for="place">Lieu de la réunion</label>
+			        <input type="text" id="place"  ng-model="meeting.place" required>
+					
+					<label for="dateS"> Date de début</label>
+			        <input type="date" id="dateS" ng-model="meeting.dateStart" />
+
+
+			        <label for="dateT"> Heure de début</label>
+			        <input type="text" id="dateT" ng-model="meeting.timeStart" />
+
+			        <label for="duree"> Durée</label>
+			        <input type="text" id="duree" ng-model="meeting.duree" />
+
+					<button type="submit" ng-click="editMeeting()">Modifier la réunion</button>
+
+				</form>
+
+	   			<br/>
+				<a class="btn" ng-click="removeMeeting()">Supprimer la réunion </a>
+			    <br/>
+
+	    	</div>
+		</div>
+	</article>
 

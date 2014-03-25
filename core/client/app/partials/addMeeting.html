@@ -1,42 +1,38 @@
-	<nav class="top-bar">
-		<ul>
-			<li class="divider"><a href="#/project/{{ projectId }}/tasks"> Taches</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/documents"> Documents</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/meetings"> Réunion</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/logs"> Journal</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/bugs"> Bugs</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/users"> Utilisateurs</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/stats"> Statistiques</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/params"> Paramètres</a></li>
-		</ul>
-	</nav>
+	<div menuleft>
 
-	<h4>Ajouter une réunion</h4>
+	</div>
+	<article>
 
-		<form class="form-horizontal">
+		<div id="addMeeting">
+			<div id="flash" ng-show="flash">
+		        {{ flash }} 
+		    </div> <br/>
+			<div class="formCenter">
 
-	        <label for="name">Nom de la réunion</label>
-	        <input type="text" id="name"  ng-model="meeting.name" required>
+			<h4>Ajouter une réunion</h4>
 
-	        <label for="description">description de la réunion</label>
-	        <textarea name="ameliorer" id="ameliorer" size="500" ng-model="meeting.description" required></textarea>
+			<form class="form-horizontal">
 
-	        <label for="place">Lieu de la réunion</label>
-	        <input type="text" id="place"  ng-model="meeting.place" required>
-					
-			<label for="dateS"> Date de début</label>
-	        <input type="date" id="dateS" ng-model="meeting.dateStart" />
+		        <label for="name">Nom de la réunion :</label>
+		        <input type="text" id="name"  ng-model="meeting.name" required><br/>
 
-	        <label for="dateT"> Heure de début</label>
-	        <input type="text" id="dateT" ng-model="meeting.timeStart" />
+		        <label for="description">Description de la réunion :</label>
+		        <textarea name="ameliorer" id="ameliorer" size="500" ng-model="meeting.description" required></textarea>
 
-	        <label for="duree"> Duree</label>
-	        <input type="text" id="duree" ng-model="meeting.duree" />
- 
-			<button type="submit" ng-click="addMeeting()">Ajouter la réunion</button>
+		        <label for="place">Lieu de la réunion :</label>
+		        <input type="text" id="place"  ng-model="meeting.place" required> <br/>
+						
+				<label for="dateS"> Date de début :</label>
+		        <datepicker ng-model='dateEnd' disable-clear-button="true" placeholder='Date de fin' date-format="dd/MM/yyyy" disable-timepicker="true"></datepicker> <br/>
 
-		</form>
+		        <label for="dateT"> Heure de début :</label>
+		        <input type="text" id="dateT" ng-model="meeting.timeStart" /> <br/>
 
-		<div id="flash" ng-show="flash">
-	        {{ flash }}
-	    </div>
+		        <label for="duree"> Duree :</label>
+		        <input type="text" id="duree" ng-model="meeting.duree" /> <br/> 
+	 
+				<button type="submit" class="btn" ng-click="addMeeting()">Ajouter la réunion</button>
+
+			</form>
+		</div>
+	</div>
