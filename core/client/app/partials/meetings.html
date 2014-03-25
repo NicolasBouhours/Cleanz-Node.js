@@ -1,27 +1,21 @@
 	<div class="container-fluid">
 
-		<nav class="top-bar">
-			<ul>
-				<li class="divider"><a href="#/project/{{ projectId }}/tasks"> Taches</a></li>
-				<li class="divider"><a href="#/project/{{ projectId }}/documents"> Documents</a></li>
-				<li class="divider"><a href="#/project/{{ projectId }}/meetings"> Réunion</a></li>
-		  		<li class="divider"><a href="#/project/{{ projectId }}/logs"> Journal</a></li>
-		  		<li class="divider"><a href="#/project/{{ projectId }}/bugs"> Bugs</a></li>
-				<li class="divider"><a href="#/project/{{ projectId }}/users"> Utilisateurs</a></li>
-				<li class="divider"><a href="#/project/{{ projectId }}/stats"> Statistiques</a></li>
-				<li class="divider"><a href="#/project/{{ projectId }}/params"> Paramètres</a></li>
-			</ul>
-		</nav>
+	<div menuleft>
 
+	</div>
+		<article>
 
 		<h4> Liste des vos réunions </h4>
+		<br/> <br/>
 
 		<div id="meeting" ng-repeat="meeting in meetings" >
 
 			<p><a href="#/project/{{ projectId }}/meetings/{{ meeting.id }}"> {{ meeting.name }} {{ meeting.description }} {{ meeting.dateStart | date:'yyyy-MM-dd' }} {{ meeting.timeStart }} {{ meeting.duree }}</a> </p>
 
-		</div>
+		</div> <br/> <br/>
 
-		<a href="#/project/{{ projectId }}/addMeeting" class="button">Ajouter une réunion</a>
+		<a href="#/project/{{ projectId }}/addMeeting" class="btn">Ajouter une réunion</a>
+
+		</article>
 
 	</div>

@@ -1,34 +1,22 @@
 <div class="container-fluid">
+	<div menuleft>
 
-	<nav class="top-bar">
-		<ul>
-			<li class="divider"><a href="#/project/{{ projectId }}/tasks"> Taches</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/documents"> Documents</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/meetings"> Réunion</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/logs"> Journal</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/bugs"> Bugs</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/users"> Utilisateurs</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/stats"> Statistiques</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/params"> Paramètres</a></li>
-		</ul>
-	</nav>
+	</div>
+	<article>
+		<div id="bugs">
+			<h2> Liste des bugs </h2>
 
-		<h2> Liste des bugs de votre projet {{ projectId}} </h2>
+			<div id="bug" ng-repeat="bug in bugs" >
+				<p><a href="#/project/{{ projectId }}/bugs/{{ bug.id }}"> {{ bug.name }} {{ bug.description }} {{ bug.created_at | date:'yyyy-MM-dd' }} {{ bug._creator.firstName }} {{ bug._creator.lastName }}  {{ bug.resolve }}</a> </p>
+			</div>
 
-		<h4> Liste des vos bugs</h4>
+			<div id="flash" ng-show="flash">
+	        	{{ flash }}
+	   		</div>
 
-		<div id="bug" ng-repeat="bug in bugs" >
-			<p><a href="#/project/{{ projectId }}/bugs/{{ bug.id }}"> {{ bug.name }} {{ bug.description }} {{ bug.created_at | date:'yyyy-MM-dd' }}  {{ bug.resolve}} {{ bug._creator.firstName }} {{ bug._creator.lastName }}  {{ bug.resolve }}</a> </p>
-		</div>
-
-		<h4> Commentaires sur votre bug </h4>
-		
-
-		<div id="flash" ng-show="flash">
-        	{{ flash }}
+	   		<br/>
+	   		<a class="btn" href="#/project/{{ projectId }}/addBug"> Ajouter un bug</a>
    		</div>
-
-   		<br/>
-   		<a href="#/project/{{ projectId }}/addBug"> Ajouter un bug</a>
+   	</article>
 
 </div>

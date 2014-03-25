@@ -1,26 +1,29 @@
-<h1>Inscription</h1>
-<form class="form-horizontal">
+<div id="register">
 
-        <label class="control-label" for="firstname">Prénom</label>
+    <h1>Inscription</h1>
+    <form class="form-horizontal">
+        <div id="flash" ng-show="flash">
+            {{ flash }}
+        </div> <br/> 
+
+        <label class="control-label" for="firstname">Prénom :</label>
         <input type="text" id="firstname"  ng-model="user.firstName" required>
 
-        <label class="control-label" for="lastname">Nom</label>
+        <label class="control-label" for="lastname">Nom :</label>
         <input type="text" id="lastname" ng-model="user.lastName" required>
 
         <label class="control-label" for="password">Mot de passe :</label>
         <input type="password" id="password" ng-model="user.password" required>
 
-        <label class="control-label" for="email">Email</label>
+        <label class="control-label" for="email">Email :</label>
         <input type="text" id="email" ng-model="user.email" required>
 
-        <label class="control-label" for="phone">Numéro de téléphone</label>
+        <label class="control-label" for="phone">Numéro de téléphone :</label>
         <input type="text" id="phone" ng-model="user.phone" required>
+        <br/>
+        <center>
+             <button type="submit" class="btn" ng-click="register()">S'inscrire</button>
+        </center>
 
-        <button type="submit" ng-click="register()">S'inscrire</button>
-
-    </div>
-</form>
-
-<div id="flash" ng-show="flash">
-    {{ flash }}
+    </form>
 </div>

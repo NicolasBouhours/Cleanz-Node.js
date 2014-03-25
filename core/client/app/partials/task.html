@@ -1,62 +1,33 @@
 <div class="container-fluid">
 
-	<nav class="top-bar">
-		<ul>
-			<li class="divider"><a href="#/project/{{ projectId }}/tasks"> Taches</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/documents"> Documents</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/meetings"> Réunion</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/logs"> Journal</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/bugs"> Bugs</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/users"> Utilisateurs</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/stats"> Statistiques</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/params"> Paramètres</a></li>
-		</ul>
-	</nav>
+	<div menuleft>
 
-		<h2> Bienvenue sur les taches de votre tache </h2>
+	</div>
+	<article>
+		<h2> Détail de la tache {{ task.name }} </h2>
 
-		<h4> Votre tache </h4>
+		<div id="detailTask" >
 
-		<div id="project" >
-			<p> {{ task.name }} {{ task.description }} {{ task.dateStart | date:'yyyy-MM-dd'}} {{ task.dateEnd | date:'yyyy-MM-dd'}} {{ task.progress}} {{ task._importance.name }} </p>
-		</div>
+		<h4> {{ task.name }} </h4>
+		Date de début : {{ task.dateStart | date:'yyyy/MM/dd'}} <br/>
+		Date de fin : {{ task.dateEnd | date:'dd/MM/yyyy'}} <br/>
+		Progression : {{ task.progress}}% <br/>
+
+		<br/> Description : <br/>
+		{{ task.description }}
+		</div> <br/>
+
+		<a href="#/project/{{ projectId }}/editTask/{{ task.id }}" class="btn">Editer la tache</a>
+		<br/><br/>
+
+
+
 
 		<div id="flash" ng-show="flash">
 	        {{ flash }}
 	    </div>
 
-		<h4>Editer une Tache</h4>
-
-				<form class="form-horizontal">
-
-	        <label for="name">Nom de la tache</label>
-	        <input type="text" id="name" ng-model="task.name" required>
-
-	        <label for="description">description de la tache</label>
-	        <textarea name="ameliorer" id="ameliorer" size="300" ng-model="task.description" required></textarea>
-			
-			<label for="dateS"> Date de début</label>
-	        <input type="date" id="dateS" ng-model="task.dateStart" />
-
-	        <label for="dateE"> Date de fin</label>
-	        <input type="date" id="dateE" ng-model="task.dateEnd" />
-
-	        <label for="progress"> Progression </label>
-	        <input type="text" id="progress" ng-model="task.progress" />
-
-	        <input type="radio" name="importance" id="urgent" value="3" ng-model="task.importance"/> <label for="urgent">Urgent</label> <br />
-       		<input type="radio" name="importance" id="haute" value="2" ng-model="task.importance" /> <label for="haute">Haute</label>    <br />
-     		<input type="radio" name="importance" id="moyenne" value="1" ng-model="task.importance" /> <label for="moyenne">Moyenne</label><br />
-     		<input type="radio" name="importance" id="basse" value="0" ng-model="task.importance" /> <label for="basse">Basse</label>    <br />
-
-
-			
-			<button type="submit" ng-click="updateTask()">Mettre a jour la tache</button>
-
-
-		</form>
-
-		<h4> Liste des commentaires </h4>
+		<h4> Commentaires - {{ comments.length}} </h4>
 		<div id="comments">
 			<div id="comment" ng-repeat="com in comments">
 				{{ com.description }} {{ com.created_at }} par {{ com._creator.firstName }} {{ com._creator.lastName }}
@@ -67,13 +38,11 @@
 
 		<form class="form-horizontal">
 
-
-	        <label for="description">description de la tache</label>
 	        <textarea name="description" id="description" size="300" ng-model="comment.description" required></textarea>
 
 			
-			<button type="submit" ng-click="addComment()">Ajouter le commentaire</button>
+			<button type="submit" class="btn" ng-click="addComment()">Ajouter le commentaire</button>
 
 		</form>
-
+	</article>
 </div>

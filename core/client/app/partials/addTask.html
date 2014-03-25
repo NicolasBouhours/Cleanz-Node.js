@@ -1,0 +1,45 @@
+<div class="container-fluid">
+
+	<div menuleft>
+
+	</div>
+	<article>
+		<div id="addTask">
+		<div class="formCenter">
+		<h4>Ajouter une tache</h4> <br/> <br/>
+		
+			<form class="form-horizontal">
+
+		        <label for="name">Nom de la tache : </label>
+		        <input type="text" id="name"  ng-model="task.name" required> <br/> 
+
+		        <label for="description">Description de la tache : </label>
+		        <textarea name="ameliorer" id="ameliorer" ng-model="task.description" required></textarea> 
+				
+				<div class="dateNext">
+					<label for="dateS"> Date de début</label>
+		        <datepicker ng-model='dateStart' disable-clear-button="true" placeholder='Date de début' date-format="dd/MM/yyyy" disable-timepicker="true"></datepicker>
+				</div>
+
+				<div class="dateNext">
+			        <label for="dateE"> Date de fin</label>
+		        <datepicker ng-model='dateEnd' disable-clear-button="true" placeholder='Date de fin' date-format="dd/MM/yyyy" disable-timepicker="true"></datepicker>
+		        </div>
+<br/>
+					<label for="importance"> Importance :</label> <br/>
+			        <input type="radio" name="importance" id="urgent" value="3" ng-model="task.importance"/> <label for="urgent">Urgent</label> <br />
+		       		<input type="radio" name="importance" id="haute" value="2" ng-model="task.importance" /> <label for="haute">Haute</label>    <br />
+		     		<input type="radio" name="importance" id="moyenne" value="1" ng-model="task.importance" /> <label for="moyenne">Moyenne</label><br />
+		     		<input type="radio" name="importance" id="basse" value="0" ng-model="task.importance" /> <label for="basse">Basse</label>    <br />
+
+				<br/> 
+				<center>
+					<button type="submit" class="btn" ng-click="addTask()">Ajouter la tache</button>
+				</center>
+
+			</form>
+			</div>
+		</div>
+	</article>
+
+</div>

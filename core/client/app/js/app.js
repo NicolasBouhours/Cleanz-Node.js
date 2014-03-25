@@ -6,6 +6,8 @@ var Cleanz = angular.module('Cleanz', [
   ,'DocumentController','LogController','TaskController','ProjectController',
   'CleanzServices',
   'angularFileUpload',
+  'ngQuickDate',
+  'MenuDirective',
 ]);
 
 // ## Router
@@ -36,13 +38,21 @@ Cleanz.config(['$routeProvider','$httpProvider',
         templateUrl: 'app/partials/projectBoard.html',
         controller: 'ProjectBoard'
       }).
+      when ('/project/:projectId/addTask', {
+        templateUrl: 'app/partials/addTask.html',
+        controller: 'addTask'
+      }).
       when ('/project/:projectId/tasks', {
         templateUrl: 'app/partials/tasks.html',
         controller: 'ProjectTasks'
       }).
-      when ('/project/:projectId/tasks/:taskId', {
+       when ('/project/:projectId/tasks/:taskId', {
         templateUrl: 'app/partials/task.html',
         controller: 'ProjectTask'
+      }).
+      when ('/project/:projectId/editTask/:taskId', {
+        templateUrl: 'app/partials/editTask.html',
+        controller: 'EditTask'
       }).
       when ('/project/:projectId/meetings', {
         templateUrl: 'app/partials/meetings.html',
@@ -98,15 +108,18 @@ Cleanz.config(['$routeProvider','$httpProvider',
         $httpProvider.defaults.useXDomain = true;
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
-        var interceptor = ['$rootScope','$location', function (scope, $location) {
+        var interceptor = ['$q','$rootScope','$location', function ($q, scope, $location) {
           function success(response) {
               return response;
           }
           function error(response) {
               var status = response.status;
-              if (status == 403) {
+              if (status === 403) {
                   $location.path('/403');
               }
+
+              //otherwise
+              return $q.reject(response);
           }
           return function (promise) {
               return promise.then(success, error);

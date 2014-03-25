@@ -33,8 +33,9 @@ UserController.controller('UsersList', function($scope, AuthenticationService, $
 // ## Controller for login.html
 UserController.controller('Login', function($scope, AuthenticationService, $location) {
 	$scope.login = function() {
-		AuthenticationService.login($scope.user).success(function() {
+		AuthenticationService.login($scope.user).success(function(data) {
 			$location.path('project');
+            $scope.flash = data.flash;
 		});
 	}
 });

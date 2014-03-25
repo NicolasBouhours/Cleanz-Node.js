@@ -1,28 +1,21 @@
 	<div class="container-fluid">
 
-		<nav class="top-bar">
-			<ul>
-				<li class="divider"><a href="#/project/{{ projectId }}/tasks"> Taches</a></li>
-				<li class="divider"><a href="#/project/{{ projectId }}/documents"> Documents</a></li>
-				<li class="divider"><a href="#/project/{{ projectId }}/meetings"> Réunion</a></li>
-		  		<li class="divider"><a href="#/project/{{ projectId }}/logs"> Journal</a></li>
-		  		<li class="divider"><a href="#/project/{{ projectId }}/bugs"> Bugs</a></li>
-				<li class="divider"><a href="#/project/{{ projectId }}/users"> Utilisateurs</a></li>
-				<li class="divider"><a href="#/project/{{ projectId }}/stats"> Statistiques</a></li>
-				<li class="divider"><a href="#/project/{{ projectId }}/params"> Paramètres</a></li>
-			</ul>
-		</nav>
+	<div menuleft>
+
+	</div>
+		<article>
+
+			<div id="meeting">
+				<h4> Detail de votre réunion </h4>
 
 
-		<h4> Detail de votre réunion </h4>
+				<p>{{ meeting.name }} {{ meeting.description }} {{ meeting.dateStart | date:'yyyy-MM-dd' }} {{ meeting.timeStart }} {{ meeting.duree }}</p>
 
+				</div>
 
-		<p>{{ meeting.name }} {{ meeting.description }} {{ meeting.dateStart | date:'yyyy-MM-dd' }} {{ meeting.timeStart }} {{ meeting.duree }}</p>
+				<br/>
 
-		</div>
-
-		<br/>
-
-		<a class="button" href='#/project/{{ projectId }}/editMeeting/{{ meeting.id }}'>Modifier la réunion</a>
-
+				<a class="button" href='#/project/{{ projectId }}/editMeeting/{{ meeting.id }}'>Modifier la réunion</a>
+			</div>
+		</article>
 	</div>

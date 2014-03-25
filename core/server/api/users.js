@@ -39,7 +39,7 @@ users = {
             usr.phone = newU.phone;
 
             usr.save(function (err, usrS) {
-                if (err) { return res.json({'flash': err}); }
+                if (err) return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
                 res.json({'flash': 'Vos informations personnelles ont bien été modifiés'});
                 req.session.user = usrS;
             });
@@ -69,7 +69,7 @@ users = {
                 else {
                     usr.password = newPw;
                     usr.save(function (err, usrS) {
-                        if (err) { return res.json({'flash': err}); }
+                        if (err) return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
                         res.json({'flash': 'Vos mot de passe a été modifié avec succès'});
                     });
                 }

@@ -1,17 +1,9 @@
 <div class="container-fluid">
 
-	<nav class="top-bar">
-		<ul>
-			<li class="divider"><a href="#/project/{{ projectId }}/tasks"> Taches</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/documents"> Documents</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/meetings"> Réunion</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/logs"> Journal</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/bugs"> Bugs</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/users"> Utilisateurs</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/stats"> Statistiques</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/params"> Paramètres</a></li>
-		</ul>
-	</nav>
+	<div menuleft>
+
+	</div>
+	</article>
 
 		<h2> Liste des bugs de votre projet {{ projectId}} </h2>
 
@@ -47,5 +39,5 @@
 			<a ng-click="deleteDoc(doc)" class="button">Supprimer le document</a>
 
 		</div>
-
+	</article>
 </div>

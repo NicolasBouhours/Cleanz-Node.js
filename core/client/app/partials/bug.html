@@ -1,31 +1,23 @@
 <div class="container-fluid">
 
-	<nav class="top-bar">
-		<ul>
-			<li class="divider"><a href="#/project/{{ projectId }}/tasks"> Taches</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/documents"> Documents</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/meetings"> Réunion</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/logs"> Journal</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/bugs"> Bugs</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/users"> Utilisateurs</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/stats"> Statistiques</a></li>
-			<li class="divider"><a href="#/project/{{ projectId }}/params"> Paramètres</a></li>
-		</ul>
-	</nav>
+	<div menuleft>
 
-		<h2> Bienvenue sur les bugs</h2>
+	</div>
+	<article>
+		<div id="bug">
+			<h2> Vos différents bugs</h2>
 
-		<h4> Votre bug </h4>
+			<div id="project" >
+	         <p>{{ bug.name }} {{ bug.description }} {{ bug.created_at | date:'yyyy-MM-dd' }}  {{ bug.resolve}} {{ bug._creator.firstName }} {{ bug._creator.lastName }}  {{ bug.resolve }} </p>
+			</div>
 
-		<div id="project" >
-         <p>{{ bug.name }} {{ bug.description }} {{ bug.created_at | date:'yyyy-MM-dd' }}  {{ bug.resolve}} {{ bug._creator.firstName }} {{ bug._creator.lastName }}  {{ bug.resolve }} </p>
-		</div>
+			<br/> 
+			<a href="#/project/{{ projectId }}/editBug/{{ bug.id }}" class="btn"> Modifier le bug </a>
+			<br/>
 
-		<br/> 
-		<a href="#/project/:projectId/editBug/{{ bug.id }}" class="button"> Modifier le bug </a>
-		<br/>
-
-		<div id="flash" ng-show="flash">
-	        {{ flash }}
+			<div id="flash" ng-show="flash">
+		        {{ flash }}
+		    </div>
 	    </div>
+	</article>
 </div>
