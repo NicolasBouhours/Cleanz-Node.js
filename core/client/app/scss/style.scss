@@ -11,6 +11,7 @@ $blue: #007095;
 html {
 	font-family: 'Lato', sans-serif; font-weight: 300;
 	color: $text;
+	height: 760px;
 }
 
 body {
@@ -19,6 +20,10 @@ body {
 
 .btn {
 	font-size: 13px;
+}
+
+.ng-scope, container-fluid ng-scope {
+	height: 100%;
 }
 
 header {
@@ -80,19 +85,25 @@ h1,h2,h3,h4,h5,h6 {
 	color: $blue;
 }
 nav {
-	width: 15%;
 	height: 100%;
+	width: 240px;
 	display: inline-block;
 	background-color: white;
 
+	ul {
+		margin-left: 0px;
+	}
+
 	li {
 		list-style: none;
-		padding: 6%;
+		padding-top: 9%;
+		padding-bottom: 9%;
 		border-top: 1px dashed $red;
 
 		.image {
 			display: inline-block;
-			width: 80px;
+			margin-right: 15px;
+			margin-left: 4%;
 		}
 
 		a {
@@ -100,12 +111,16 @@ nav {
 			display: inline-block;
 		}
 	}
+
+	li:hover {
+		background-color: #cccccc;
+	}
 }
 
 article {
 	display: inline-block;
 	vertical-align: top;
-	width: 84%;
+	width: 72%;
 }
 
 #flash {
@@ -342,6 +357,11 @@ textarea {
 			font-weight: 300;
 		}
 	}
+
+	.inlineblock {
+		display: inline-block;
+	}
+
 
 	#createProject {
 		border: 1px solid $red;

@@ -1,4 +1,4 @@
-	<div menuleft>
+	<div style="display:inline-block;height: 100%;" menuleft>
 
 	</div>
 	<article>
@@ -23,7 +23,7 @@
 		        <input type="text" id="place"  ng-model="meeting.place" required> <br/>
 						
 				<label for="dateS"> Date de début :</label>
-		        <datepicker ng-model='dateEnd' disable-clear-button="true" placeholder='Date de fin' date-format="dd/MM/yyyy" disable-timepicker="true"></datepicker> <br/>
+		        <input type="date" id="dateS" ng-model="task.dateStart" />
 
 		        <label for="dateT"> Heure de début :</label>
 		        <input type="text" id="dateT" ng-model="meeting.timeStart" /> <br/>

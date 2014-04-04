@@ -47,15 +47,14 @@ meetings = {
 
 		// get id for meeting
 		 Meeting.findOne().sort({'id': -1}).limit(1).findOne(function(err,me) {
-			console.log(me);
 		 	if (me === null) { id = 0; console.log('me vaut null'); }
 		 	else {
 	             newId = (parseInt(me.id) + 1);
-	             meeting.id = newId;
 	        }
 	    });
 		// attribute info to meeting
 		meeting._creator = req.session.user._id;
+		meeting.id = newId;
 
 		// get project
 		Project.findOne({'id': req.body.projectId}, function(err, pro){
@@ -63,7 +62,10 @@ meetings = {
 			meeting._project = pro._id;
 
 			// save meeting
+			console.log(meeting);
 			meeting.save(function(err, me) {
+				console.log(req.body);
+				console.log(err);
 				if (err) return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
 
 					// add into logs

@@ -7,11 +7,9 @@ security = {
 
 	checkUserProject: function(req, res, next) {
 			Project.findOne({id: req.params.projectId}).populate({path: 'users', match: {_id: req.session.user._id}, select: '_id'}).exec(function(err, pro) {
-				console.log(pro);
-				console.log(pro.users.size);
+
 			// if user belong to this project
 			if (pro.users[0] == null) {
-				console.log('salam');
 				return res.send(403, {'flash': pro });
 			}
 

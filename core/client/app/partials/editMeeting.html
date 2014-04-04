@@ -1,4 +1,4 @@
-	<div menuleft>
+	<div style="display:inline-block;height: 100%;" menuleft>
 
 	</div>
 
@@ -32,12 +32,12 @@
 			        <label for="duree"> Durée</label>
 			        <input type="text" id="duree" ng-model="meeting.duree" />
 
-					<button type="submit" ng-click="editMeeting()">Modifier la réunion</button>
+					<button type="submit" class="btn" ng-click="editMeeting()">Modifier la réunion</button>
+					<a class="btn" ng-click="removeMeeting()">Supprimer la réunion </a>
 
 				</form>
 
 	   			<br/>
-				<a class="btn" ng-click="removeMeeting()">Supprimer la réunion </a>
 			    <br/>
 
 	    	</div>
