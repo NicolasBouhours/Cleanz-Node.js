@@ -21,6 +21,7 @@ var meetingSchema = new Schema({
 	duree: { type: Number, validate: numericValidator},
 	_creator: { type: Schema.Types.ObjectId, ref: 'User', required: true },
 	_project: { type: Schema.Types.ObjectId, ref: 'Project', required: true },
+	users: [{ type: Schema.Types.ObjectId, ref: 'User'}],
 });
 
 // Users Models
