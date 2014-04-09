@@ -22,12 +22,17 @@ projects = {
 				return res.json(usr);
 		});
 */		
+/*
 		User.findOne({id: req.session.user.id}).populate('projects.project').select('projects').exec(function(err, pros) {
 			if(err) console.log(err);
 			console.log(pros);
 			return res.json(pros);
-		});
+		});*/
 
+		Project.find().populate({path: 'users',match: { _id: req.session.user._id},select: 'projects'}).exec(function(err, pro) {
+			console.log(pro);
+			return res.json(pro);
+		});
 	},
 
 	// #### Read
@@ -98,9 +103,9 @@ projects = {
 	// delete project into database
 	delete: function remove(req, res) {
 		Project.findOne({id: req.params.id}, function(err,pro) {
-			if (err) return handleError(err);
+			if(err) console.log(err);
 			pro.remove(function(err) {
-				if (err) return handleError(err);
+				if (err) console.log(err);
 				else {
 					return res.json({'flash': 'Votre projet a été supprimé avec succès'});
 				}

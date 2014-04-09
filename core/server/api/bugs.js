@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 var Bug = require('../models/bugs');
 var Project = require('../models/projects');
 var Log = require('../models/logs');
+var Category = require('../models/categories');
 var LogApi = require('../api/logs');
 
 // ## Bugs 
@@ -16,7 +17,7 @@ bugs = {
 	// return list of all bugs for one project
 	list: function list(req, res) {
 		Project.findOne({'id':req.params.projectId}, function(err, pro) {
-			Bug.find({_project: pro._id}).populate('_creator', 'id firstName lastName').exec(function(err, bugs) {
+			Bug.find({_project: pro._id}).populate('_creator', 'id firstName lastName').populate('_category','name').exec(function(err, bugs) {
 				if (err) console.log(err);
 				return res.json(bugs);
 			});
@@ -28,7 +29,7 @@ bugs = {
 	// return detail for bug
 	read: function read(req, res) {
 
-		Bug.findOne({id: req.params.id}).populate('comments').populate('_creator','id firstName lastName').exec(function(err, bug) {
+		Bug.findOne({id: req.params.id}).populate('comments').populate('_creator','id firstName lastName').populate('_category','name id').exec(function(err, bug) {
 			if (err) console.log(err);
 			return res.json(bug);
 		});
@@ -58,21 +59,29 @@ bugs = {
 				console.log(pro);
 				bug._project = pro._id;
 
-		        //save bug
-		        console.log(bug);
-	       		bug.save(function(err, b) {
-	        		if (err) return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
-						pro.bugs.push(b);
-						pro.save(function(err, pr) {
-							if (err) return console.log(err);
+				//add category
+				Category.findOne({id: req.body.category}, function(err, cat) {
+					if (cat != null) {
+						bug._category = cat._id;
+					}
 
-							// add into logs
-							var log = new Log({'name': b.name,'_creator': req.session.user._id, '_project': pr._id});
-							LogApi.create(log, 10);
 
-							return res.json({'flash': 'Vous venez d\'ajouté le bug' + b.name});
-						});
-				});
+			        //save bug
+			        console.log(bug);
+		       		bug.save(function(err, b) {
+		        		if (err) return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
+							pro.bugs.push(b);
+							pro.save(function(err, pr) {
+								if (err) return console.log(err);
+
+								// add into logs
+								var log = new Log({'name': b.name,'_creator': req.session.user._id, '_project': pr._id});
+								LogApi.create(log, 10);
+
+								return res.json({'flash': 'Vous venez d\'ajouté le bug' + b.name});
+							});
+					});
+		       	});
 	        });
 	    });
 	},
@@ -90,15 +99,22 @@ bugs = {
 			bug.name = req.body.name;
 			bug.description = req.body.description;
 
-			// save it
-			bug.save(function(err, b) {
-				if (err) return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
+			//add category
+			Category.findOne({id: req.body.category}, function(err, cat) {
+				if (cat != null) {
+					bug._category = cat._id;
+				}
 
-				// add into logs
-				var log = new Log({'name': b.name,'_creator': req.session.user._id, '_project': b._project});
-				LogApi.create(log, 11);
+				// save it
+				bug.save(function(err, b) {
+					if (err) return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
 
-				return res.json({'flash': 'Votre bug a été modifié'});
+					// add into logs
+					var log = new Log({'name': b.name,'_creator': req.session.user._id, '_project': b._project});
+					LogApi.create(log, 11);
+
+					return res.json({'flash': 'Votre bug a été modifié'});
+				});
 			});
 		});
 	},

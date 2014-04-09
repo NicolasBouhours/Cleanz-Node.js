@@ -8,6 +8,7 @@ var Project = require('../models/projects');
 var Task = require('../models/tasks');
 var Importance = require('../models/importances');
 var Log = require('../models/logs');
+var Category = require('../models/categories');
 var LogApi = require('../api/logs');
 
 // ## Tasks 
@@ -18,7 +19,7 @@ tasks = {
 	// return list of all tasks for one projet
 	list: function list(req, res) {
 
-		Task.find({_project: req.params.projectId}).populate('_importance').exec(function(err, tasks) {
+		Task.find({_project: req.params.projectId}).populate('_importance','name').populate('_category','name').exec(function(err, tasks) {
 			if (err) console.log(err);
 			return res.json(tasks);
 		});	
@@ -28,7 +29,7 @@ tasks = {
 
 	// return all details for one task and his comments
 	read: function read(req, res) {
-		Task.findOne({id: req.params.id}).populate('_importance').exec(function(err, task) {
+		Task.findOne({id: req.params.id}).populate('_importance','name id').populate('_category','name id').exec(function(err, task) {
 			if (err) console.log(err);
 			return res.json(task);
 		});
@@ -40,7 +41,7 @@ tasks = {
 	create: function add(req, res) {
 		var task = new Task(req.body);
 		var newId = 0;
-
+		
 		// get id for project
 		 Task.findOne().sort({'id': -1}).limit(1).findOne(function(err,ta) {
 		 	if (ta === null) { task.id = 0; }
@@ -55,34 +56,43 @@ tasks = {
 			
 			// get importance
 			Importance.findOne({id: req.body.importance }, function(err, imp) {
-				impor = imp._id;
-				task._importance = imp._id;
+				if (imp != null) {
+					task._importance = imp._id;
+				}
 
-				// save task
-				task.save(function(err, t) {
-					if (err) {
-						return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
+				Category.findOne({id: req.body.category}, function(err, cat) {
+					if (cat != null) {
+						task._category = cat._id;
 					}
-					else {
 
-						// save task into project's list
-						Project.findOne({'id': req.body.projectId}, function(err, pro){
-							if (err) return handleError(err);
+					// save task
+					task.save(function(err, t) {
+						if (err) {
+							console.log(err);
+							return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
+						}
+						else {
 
-							pro.tasks.push(t);
-							pro.save(function(err, pr) {
-								if (err) return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
+							// save task into project's list
+							Project.findOne({'id': req.body.projectId}, function(err, pro){
+								if (err) return handleError(err);
 
-									// add into logs
-									var log = new Log({'name': t.name,'_creator': req.session.user._id, '_project': pro._id});
-									LogApi.create(log, 0);
-									return res.json({'flash': 'Vous venez d\'ajouté la tache ' + t.name});
+								pro.tasks.push(t);
+								pro.save(function(err, pr) {
+									if (err) return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
+
+										// add into logs
+										var log = new Log({'name': t.name,'_creator': req.session.user._id, '_project': pro._id});
+										LogApi.create(log, 0);
+										return res.json({'flash': 'Vous venez d\'ajouté la tache ' + t.name});
+								});
 							});
-						});
-					}
+						}
+					});
 				});
 			});
 		});
+
 	},
 
 	// #### Edit
@@ -98,37 +108,46 @@ tasks = {
         	ta.progress = req.body.progress;
 
         	Importance.findOne({id: req.body.importance}, function(err, i) {
-        		ta._importance = i._id;
-	            ta.save(function (err, taS) {
-	            	if (err) {
-	            		return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
-	            	}
-	            	else {
-		            	if (ta.progress == 100) {	
+        		if (i != null) {
+        			ta._importance = i._id;
+        		}
 
-		            		//find Importane name
-		            		Importance.findOne({id: 4}, function(err, imp) {
-		            			// search if log already exist
-			            		Log.findOne({'name' : ta.name, '_logmessage': imp._id})
+        		Category.findOne({id: req.body.category}, function(err, cat) {
+					if (cat != null) {
+						task._category = cat._id;
+					}
 
-			            		// add into logs
-			            		Project.findOne({id: ta._project}, function(err, pro) {
-									var log = new Log({'name': ta.name,'_creator': req.session.user._id, '_project': pro._id});
-									LogApi.create(log, 3);
-			            		});
-		            		});
-
-		            	}else {
-
-			            	 // add into logs
-							var log = new Log({'name': ta.name,'_creator': req.session.user._id, '_project': ta._project});
-							LogApi.create(log, 1);
+		            ta.save(function (err, taS) {
+		            	if (err) {
+		            		return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
 		            	}
-		            }
+		            	else {
+			            	if (ta.progress == 100) {	
+
+			            		//find Importane name
+			            		Importance.findOne({id: 4}, function(err, imp) {
+			            			// search if log already exist
+				            		Log.findOne({'name' : ta.name, '_logmessage': imp._id})
+
+				            		// add into logs
+				            		Project.findOne({id: ta._project}, function(err, pro) {
+										var log = new Log({'name': ta.name,'_creator': req.session.user._id, '_project': pro._id});
+										LogApi.create(log, 3);
+				            		});
+			            		});
+
+			            	}else {
+
+				            	 // add into logs
+								var log = new Log({'name': ta.name,'_creator': req.session.user._id, '_project': ta._project});
+								LogApi.create(log, 1);
+			            	}
+			            }
 
 
-	                res.json({'flash': 'Votre tache a bien été modifié'});
-	            });
+		                res.json({'flash': 'Votre tache a bien été modifié'});
+		            });
+				});
         	})
         });
 	},

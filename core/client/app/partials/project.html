@@ -3,10 +3,10 @@
 		<h2> Vos projets </h2> <br/> <br/>
 
 	    <div class="project" ng-repeat="project in projects">
-			<h5> {{ project.project.name }} </h5> <br/>
-			<p> {{ project.project.users.length }} participants </p>
-			<p> {{ project.project.tasks.length }} taches </p>
-			<a href="#/project/{{project.project.id}}"> Se rendre sur le projet</a>
+			<h5> {{ project.name }} </h5> <br/>
+			<p> {{ project.users.length }} participants </p>
+			<p> {{ project.tasks.length }} taches </p>
+			<a href="#/project/{{project.id}}"> Se rendre sur le projet</a>
 		</div>
 		<div  class="project" id="createProject">
 			<a class="btn" ng-click="addTaskShow()"> AJOUTER UN PROJET </a>

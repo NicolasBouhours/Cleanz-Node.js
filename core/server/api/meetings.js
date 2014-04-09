@@ -7,6 +7,7 @@ var User = require('../models/users');
 var Project = require('../models/projects');
 var Meeting = require('../models/meetings');
 var Log = require('../models/logs');
+var Category = require('../models/categories');
 var LogApi = require('../api/logs');
 
 // ## Meetings
@@ -21,7 +22,7 @@ meetings = {
 		Project.findOne({id: req.params.projectId}, function(err, pro) {
 
 			//get meetings
-			Meeting.find({_project: pro._id}).exec(function(err, meetings) {
+			Meeting.find({_project: pro._id}).populate('_category','name').exec(function(err, meetings) {
 				if (err) console.log(err);
 				return res.json(meetings);
 			});	
@@ -32,7 +33,7 @@ meetings = {
 
 	// return all details for one meeting
 	read: function read(req, res) {
-		Meeting.findOne({id: req.params.id}).exec(function(err, meeting) {
+		Meeting.findOne({id: req.params.id}).populate('_category','name id').exec(function(err, meeting) {
 			if (err) console.log(err);
 			return res.json(meeting);
 		});
@@ -61,12 +62,17 @@ meetings = {
 			if (err) return console.log(err);
 			meeting._project = pro._id;
 
-			// save meeting
-			console.log(meeting);
-			meeting.save(function(err, me) {
-				console.log(req.body);
-				console.log(err);
-				if (err) return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
+			Category.findOne({id: req.body.category}, function(err, cat) {
+				if (cat != null) {
+					meeting._category = cat._id;
+				}
+
+				// save meeting
+				console.log(meeting);
+				meeting.save(function(err, me) {
+					console.log(req.body);
+					console.log(err);
+					if (err) return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
 
 					// add into logs
 					var log = new Log({'name': me.name,'_creator': req.session.user._id, '_project': pro._id});
@@ -79,6 +85,7 @@ meetings = {
 							return res.json({'flash': 'Vous venez d\'ajouté la réunion ' + me.name});
 					});
 				});
+			});
 		});
 
 	},
@@ -95,15 +102,21 @@ meetings = {
         	me.timeStart = req.body.timeStart;
         	me.duree = req.body.duree;
 
-        	// save meeting
-            me.save(function (err, meet) {
-            	if (err) return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
-	        	 // add into logs
-				var log = new Log({'name': meet.name,'_creator': req.session.user._id, '_project': meet._project});
-				LogApi.create(log, 5);
+        	Category.findOne({id: req.body.category}, function(err, cat) {
+				if (cat != null) {
+					me._category = cat._id;
+				}
 
-                res.json({'flash': 'Votre réunion a bien été modifié'});
-            });
+	        	// save meeting
+	            me.save(function (err, meet) {
+	            	if (err) return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
+		        	 // add into logs
+					var log = new Log({'name': meet.name,'_creator': req.session.user._id, '_project': meet._project});
+					LogApi.create(log, 5);
+
+	                res.json({'flash': 'Votre réunion a bien été modifié'});
+	            });
+	        });
         });
 	},
 

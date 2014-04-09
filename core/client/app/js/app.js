@@ -98,6 +98,10 @@ Cleanz.config(['$routeProvider','$httpProvider',
         templateUrl: 'app/partials/editBug.html',
         controller: 'EditBug'
        }).
+        when ('/project/:projectId/params', {
+        templateUrl: 'app/partials/params.html',
+        controller: 'Params'
+       }).
        when('/403', {
         templateUrl: 'app/partials/403.html'
        }).

@@ -20,6 +20,7 @@ var meetingSchema = new Schema({
 	timeStart: { type: String },
 	duree: { type: Number, validate: numericValidator},
 	_creator: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+	_category: { type: Schema.Types.ObjectId, ref: 'Category' },
 	_project: { type: Schema.Types.ObjectId, ref: 'Project', required: true },
 	users: [{ type: Schema.Types.ObjectId, ref: 'User'}],
 });

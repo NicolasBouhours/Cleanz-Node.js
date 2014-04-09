@@ -9,6 +9,7 @@
 
 			<div id="project" >
 	         <p>{{ bug.name }} {{ bug.description }} {{ bug.created_at | date:'yyyy-MM-dd' }}  {{ bug.resolve}} {{ bug._creator.firstName }} {{ bug._creator.lastName }}  {{ bug.resolve }} </p>
+	         Catégorie : {{ bug._category.name }}
 			</div>
 
 			<br/> 

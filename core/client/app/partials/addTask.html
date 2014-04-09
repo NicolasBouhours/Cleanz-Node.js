@@ -6,7 +6,11 @@
 	<article>
 		<div id="addTask">
 		<div class="formCenter">
-		<h4>Ajouter une tache</h4> <br/> <br/>
+			<div id="flash" ng-show="flash">
+			        {{ flash }}
+			   </div>
+			   <br/>
+		<h4>Ajouter une tache</h4> <br/> 
 		
 			<form class="form-horizontal">
 
@@ -28,6 +32,7 @@
 		        <input type="date" id="dateE" ng-model="task.dateEnd" />
 		        </div>
 		        <br/>
+
 <br/>
 					<label for="importance"> Importance :</label> <br/>
 			        <input type="radio" name="importance" id="urgent" value="3" ng-model="task.importance"/> <label for="urgent">Urgent</label> <br />
@@ -36,6 +41,7 @@
 		     		<input type="radio" name="importance" id="basse" value="0" ng-model="task.importance" /> <label for="basse">Basse</label>    <br />
 
 				<br/> 
+					<div selectcategories> </div>
 					<button type="submit" class="btn" ng-click="addTask()">Ajouter la tache</button>
 
 			</form>

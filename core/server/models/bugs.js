@@ -21,7 +21,7 @@ var bugSchema = new Schema({
 	comments: [{ type: Schema.Types.ObjectId, ref: 'Comment'}],
 	_project: { type: Schema.Types.ObjectId, ref: 'Project', required:true },
 	_task: { type: Schema.Types.ObjectId, ref: 'Task' },
-	_users: { type: Schema.Types.ObjectId, ref: 'User' },
+	users: [{ type: Schema.Types.ObjectId, ref: 'User'}],
 });
 
 // Users Models

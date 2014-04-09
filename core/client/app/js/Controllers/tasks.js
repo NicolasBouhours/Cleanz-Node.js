@@ -24,9 +24,9 @@ TaskController.controller('addTask', function($scope, $http, $routeParams) {
      // Task to Dabatase
      $scope.addTask = function() {
         $scope.task.projectId = $scope.projectId;
+        $scope.task.category = $scope.catId;
         $http.post('cleanz/api/' + $routeParams.projectId + '/tasks/add', $scope.task).success(function(data) {
             $scope.flash = data.flash;
-            $scope.getTasks();
         }).error(function(error) {
             $scope.flash = error.flash;
         });
@@ -61,6 +61,7 @@ TaskController.controller('addTask', function($scope, $http, $routeParams) {
 
      // Update Task to Database
      $scope.updateTask = function() {
+        $scope.task.category = $scope.catId;
         $http.put('/cleanz/api/' + $routeParams.projectId + '/tasks/' + $routeParams.taskId, $scope.task).success(function(data) {
             $scope.flash = data.flash;
         }).error(function(data) {
@@ -99,6 +100,7 @@ TaskController.controller('addTask', function($scope, $http, $routeParams) {
         $scope.task.dateEnd = DateService.format(dateE);
 
         $scope.task.importance = task._importance.id;
+        $scope.catId = $scope.task._category.id;
      });
 
      // Update Task to Database

@@ -24,6 +24,7 @@ BugController.controller('addBug', function($scope, $http, $routeParams) {
 	// get list of our bugs
 	$scope.addBug = function() {
 		$scope.bug.projectId = $routeParams.projectId;
+		$scope.bug.category = $scope.catId;
 		$http.post('/cleanz/api/' + $routeParams.projectId + '/bugs/add', $scope.bug).success(function(data) {
 			$scope.flash = data.flash;
 		}).error(function(data) {
@@ -53,11 +54,13 @@ BugController.controller('EditBug', function($scope, $http, $routeParams) {
 	// get detail for one bug
 	$http.get('/cleanz/api/' + $routeParams.projectId + '/bugs/' + $routeParams.bugId).success(function(bug) {
 		$scope.bug = bug;
+		$scope.catId = $scope.bug._category.id;
 	});
 
 	// modify bug into database
 	$scope.editBug = function() {
 		$scope.bug.projectId = $routeParams.projectId;
+		$scope.bug.category = $scope.catId;
 		$http.put('/cleanz/api/' + $routeParams.projectId + '/bugs/' + $routeParams.bugId, $scope.bug).success(function(data) {
 			$scope.flash = data.flash;
 		}).error(function(data) {

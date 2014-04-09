@@ -9,7 +9,7 @@ var ProjectController = angular.module('ProjectController', []);
     // List of all project of one user
     $scope.getProjects = function() {
             $http.get('/cleanz/api/projects/list').success(function(data) {
-            $scope.projects = data.projects;
+            $scope.projects = data;
         });
     }
 
@@ -81,3 +81,110 @@ var ProjectController = angular.module('ProjectController', []);
         });
     }
  });
+
+ //## Controller for params.html
+ ProjectController.controller('Params', function($scope, $http, $routeParams, $location) {
+
+    $scope.projectId = $routeParams.projectId;
+    $scope.showAddCat = false;
+    $scope.showDeletePro = false;
+    $scope.showModifyCat = false;
+    $scope.showDeleteCat = false;
+
+    //get all categories
+    $scope.getCategories = function() {
+        $http.get('cleanz/api/' + $routeParams.projectId + '/categories/list').success(function(categories) {
+            $scope.categories = categories;
+        });
+    }
+
+    //add category into database
+    $scope.addCategory = function() {
+        $scope.category.projectId = $routeParams.projectId;
+        $http.post('cleanz/api/' + $routeParams.projectId + '/categories/create', $scope.category).success(function(data) {
+            $scope.flash = data.flash;
+            $scope.getCategories();
+            $scope.showAddCat = false;
+        });
+    }
+
+    // delete project
+    $scope.deleteProject = function() {
+        $http.delete('/cleanz/api/projects/' + $routeParams.projectId).success(function(data) {
+            $scope.flash = data.flash;
+        });
+    }
+
+    // modify category
+    $scope.modifyCategory = function(id) {
+        $http.put('cleanz/api/' + $routeParams.projectId + '/categories/' + $scope.catId, $scope.catM).success(function(data) {
+            $scope.flash = data.flash;
+            $scope.getCategories();
+            $scope.showModifyCat = false;
+        });
+    }
+
+    //delete category
+    $scope.deleteCategory = function(id) {
+        $http.delete('cleanz/api/' + $routeParams.projectId + '/categories/' + $scope.catId).success(function(data) {
+            $scope.flash = data.flash;
+            $scope.getCategories();
+            $scope.showDeleteCat = false;
+        });
+    }
+
+    // Show addCategory form
+    $scope.addCategoryShow = function() {
+        $scope.showAddCat = true;
+    }
+
+    // Hide addCategory form
+    $scope.addCategoryHide = function() {
+        $scope.showAddCat = false;
+    }
+
+    // Show modifyCategory form
+    $scope.modifyCategoryShow = function() {
+        $scope.showModifyCat = true;
+    }
+
+    // Hide modifyCategory form
+    $scope.modifyCategoryHide = function() {
+        $scope.showModifyCat = false;
+    }
+
+    // Show deleteCategory form
+    $scope.deleteCategoryShow = function() {
+        $scope.showDeleteCat = true;
+    }
+
+    // Hide deleteCategory form
+    $scope.deleteCategoryHide = function() {
+        $scope.showDeleteCat = false;
+    }
+
+    // Show deleteProject form
+    $scope.deleteProjectShow = function() {
+        $scope.showDeletePro = true;
+    }
+
+    // Hide deleteProject form
+    $scope.deleteProjectHide = function() {
+        $scope.showDeletePro = false;
+    }
+
+    $scope.getCategories();
+});
+
+// ## Controller for project.html
+ ProjectController.controller('GetCategories', function($scope, $http, $routeParams) {
+
+    //get all categories
+    $scope.getCategories = function() {
+        $http.get('cleanz/api/' + $routeParams.projectId + '/categories/list').success(function(categories) {
+            $scope.categories = categories;
+        });
+    }
+
+    $scope.getCategories();
+});

@@ -12,6 +12,7 @@
 		Date de début : {{ task.dateStart | date:'yyyy/MM/dd'}} <br/>
 		Date de fin : {{ task.dateEnd | date:'dd/MM/yyyy'}} <br/>
 		Progression : {{ task.progress}}% <br/>
+		Catégorie : {{ task._category.name }}
 
 		<br/> Description : <br/>
 		{{ task.description }}

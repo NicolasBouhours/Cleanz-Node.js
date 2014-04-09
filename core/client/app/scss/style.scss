@@ -258,6 +258,10 @@ textarea {
 			background-color: #FC9423; 
 		}
 	}
+
+	#flash {
+		width: 100%;
+	}
 }
 
 /** Style for Modify Task **/
@@ -416,4 +420,60 @@ textarea {
 #logs {
 	width: 60%;
 	margin: 0 auto;
+}
+
+/* Style for Params */
+
+#params {
+	h4 {
+		display: inline-block;
+		width: 44%;
+	}
+
+	p {
+		width: 44%;
+		display: inline-block;
+	}
+
+	a {
+		margin-right: 2%;
+	}
+
+	#cat, .cat {
+		font-size: 18px;
+		display: inline-block;
+		width: 20%;
+		margin-top: 1%;
+	}
+
+	#categoriges {
+		margin-bottom: 3%;
+	}
+}
+
+
+
+#addCategory, #modifyCategory, #deleteProject, #deleteCategory {
+	position: absolute;
+	width: 400px;
+	height: 250px;
+	background-color: $background;
+	border: 1px solid $red;
+	border-top: 2px solid red;
+	top: 50%;
+	margin-top: -80px;
+	margin-left: -200px;
+	left: 50%;
+	z-index: 10;
+
+	input {
+		width: 300px;
+	}
+	.btn {
+		margin-left: 10%;
+	}
+}
+
+#delProject {
+	margin-top: 10%;
 }
