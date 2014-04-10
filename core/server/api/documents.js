@@ -22,7 +22,9 @@ documents = {
 	list: function list(req, res) {
 
 		// get all documents
-		Project.findOne({id: req.params.id}, function(err, pro) {
+		Project.findOne({id: req.params.projectId}, function(err, pro) {
+			if (err) console.log(err);
+			
 			Document.find({_project: pro._id}).populate('_creator','_id firstName lastName').exec(function(err, docs) {
 				return res.json(docs);
 			});

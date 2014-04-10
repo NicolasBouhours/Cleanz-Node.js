@@ -138,14 +138,15 @@ tasks = {
 
 			            	}else {
 
-				            	 // add into logs
-								var log = new Log({'name': ta.name,'_creator': req.session.user._id, '_project': ta._project});
-								LogApi.create(log, 1);
+			            		// add into logs
+			            		Project.findOne({id: ta._project}, function(err, pro) {
+									var log = new Log({'name': ta.name,'_creator': req.session.user._id, '_project': pro._id});
+									LogApi.create(log, 1);
+			            		});
 			            	}
 			            }
 
-
-		                res.json({'flash': 'Votre tache a bien été modifié'});
+		                return res.json({'flash': 'Votre tache a bien été modifié'});
 		            });
 				});
         	})

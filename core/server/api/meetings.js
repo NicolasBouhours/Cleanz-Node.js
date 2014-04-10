@@ -32,11 +32,17 @@ meetings = {
 	// #### Read
 
 	// return all details for one meeting
+
 	read: function read(req, res) {
-		Meeting.findOne({id: req.params.id}).populate('_category','name id').exec(function(err, meeting) {
+		Meeting.findOne({id: req.params.id}).exec(function(err, meeting) {
 			if (err) console.log(err);
 			return res.json(meeting);
-		});
+		});	
+		/*
+		Meeting.findOne({id: req.params.id}).populate('_category','name').exec(function(err, meeting) {
+			if (err) console.log(err);
+			return res.json(meeting);
+		});*/
 	},
 
 	// #### Create
@@ -65,13 +71,15 @@ meetings = {
 			Category.findOne({id: req.body.category}, function(err, cat) {
 				if (cat != null) {
 					meeting._category = cat._id;
+					console.log('cat add');
+				}
+				else {
+					console.log('cat not add');
 				}
 
 				// save meeting
 				console.log(meeting);
 				meeting.save(function(err, me) {
-					console.log(req.body);
-					console.log(err);
 					if (err) return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
 
 					// add into logs

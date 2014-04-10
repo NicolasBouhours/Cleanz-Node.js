@@ -1,17 +1,18 @@
-	<div style="display:inline-block;height: 100%;" menuleft>
+	<div style="display:inline-block;height: 100%;" menuleft> </div>
 
-	</div>
-	<h4> Liste de vos documents </h4>
+	<article>
+		<div id="flash" ng-show="flash">
+		    {{ flash }}
+		</div>
+		<h4> Liste de vos documents </h4>
 
-	<h4> Ajouter un document </h4>
+		<h4> Ajouter un document </h4>
 
 
-	<label for="description">description du document</label>
-	<textarea name="ameliorer" id="ameliorer" size="500" ng-model="file.description" required></textarea>
+		<label for="description">description du document</label>
+		<textarea name="ameliorer" id="ameliorer" size="500" ng-model="file.description" required></textarea>
 
-	<input type="file" ng-file-select="onFileSelec($files)" >
-	
-	<a class="button" ng-click="onFileSelect()"> Envoyer le fichier</a>
-	<div id="flash" ng-show="flash">
-	    {{ flash }}
-	</div>
+		<input type="file" ng-file-select="onFileSelec($files)" >
+		
+		<a class="btn" ng-click="onFileSelect()"> Envoyer le fichier</a>
+	</article>

@@ -52,7 +52,6 @@ DocumentController.controller('AddDocument', function($scope, $http, $routeParam
 
 	 $scope.onFileSelec = function($files) {
 		fileUpload = $files;
-		$scope.flash = 'coucou';
 	 }
 
 	//send file to api
