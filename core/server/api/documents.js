@@ -24,7 +24,7 @@ documents = {
 		// get all documents
 		Project.findOne({id: req.params.projectId}, function(err, pro) {
 			if (err) console.log(err);
-			
+
 			Document.find({_project: pro._id}).populate('_creator','_id firstName lastName').exec(function(err, docs) {
 				return res.json(docs);
 			});
@@ -46,7 +46,6 @@ documents = {
 	//send file to user when he want download him
 	download: function download(req, res) {
 
-			console.log(req.params.id);
 		// get document
 		Document.findOne({id: req.params.projectId}, function(err, doc) {
 			if (err) console.log(err);
@@ -130,7 +129,6 @@ documents = {
 
 	// edit comment information into database and return flash message
 	edit: function edit(req, res) {
-		console.log(req.body);
 		//find document
 		Document.findOne({id: req.params.id}, function(err, doc) {
 			if (err) console.log(err);
@@ -160,14 +158,17 @@ documents = {
 				}
 
 				// save changes into database
+				console.log(doc);
 				doc.save(function(err, d) {
 					if (err) return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
+					else {
 
-					// add into logs
-					var log = new Log({'name': d.name,'_creator': req.session.user._id, '_project': d._project});
-					LogApi.create(log, 8);
+						// add into logs
+						var log = new Log({'name': d.name,'_creator': req.session.user._id, '_project': d._project});
+						LogApi.create(log, 8);
 
-					return res.json({'flash': 'Votre document a été modifié'});
+						return res.json({'flash': 'Votre document a été modifié'});
+					}
 				});
 			});
 		});

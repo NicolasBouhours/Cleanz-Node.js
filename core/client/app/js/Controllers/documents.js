@@ -2,12 +2,15 @@
 var DocumentController = angular.module('DocumentController', []);
 
 // ## Controller for documents.html
-DocumentController.controller('Documents', function($scope, $http, $routeParams) {
+DocumentController.controller('Documents', function($scope, $http, $routeParams, FileService) {
 
 	$scope.projectId = $routeParams.projectId;
 
 	$scope.getDocuments = function() {
 		$http.get('/cleanz/api/' + $routeParams.projectId + '/documents/list').success(function(docs) {
+			for(var i = 0; i < docs.length; i++) {
+				docs[i].ext = FileService.getExtention(docs[i].name);
+			}
 			$scope.docs = docs;
 		});
 	}
@@ -15,7 +18,7 @@ DocumentController.controller('Documents', function($scope, $http, $routeParams)
 	$scope.getDocument = function(doc) {
 		$http.get('/cleanz/api/' + $routeParams.projectId + '/documents/get/' + doc.id).success(function(doc) {
 			$scope.flash = 'Le téléchargement de votre fichier va démarré';
-		});
+		}); 
 	}
 
 	$scope.getDoc = function(doc) {
@@ -27,6 +30,7 @@ DocumentController.controller('Documents', function($scope, $http, $routeParams)
 	$scope.editDoc = function(doc) {
 		$http.put('/cleanz/api/' + $routeParams.projectId + '/documents/' + $scope.doc.id, $scope.doc).success(function(data) {
 			$scope.flash = data.flash;
+			$scope.getDocuments();
 		}).error(function(data) {
             $scope.flash = data.flash;
         });

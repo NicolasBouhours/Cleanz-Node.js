@@ -9,9 +9,11 @@
 		<h4> Liste des vos documents</h4>
 
 		<div id="doc" ng-repeat="doc in docs" >
-			<p><a href="C:\Users\Nico\Desktop\Cleanz\content\0\accueil.png" ng-click="getDocument(doc)"> {{ doc.name }} {{ doc.description }} {{ doc.created_at | date:'yyyy-MM-dd' }}  {{ doc.size}} {{ bug._creator.firstName }} {{ bug._creator.lastName }} </a> </p>
-			<a ng-click="getDocument(doc)">download</a>
-			<a ng-click="getDoc(doc)"> Modifier le document</a>
+			<p><a href="C:\Users\Nico\Desktop\Cleanz\content\0\accueil.png" ng-click="getDocument(doc)"> {{ doc.name }} {{ doc.description }} {{ doc.created_at | date:'yyyy-MM-dd' }}  {{ doc.size}} {{ bug._creator.firstName }} {{ doc.ext }} {{ bug._creator.lastName }} </a> </p>
+			<img src="images/iconfile/96/{{ doc.ext }}.png"/>
+			<h4>{{ doc.name }} </h4>
+			<a href="/cleanz/api/{{ projectId }}/documents/get/{{ doc.id }}"><img src="images/download.png"/></a>
+			<a ng-click="getDoc(doc)"><img src="images/pencil.png"/></a>
 		</div>
 
 		

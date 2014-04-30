@@ -77,3 +77,13 @@ CleanzServices.factory('DateService', function() {
     }
   };
 });
+
+// ## File Service
+CleanzServices.factory('FileService', function() {
+  return {
+    getExtention: function(name) {
+      var tab = name.split('.');
+      return tab[tab.length-1];
+    }
+  };
+});
