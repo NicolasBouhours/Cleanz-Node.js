@@ -62,6 +62,11 @@ MeetingController.controller('EditMeeting', function($scope, $http, $routeParams
         $scope.catId = meeting._category.id;
         console.debug(meeting._category.id);
         console.debug(meeting);
+
+        // add user which are already into the meeting
+        for (var i = 0; i < meeting.users.length; i++) {
+            $scope.usersadd.push(meeting.users[i].firstName + ' ' + meeting.users[i].lastName);
+        }
 	});
 
 	// modify meeting into database

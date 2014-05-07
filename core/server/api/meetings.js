@@ -22,7 +22,7 @@ meetings = {
 		Project.findOne({id: req.params.projectId}, function(err, pro) {
 
 			//get meetings
-			Meeting.find({_project: pro._id}).populate('_category','name').exec(function(err, meetings) {
+			Meeting.find({_project: pro._id}).populate('_category','name').populate('users','firstName lastName').exec(function(err, meetings) {
 				if (err) console.log(err);
 				return res.json(meetings);
 			});	
@@ -35,7 +35,8 @@ meetings = {
 
 	read: function read(req, res) {
 
-		Meeting.findOne({id: req.params.id}).populate('_category','name id').exec(function(err, meeting) {
+		Meeting.findOne({id: req.params.id}).populate('_category','name id')
+		.populate('users','firstName lastName').exec(function(err, meeting) {
 			if (err) console.log(err);
 			return res.json(meeting);
 		});	

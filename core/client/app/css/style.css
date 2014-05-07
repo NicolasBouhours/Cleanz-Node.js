@@ -271,7 +271,7 @@ textarea {
 }
 
 /* line 268, ../scss/style.scss */
-#addTask .usersselect {
+#addTask .usersselect, #editTask .usersselect, #addMeeting .usersselect, #editMeeting .usersselect, #addBug .usersselect, #editBug .usersselect {
   background-color: #ec5148;
   color: white;
   display: inline-block;
@@ -281,12 +281,12 @@ textarea {
   padding-right: 3px;
 }
 /* line 278, ../scss/style.scss */
-#addTask #usersSelect {
+#addTask #usersSelect, #editTask #usersSelect, #addMeeting #usersSelect, #editMeeting #usersSelect, #addBug #usersSelect, #editBug #usersSelect {
   width: 35%;
   display: inline-block;
 }
 /* line 283, ../scss/style.scss */
-#addTask a {
+#addTask a, #editTask a, #addMeeting a, #editMeeting a, #addBug a, #editBug a {
   display: inline-block;
   vertical-align: top;
   margin-left: 4%;

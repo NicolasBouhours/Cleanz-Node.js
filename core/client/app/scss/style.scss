@@ -264,7 +264,7 @@ textarea {
 	}
 }
 
-#addTask {
+#addTask, #editTask, #addMeeting, #editMeeting, #addBug, #editBug{
 	.usersselect {
 		background-color: $red;
 		color: white;

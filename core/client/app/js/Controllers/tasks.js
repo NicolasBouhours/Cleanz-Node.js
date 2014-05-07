@@ -102,6 +102,11 @@ TaskController.controller('addTask', function($scope, $http, $routeParams) {
 
         $scope.task.importance = task._importance.id;
         $scope.catId = $scope.task._category.id;
+
+        // add user which are already into the task
+        for (var i = 0; i < task.users.length; i++) {
+            $scope.usersadd.push(task.users[i].firstName + ' ' + task.users[i].lastName);
+        }
      });
 
      // Update Task to Database

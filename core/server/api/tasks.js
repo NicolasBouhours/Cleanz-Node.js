@@ -19,7 +19,8 @@ tasks = {
 	// return list of all tasks for one projet
 	list: function list(req, res) {
 
-		Task.find({_project: req.params.projectId}).populate('_importance','name').populate('_category','name').exec(function(err, tasks) {
+		Task.find({_project: req.params.projectId}).populate('_importance','name').populate('_category','name')
+		.populate('users','firstName lastName').exec(function(err, tasks) {
 			if (err) console.log(err);
 			return res.json(tasks);
 		});	
@@ -29,8 +30,10 @@ tasks = {
 
 	// return all details for one task and his comments
 	read: function read(req, res) {
-		Task.findOne({id: req.params.id}).populate('_importance','name id').populate('_category','name id').exec(function(err, task) {
+		Task.findOne({id: req.params.id}).populate('_importance','name id').populate('_category','name id')
+		.populate('users','firstName lastName').exec(function(err, task) {
 			if (err) console.log(err);
+			return res.json(task);
 		});
 	},
 

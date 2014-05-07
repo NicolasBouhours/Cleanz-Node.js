@@ -56,6 +56,11 @@ BugController.controller('EditBug', function($scope, $http, $routeParams) {
 	$http.get('/cleanz/api/' + $routeParams.projectId + '/bugs/' + $routeParams.bugId).success(function(bug) {
 		$scope.bug = bug;
 		$scope.catId = $scope.bug._category.id;
+
+		// add user which are already into the bug
+        for (var i = 0; i < bug.users.length; i++) {
+            $scope.usersadd.push(bug.users[i].firstName + ' ' + bug.users[i].lastName);
+        }
 	});
 
 	// modify bug into database
