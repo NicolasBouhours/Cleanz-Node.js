@@ -53,6 +53,15 @@ bugs = {
 	        bug._creator = req.session.user._id;
 	        bug.resolve = 0;
 
+	        // add users into bugs 
+			for (var i = 0; i < req.body.usersadd.length; i++) {
+				var split = req.body.usersadd[i].split(' ');
+				User.findOne().where('firstName').equals(split[0]).where('lastName').equals(split[1]).exec(function(err, usr) {
+					if (err) { console.log(err); }
+					bug.users.push(usr);
+				});
+			}
+
         	// add bug into project list
         	Project.findOne({'id': req.body.projectId}, function(err, pro){
 				if (err) return console.log(err);

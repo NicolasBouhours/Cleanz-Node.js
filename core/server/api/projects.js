@@ -113,6 +113,15 @@ projects = {
 		});
 	},
 
+	// #### List Users
+
+	// return list of users for one project
+	listUsers: function listUsers(req, res) {
+			Project.findOne({id: req.params.id}).select('users').populate('users','firstName lastName').exec(function(err,pro) {
+				return res.json(pro);
+		});
+	}
+
 };
 
 module.exports = projects;

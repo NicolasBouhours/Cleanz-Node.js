@@ -21,6 +21,7 @@ module.exports = function(server) {
 	server.post('/cleanz/api/projects/add', api.projects.create);
 	server.get('/cleanz/api/:projectId/projects/:id', api.projects.read);
 	server.del('/cleanz/api/projects/:id', api.projects.delete);
+	server.get('/cleanz/api/projects/listUsers/:id', api.projects.listUsers)
 
 	// ## Route for Documents
 	server.get('/cleanz/api/:projectId/documents/list', api.documents.list);

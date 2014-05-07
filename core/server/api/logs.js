@@ -47,7 +47,6 @@ logs = {
 					// add logs into projects log's list
 					Project.findOne({_id: log._project}, function(err, pro) {
 						if (err) console.log(err);
-						console.log(pro);
 						pro.logs.push(l);
 
 						pro.save(function(err,p) {

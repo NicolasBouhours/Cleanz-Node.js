@@ -264,6 +264,29 @@ textarea {
 	}
 }
 
+#addTask {
+	.usersselect {
+		background-color: $red;
+		color: white;
+		display: inline-block;
+		vertical-align: top;
+		height: 25px;
+		padding-left: 3px;
+		padding-right: 3px;
+	}
+
+	#usersSelect {
+		width: 35%;
+		display: inline-block;
+	}
+
+	a {
+		display: inline-block;
+		vertical-align: top;
+		margin-left: 4%;
+	}
+}
+
 /** Style for Modify Task **/
 
 /** Modification for Edit info **/

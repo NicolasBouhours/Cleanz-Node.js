@@ -188,3 +188,26 @@ var ProjectController = angular.module('ProjectController', []);
 
     $scope.getCategories();
 });
+
+ // ## Controller for usersList - Task, meeting and bug Forms
+ ProjectController.controller('GetListUsers', function($scope, $http, $routeParams) {
+
+    $scope.usersadd = [];
+
+    // Get list of all users for one project
+    $scope.getListUsers = function() {
+        $http.get('cleanz/api/projects/listUsers/' + $routeParams.projectId).success(function(data) {
+            $scope.listUsers = data.users;
+        });
+    }
+
+    $scope.addUser = function(user) {
+        $scope.usersadd.push(user);
+    }
+
+    $scope.deleteUser = function() {
+        $scope.usersadd = [];
+    }
+
+    $scope.getListUsers();
+ });

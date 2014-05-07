@@ -31,7 +31,6 @@ tasks = {
 	read: function read(req, res) {
 		Task.findOne({id: req.params.id}).populate('_importance','name id').populate('_category','name id').exec(function(err, task) {
 			if (err) console.log(err);
-			return res.json(task);
 		});
 	},
 
@@ -39,6 +38,7 @@ tasks = {
 
 	// store task into database and return flash message
 	create: function add(req, res) {
+
 		var task = new Task(req.body);
 		var newId = 0;
 		
@@ -53,6 +53,16 @@ tasks = {
 			task._creator = req.session.user.id;
 			task._project = req.body.projectId;
 			task.progress = 0;
+
+			// add users into tasks 
+			for (var i = 0; i < req.body.usersadd.length; i++) {
+				var split = req.body.usersadd[i].split(' ');
+				User.findOne().where('firstName').equals(split[0]).where('lastName').equals(split[1]).exec(function(err, usr) {
+					if (err) { console.log(err); }
+					task.users.push(usr);
+				});
+			}
+
 			
 			// get importance
 			Importance.findOne({id: req.body.importance }, function(err, imp) {
@@ -92,7 +102,6 @@ tasks = {
 				});
 			});
 		});
-
 	},
 
 	// #### Edit

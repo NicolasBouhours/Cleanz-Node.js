@@ -25,6 +25,7 @@ BugController.controller('addBug', function($scope, $http, $routeParams) {
 	$scope.addBug = function() {
 		$scope.bug.projectId = $routeParams.projectId;
 		$scope.bug.category = $scope.catId;
+		$scope.bug.usersadd =  $scope.usersadd;
 		$http.post('/cleanz/api/' + $routeParams.projectId + '/bugs/add', $scope.bug).success(function(data) {
 			$scope.flash = data.flash;
 		}).error(function(data) {

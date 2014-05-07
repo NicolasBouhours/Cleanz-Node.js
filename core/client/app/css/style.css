@@ -270,62 +270,84 @@ textarea {
   width: 100%;
 }
 
+/* line 268, ../scss/style.scss */
+#addTask .usersselect {
+  background-color: #ec5148;
+  color: white;
+  display: inline-block;
+  vertical-align: top;
+  height: 25px;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+/* line 278, ../scss/style.scss */
+#addTask #usersSelect {
+  width: 35%;
+  display: inline-block;
+}
+/* line 283, ../scss/style.scss */
+#addTask a {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 4%;
+}
+
 /** Style for Modify Task **/
 /** Modification for Edit info **/
-/* line 271, ../scss/style.scss */
+/* line 294, ../scss/style.scss */
 #editInfo {
   width: 90%;
   margin: 0 auto;
 }
-/* line 276, ../scss/style.scss */
+/* line 299, ../scss/style.scss */
 #editInfo h4 {
   color: #ec5148;
 }
-/* line 280, ../scss/style.scss */
+/* line 303, ../scss/style.scss */
 #editInfo h2 {
   margin-left: 5%;
 }
-/* line 284, ../scss/style.scss */
+/* line 307, ../scss/style.scss */
 #editInfo #info, #editInfo #password {
   display: inline-block;
   vertical-align: top;
 }
-/* line 288, ../scss/style.scss */
+/* line 311, ../scss/style.scss */
 #editInfo #info input, #editInfo #password input {
   width: 50%;
 }
-/* line 294, ../scss/style.scss */
+/* line 317, ../scss/style.scss */
 #editInfo #info {
   width: 54%;
   margin-left: 5%;
 }
-/* line 299, ../scss/style.scss */
+/* line 322, ../scss/style.scss */
 #editInfo #password {
   width: 40%;
 }
 
 /** Connexion **/
-/* line 305, ../scss/style.scss */
+/* line 328, ../scss/style.scss */
 #login {
   text-align: center;
 }
-/* line 308, ../scss/style.scss */
+/* line 331, ../scss/style.scss */
 #login input {
   width: 30%;
   margin: 0 auto;
 }
-/* line 313, ../scss/style.scss */
+/* line 336, ../scss/style.scss */
 #login h2 {
   color: #ec5148;
 }
 
 /* List Projects */
-/* line 319, ../scss/style.scss */
+/* line 342, ../scss/style.scss */
 #listProjects {
   width: 90%;
   margin: 0 auto;
 }
-/* line 324, ../scss/style.scss */
+/* line 347, ../scss/style.scss */
 #listProjects .project {
   height: 220px;
   width: 28%;
@@ -342,18 +364,18 @@ textarea {
   vertical-align: top;
   font-weight: 300;
 }
-/* line 338, ../scss/style.scss */
+/* line 361, ../scss/style.scss */
 #listProjects .project:last {
   margin-right: none;
 }
-/* line 342, ../scss/style.scss */
+/* line 365, ../scss/style.scss */
 #listProjects .project h5 {
   margin-top: 25px;
   font-size: 26px;
   color: #f9f7ed;
   font-weight: 300;
 }
-/* line 349, ../scss/style.scss */
+/* line 372, ../scss/style.scss */
 #listProjects .project a {
   display: block;
   color: #ec5148;
@@ -366,22 +388,22 @@ textarea {
   font-size: 15px;
   padding: 6px;
 }
-/* line 360, ../scss/style.scss */
+/* line 383, ../scss/style.scss */
 #listProjects .project p {
   font-weight: 300;
 }
-/* line 365, ../scss/style.scss */
+/* line 388, ../scss/style.scss */
 #listProjects .inlineblock {
   display: inline-block;
 }
-/* line 370, ../scss/style.scss */
+/* line 393, ../scss/style.scss */
 #listProjects #createProject {
   border: 1px solid #ec5148;
   background-color: white;
   color: #ec5148;
   margin: 0 auto;
 }
-/* line 376, ../scss/style.scss */
+/* line 399, ../scss/style.scss */
 #listProjects #createProject a {
   background-color: #ec5148;
   color: #f9f7ed;
@@ -389,7 +411,7 @@ textarea {
   font-size: 20px;
   padding: 10px;
 }
-/* line 385, ../scss/style.scss */
+/* line 408, ../scss/style.scss */
 #listProjects #addProject {
   position: absolute;
   width: 400px;
@@ -403,61 +425,61 @@ textarea {
   left: 50%;
   z-index: 10;
 }
-/* line 398, ../scss/style.scss */
+/* line 421, ../scss/style.scss */
 #listProjects #addProject input {
   width: 300px;
 }
-/* line 401, ../scss/style.scss */
+/* line 424, ../scss/style.scss */
 #listProjects #addProject .btn {
   margin-left: 10%;
 }
 
 /* Style for Register */
-/* line 409, ../scss/style.scss */
+/* line 432, ../scss/style.scss */
 #register {
   width: 40%;
   margin: 0 auto;
 }
-/* line 413, ../scss/style.scss */
+/* line 436, ../scss/style.scss */
 #register #flash {
   width: auto;
 }
 
 /* Style for Logs */
-/* line 420, ../scss/style.scss */
+/* line 443, ../scss/style.scss */
 #logs {
   width: 60%;
   margin: 0 auto;
 }
 
 /* Style for Params */
-/* line 428, ../scss/style.scss */
+/* line 451, ../scss/style.scss */
 #params h4 {
   display: inline-block;
   width: 44%;
 }
-/* line 433, ../scss/style.scss */
+/* line 456, ../scss/style.scss */
 #params p {
   width: 44%;
   display: inline-block;
 }
-/* line 438, ../scss/style.scss */
+/* line 461, ../scss/style.scss */
 #params a {
   margin-right: 2%;
 }
-/* line 442, ../scss/style.scss */
+/* line 465, ../scss/style.scss */
 #params #cat, #params .cat {
   font-size: 18px;
   display: inline-block;
   width: 20%;
   margin-top: 1%;
 }
-/* line 449, ../scss/style.scss */
+/* line 472, ../scss/style.scss */
 #params #categoriges {
   margin-bottom: 3%;
 }
 
-/* line 456, ../scss/style.scss */
+/* line 479, ../scss/style.scss */
 #addCategory, #modifyCategory, #deleteProject, #deleteCategory {
   position: absolute;
   width: 400px;
@@ -471,16 +493,16 @@ textarea {
   left: 50%;
   z-index: 10;
 }
-/* line 469, ../scss/style.scss */
+/* line 492, ../scss/style.scss */
 #addCategory input, #modifyCategory input, #deleteProject input, #deleteCategory input {
   width: 300px;
 }
-/* line 472, ../scss/style.scss */
+/* line 495, ../scss/style.scss */
 #addCategory .btn, #modifyCategory .btn, #deleteProject .btn, #deleteCategory .btn {
   margin-left: 10%;
 }
 
-/* line 477, ../scss/style.scss */
+/* line 500, ../scss/style.scss */
 #delProject {
   margin-top: 10%;
 }

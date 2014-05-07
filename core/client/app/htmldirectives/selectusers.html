@@ -1,0 +1,9 @@
+<label for="users">Participants :</label>
+<select name="users" ng-model="userId" ng-select="0" id="usersSelect">
+	<option ng-repeat="user in listUsers" value="{{ user.firstName  }} {{user.lastName }}">{{ user.firstName }} {{ user.lastName }}</option>
+</select>
+<a class="btn" ng-click="addUser(userId)">Ajouter un utilisateur</a> <a class="btn" ng-click="deleteUser()">Vider</a>
+<div class="usersselect" ng-repeat="user in usersadd">
+	<p> {{ user }} </p>
+</div>
+<br/><br/>

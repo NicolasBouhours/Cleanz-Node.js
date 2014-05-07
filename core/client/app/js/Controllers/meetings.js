@@ -25,6 +25,7 @@ MeetingController.controller('AddMeeting', function($scope, $http, $routeParams)
 	$scope.addMeeting = function() {
 		$scope.meeting.projectId = $routeParams.projectId;
 		$scope.meeting.category = $scope.catId;
+		$scope.meeting.usersadd =  $scope.usersadd;
 		$http.post('/cleanz/api/' + $routeParams.projectId + '/meetings/add', $scope.meeting).success(function(data) {
 			$scope.flash = data.flash;
 		}).error(function(data) {
@@ -58,7 +59,9 @@ MeetingController.controller('EditMeeting', function($scope, $http, $routeParams
         // format date
 		var date = new Date(meeting.dateStart);
         $scope.meeting.dateStart = DateService.format(date);
-        $scope.catId = $scope.meeting._category.id;
+        $scope.catId = meeting._category.id;
+        console.debug(meeting._category.id);
+        console.debug(meeting);
 	});
 
 	// modify meeting into database

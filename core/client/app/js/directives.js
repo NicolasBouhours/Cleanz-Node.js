@@ -15,3 +15,10 @@ MenuDirective.directive('selectcategories', function() {
 		controller: 'GetCategories'
 	}
 });
+
+MenuDirective.directive('selectusers', function() {
+	return {
+		templateUrl: 'app/htmldirectives/selectusers.html',
+		controller: 'GetListUsers'
+	}
+});

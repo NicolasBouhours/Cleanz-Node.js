@@ -25,6 +25,7 @@ TaskController.controller('addTask', function($scope, $http, $routeParams) {
      $scope.addTask = function() {
         $scope.task.projectId = $scope.projectId;
         $scope.task.category = $scope.catId;
+        $scope.task.usersadd =  $scope.usersadd;
         $http.post('cleanz/api/' + $routeParams.projectId + '/tasks/add', $scope.task).success(function(data) {
             $scope.flash = data.flash;
         }).error(function(error) {
