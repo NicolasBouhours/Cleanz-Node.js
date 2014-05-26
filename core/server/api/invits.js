@@ -5,6 +5,8 @@
 var mongoose = require('mongoose');
 var User = require('../models/users');
 var Project = require('../models/projects');
+var Log = require('../models/logs');
+var LogApi = require('../api/logs');
 
 // ## Invits
 invits = {

@@ -3,6 +3,7 @@
 
 // ## Dependencies
 var mongoose = require('mongoose');
+var User = require('../models/users');
 var Bug = require('../models/bugs');
 var Project = require('../models/projects');
 var Log = require('../models/logs');
@@ -109,6 +110,17 @@ bugs = {
 			// modify bug information
 			bug.name = req.body.name;
 			bug.description = req.body.description;
+
+			bug.users = new Array();
+			
+			// add users into bugs 
+			for (var i = 0; i < req.body.usersadd.length; i++) {
+				var split = req.body.usersadd[i].split(' ');
+				User.findOne().where('firstName').equals(split[0]).where('lastName').equals(split[1]).exec(function(err, usr) {
+					if (err) { console.log(err); }
+					bug.users.push(usr);
+				});
+			}
 
 			//add category
 			Category.findOne({id: req.body.category}, function(err, cat) {

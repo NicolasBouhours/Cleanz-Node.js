@@ -4,18 +4,22 @@
 
 	</div>
 		<article>
+			<div id="meetings">
 
-		<h4> Liste des vos réunions </h4>
-		<br/> <br/>
+				<h4> Liste des vos réunions </h4>
+				<br/> <br/>
 
-		<div id="meeting" ng-repeat="meeting in meetings" >
+				<div id="meeting" ng-repeat="meeting in meetings" >
+					<div class="name"> {{ meeting.name }}</div>
+					<div class="dateStart">{{ meeting.dateStart | date:'yyyy-MM-dd'}}</div>
+					<div class="time">{{ meeting.timeStart }}</div>
+					<div class="duree">{{ meeting.duree }}</div>
+					<a href="#/project/{{ projectId }}/meetings/{{ meeting.id }}"> Voir les détails</a>
+					<br/>
+				</div> <br/> <br/>
 
-			<p><a href="#/project/{{ projectId }}/meetings/{{ meeting.id }}"> {{ meeting.name }} {{ meeting.description }} {{ meeting.dateStart | date:'yyyy-MM-dd' }} {{ meeting.timeStart }} {{ meeting.duree }}</a> </p>
-
-		</div> <br/> <br/>
-
-		<a href="#/project/{{ projectId }}/addMeeting" class="btn">Ajouter une réunion</a>
-
+				<center><a href="#/project/{{ projectId }}/addMeeting" class="btn">Ajouter une réunion</a></center>
+			</div>
 		</article>
 
 	</div>

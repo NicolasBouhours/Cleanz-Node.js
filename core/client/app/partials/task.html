@@ -8,11 +8,11 @@
 
 		<div id="detailTask" >
 
-		<h4> {{ task.name }} </h4>
 		Date de début : {{ task.dateStart | date:'yyyy/MM/dd'}} <br/>
 		Date de fin : {{ task.dateEnd | date:'dd/MM/yyyy'}} <br/>
 		Progression : {{ task.progress}}% <br/>
-		Catégorie : {{ task._category.name }}
+		Catégorie : {{ task._category.name }}<br/>
+		Participants : <div class="part" ng-repeat="user in task.users"> - {{ user.firstName }} {{ user.lastName }}</div>
 
 		<br/> Description : <br/>
 		{{ task.description }}

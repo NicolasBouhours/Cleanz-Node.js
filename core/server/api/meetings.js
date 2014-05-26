@@ -112,6 +112,17 @@ meetings = {
         	me.timeStart = req.body.timeStart;
         	me.duree = req.body.duree;
 
+        	me.users = new Array();
+
+        	// add users into meetings 
+			for (var i = 0; i < req.body.usersadd.length; i++) {
+				var split = req.body.usersadd[i].split(' ');
+				User.findOne().where('firstName').equals(split[0]).where('lastName').equals(split[1]).exec(function(err, usr) {
+					if (err) { console.log(err); }
+					me.users.push(usr);
+				});
+			}
+
         	Category.findOne({id: req.body.category}, function(err, cat) {
 				if (cat != null) {
 					me._category = cat._id;

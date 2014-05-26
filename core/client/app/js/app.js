@@ -26,6 +26,10 @@ Cleanz.config(['$routeProvider','$httpProvider',
         templateUrl: 'app/partials/login.html',
         controller: 'Login'
       }).
+      when('/logout', {
+        templateUrl: 'app/partials/login.html',
+        controller:'Logout'
+      }).
       when('/editinfo', {
         templateUrl: 'app/partials/editinfo.html',
         controller: 'EditUserInfo'

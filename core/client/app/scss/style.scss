@@ -6,6 +6,8 @@ $red: #ec5148;
 $text: #363634;
 $background: #f9f7ed;
 $blue: #007095;
+$headerbc: #363634;
+$headertext: white;
 
 /** CSS **/
 html {
@@ -29,7 +31,7 @@ body {
 header {
 	width: 100%;
 	padding-top: 0px;
-	background-color: white;
+	background-color: $headerbc;
 
 	#nomApp {
 		width: 45%;
@@ -39,7 +41,7 @@ header {
 		h4 {
 			margin-top: 1%;
 			margin-left: 7%;
-			color: $text;
+			color: $headertext;
 			font-size: 32px;
 			letter-spacing: 1px;
 
@@ -56,7 +58,7 @@ header {
 
 		a {
 			text-decoration: none;
-			color: $text;
+			color: $headertext;
 		}
 
 		li {
@@ -85,7 +87,7 @@ h1,h2,h3,h4,h5,h6 {
 	color: $blue;
 }
 nav {
-	height: 100%;
+	height: 873px;
 	width: 240px;
 	display: inline-block;
 	background-color: white;
@@ -96,8 +98,8 @@ nav {
 
 	li {
 		list-style: none;
-		padding-top: 9%;
-		padding-bottom: 9%;
+		padding-top: 14%;
+		padding-bottom: 14%;
 		border-top: 1px dashed $red;
 
 		.image {
@@ -264,6 +266,10 @@ textarea {
 	}
 }
 
+#part {
+	display: inline;
+}
+
 #addTask, #editTask, #addMeeting, #editMeeting, #addBug, #editBug{
 	.usersselect {
 		background-color: $red;
@@ -271,6 +277,7 @@ textarea {
 		display: inline-block;
 		vertical-align: top;
 		height: 25px;
+		margin-right: 4%;
 		padding-left: 3px;
 		padding-right: 3px;
 	}
@@ -499,4 +506,99 @@ textarea {
 
 #delProject {
 	margin-top: 10%;
+}
+
+.doc {
+	display: inline-block;
+	width: 30%;
+	vertical-align: top;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+#modifDoc {
+	position: absolute;
+	width: 450px;
+	height: 270px;
+	background-color: $background;
+	border: 1px solid $red;
+	border-top: 2px solid red;
+	top: 50%;
+	margin-top: -180px;
+	margin-left: -210px;
+	left: 50%;
+	z-index: 10;
+
+	.btn {
+		margin-left: 10%;
+	}
+}
+
+#meetings {
+	font-size: 18px;
+
+	#meeting {
+		margin-bottom: 1%;
+
+		.name, .dateStart, .duree, .time, a{
+			display: inline-block;
+			margin-left: 3%;
+		}
+
+		.name {
+			width: 27%;
+		}
+
+		.dateStart {
+			width: 12%;
+		}
+
+		.duree {
+			width: 12%;
+		}
+
+		.time {
+			width: 12%;
+		}
+
+		a {
+			width: 20%;
+			color: $red;
+		}
+	}
+}
+
+#bugs {
+	font-size: 18px;
+
+	#bug {
+		margin-bottom: 1%;
+
+
+		.name, .dateStart, .creator, .resolve, a {
+			display: inline-block;
+			margin-left: 3%;
+		}
+
+		.name {
+			width: 20%;
+		}
+
+		.dateStart {
+			width: 12%;
+		}
+
+		.creator {
+			width: 20%;
+		}
+
+		.resolve {
+			width: 10%;
+		}
+
+		a {
+			width: 20%;
+			color: $red;
+		}
+	}
 }

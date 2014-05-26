@@ -40,6 +40,13 @@ UserController.controller('Login', function($scope, AuthenticationService, $loca
 	}
 });
 
+// ## Controller for login.html
+UserController.controller('Logout', function(AuthenticationService, $location) {
+        AuthenticationService.logout().success(function() {
+            $location.path('/login');
+        });
+});
+
 // ## Controller for editinfo.html
 UserController.controller('EditUserInfo', function($scope, $http) {
     // Get information about our user

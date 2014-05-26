@@ -22,3 +22,10 @@ MenuDirective.directive('selectusers', function() {
 		controller: 'GetListUsers'
 	}
 });
+
+MenuDirective.directive('header', function(AuthenticationService, $location) {
+
+		return {
+			templateUrl: 'app/htmldirectives/header.html',
+		}
+});

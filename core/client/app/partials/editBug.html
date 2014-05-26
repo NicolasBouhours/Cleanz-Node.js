@@ -7,8 +7,13 @@
 
 		<div id="editBug">
 			<div class="formCenter">
+			<br/>
+			<div id="flash" ng-show="flash">
+			    {{ flash }}
+			</div>
+			<br/>
 
-			<h4>Editer une bug</h4>
+			<h4>Editer un bug</h4>
 
 				<form class="form-horizontal">
 
@@ -22,14 +27,11 @@
 			        <div selectusers> </div>
 
 					<button type="submit" class="btn" ng-click="editBug()">Modifié le bug</button>
-					<a ng-click="removeBug()" class="btn"> Supprimer le bug</a>
 
 				</form> <br/>
 
 
-				<div id="flash" ng-show="flash">
-			        {{ flash }}
-			    </div>
+
 			</div>
 		</div>
 	</article>

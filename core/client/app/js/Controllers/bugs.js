@@ -51,7 +51,7 @@ BugController.controller('EditBug', function($scope, $http, $routeParams) {
 
 	$scope.projectId = $routeParams.projectId;
 	$scope.bugId = $routeParams.bugId;
-
+	
 	// get detail for one bug
 	$http.get('/cleanz/api/' + $routeParams.projectId + '/bugs/' + $routeParams.bugId).success(function(bug) {
 		$scope.bug = bug;
@@ -67,6 +67,7 @@ BugController.controller('EditBug', function($scope, $http, $routeParams) {
 	$scope.editBug = function() {
 		$scope.bug.projectId = $routeParams.projectId;
 		$scope.bug.category = $scope.catId;
+		$scope.bug.usersadd =  $scope.usersadd;
 		$http.put('/cleanz/api/' + $routeParams.projectId + '/bugs/' + $routeParams.bugId, $scope.bug).success(function(data) {
 			$scope.flash = data.flash;
 		}).error(function(data) {
@@ -82,4 +83,5 @@ BugController.controller('EditBug', function($scope, $http, $routeParams) {
             $scope.flash = data.flash;
         });
 	}
+
 });

@@ -73,6 +73,7 @@ MeetingController.controller('EditMeeting', function($scope, $http, $routeParams
 	$scope.editMeeting = function() {
 		$scope.meeting.projectId = $routeParams.projectId;
 		$scope.meeting.category = $scope.catId;
+		$scope.meeting.usersadd =  $scope.usersadd;
 		$http.put('/cleanz/api/' + $routeParams.projectId + '/meetings/' + $routeParams.meetingId, $scope.meeting).success(function(data) {
 			$scope.flash = data.flash;
 		}).error(function(data) {

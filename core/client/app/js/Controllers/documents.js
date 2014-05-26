@@ -5,6 +5,7 @@ var DocumentController = angular.module('DocumentController', []);
 DocumentController.controller('Documents', function($scope, $http, $routeParams, FileService) {
 
 	$scope.projectId = $routeParams.projectId;
+	$scope.showDocForm = false;
 
 	$scope.getDocuments = function() {
 		$http.get('/cleanz/api/' + $routeParams.projectId + '/documents/list').success(function(docs) {
@@ -15,6 +16,13 @@ DocumentController.controller('Documents', function($scope, $http, $routeParams,
 		});
 	}
 
+	$scope.showForm = function() {
+		$scope.showDocForm = true;
+	}
+
+	$scope.closeModif = function() {
+		$scope.showDocForm = false;
+	}
 	$scope.getDocument = function(doc) {
 		$http.get('/cleanz/api/' + $routeParams.projectId + '/documents/get/' + doc.id).success(function(doc) {
 			$scope.flash = 'Le téléchargement de votre fichier va démarré';

@@ -5,11 +5,14 @@
 	</div>
 	<article>
 		<div id="bug">
-			<h2> Vos différents bugs</h2>
+			<h2> Bug {{ bug.name }}</h2>
 
 			<div id="project" >
-	         <p>{{ bug.name }} {{ bug.description }} {{ bug.created_at | date:'yyyy-MM-dd' }}  {{ bug.resolve}} {{ bug._creator.firstName }} {{ bug._creator.lastName }}  {{ bug.resolve }} </p>
-	         Catégorie : {{ bug._category.name }}
+	         Date de création : {{ bug.created_at | date:'yyyy-MM-dd' }}<br/>
+	         Créateur : {{ bug._creator.firstName }} {{ bug._creator.lastName }}<br/>
+	         Catégorie : {{ bug._category.name }}<br/>
+	         Résolu : {{ bug.resolve }}<br/>
+	         <br/> Description : {{ bug.description }} 
 			</div>
 
 			<br/> 

@@ -14,24 +14,22 @@ projects = {
 
 	// return list of all projects for one user
 	list: function list(req, res) {
-		/*
-		User.findOne({id: req.session.user.id}).select('projects').where('projects.valid', 1)
-		.populate('projects.project').where('projects.valid', 1).exec(function(err, usr) {
-			console.log(usr);
-			if (err) console.log(err);
-				return res.json(usr);
-		});
-*/		
-/*
-		User.findOne({id: req.session.user.id}).populate('projects.project').select('projects').exec(function(err, pros) {
-			if(err) console.log(err);
-			console.log(pros);
-			return res.json(pros);
-		});*/
 
-		Project.find().populate({path: 'users',match: { _id: req.session.user._id},select: 'projects'}).exec(function(err, pro) {
-			console.log(pro);
-			return res.json(pro);
+		var pros = new Array();
+
+		// we get all project where user was in
+		Project.find().populate({
+			  path: 'users',
+			  match: { _id: { $gte: req.session.user._id }}}).exec(function(err, pro) {
+			for (var i = 0; i < pro.length; i++) {
+				if (pro[i].users.length > 0) {
+					console.log('ajout');
+					pros.push(pro[i]);
+					console.log(pros);
+				}
+			}
+
+			return res.json(pros);
 		});
 	},
 

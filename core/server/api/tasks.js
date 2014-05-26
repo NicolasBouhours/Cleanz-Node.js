@@ -112,12 +112,23 @@ tasks = {
 	// edit task information into database and return flash message
 	edit: function edit(req, res) {
 
-        Task.findOne(req.params.id, function(err, ta) {
+        Task.findOne({id: req.params.id}, function(err, ta) {
         	ta.name = req.body.name;
         	ta.description = req.body.description;
         	ta.dateStart = req.body.dateStart;
         	ta.dateEnd = req.body.dateEnd;
         	ta.progress = req.body.progress;
+
+        	ta.users = new Array();
+
+        	// add users into tasks 
+			for (var i = 0; i < req.body.usersadd.length; i++) {
+				var split = req.body.usersadd[i].split(' ');
+				User.findOne().where('firstName').equals(split[0]).where('lastName').equals(split[1]).exec(function(err, usr) {
+					if (err) { console.log(err); }
+					ta.users.push(usr);
+				});
+			}
 
         	Importance.findOne({id: req.body.importance}, function(err, i) {
         		if (i != null) {
@@ -126,15 +137,19 @@ tasks = {
 
         		Category.findOne({id: req.body.category}, function(err, cat) {
 					if (cat != null) {
-						task._category = cat._id;
+						ta._category = cat._id;
 					}
 
+					console.log(ta);
+
 		            ta.save(function (err, taS) {
+
+		            	console.log(taS);
 		            	if (err) {
 		            		return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
 		            	}
 		            	else {
-			            	if (ta.progress == 100) {	
+			            	if (taS.progress == 100) {	
 
 			            		//find Importane name
 			            		Importance.findOne({id: 4}, function(err, imp) {
@@ -157,9 +172,9 @@ tasks = {
 			            		});
 			            	}
 			            }
-
-		                return res.json({'flash': 'Votre tache a bien été modifié'});
 		            });
+
+		            return res.json({'flash': 'Votre tache a bien été modifié'});
 				});
         	})
         });

@@ -3,8 +3,9 @@ var ProjectController = angular.module('ProjectController', []);
 
 // ## Controller for project.html
  ProjectController.controller('ProjectsList', function($scope, $http, $location) {
-
-    $scope.showAddTask = false;
+    $scope.flash = '';
+    $scope.showAdd
+    Task = false;
 
     // List of all project of one user
     $scope.getProjects = function() {

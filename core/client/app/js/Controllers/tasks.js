@@ -111,6 +111,8 @@ TaskController.controller('addTask', function($scope, $http, $routeParams) {
 
      // Update Task to Database
      $scope.updateTask = function() {
+        $scope.task.importance = $scope.task.importance;
+        $scope.task.usersadd =  $scope.usersadd;
         $http.put('/cleanz/api/' + $routeParams.projectId + '/tasks/' + $routeParams.taskId, $scope.task).success(function(data) {
             $scope.flash = data.flash;
         }).error(function(data) {

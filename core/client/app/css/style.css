@@ -1,7 +1,7 @@
 /** Import **/
 /** Constants **/
 /** CSS **/
-/* line 11, ../scss/style.scss */
+/* line 13, ../scss/style.scss */
 html {
   font-family: 'Lato', sans-serif;
   font-weight: 300;
@@ -9,57 +9,57 @@ html {
   height: 760px;
 }
 
-/* line 17, ../scss/style.scss */
+/* line 19, ../scss/style.scss */
 body {
   background-color: #f9f7ed;
 }
 
-/* line 21, ../scss/style.scss */
+/* line 23, ../scss/style.scss */
 .btn {
   font-size: 13px;
 }
 
-/* line 25, ../scss/style.scss */
+/* line 27, ../scss/style.scss */
 .ng-scope, container-fluid ng-scope {
   height: 100%;
 }
 
-/* line 29, ../scss/style.scss */
+/* line 31, ../scss/style.scss */
 header {
   width: 100%;
   padding-top: 0px;
-  background-color: white;
+  background-color: #363634;
 }
-/* line 34, ../scss/style.scss */
+/* line 36, ../scss/style.scss */
 header #nomApp {
   width: 45%;
   display: inline-block;
   vertical-align: top;
 }
-/* line 39, ../scss/style.scss */
+/* line 41, ../scss/style.scss */
 header #nomApp h4 {
   margin-top: 1%;
   margin-left: 7%;
-  color: #363634;
+  color: white;
   font-size: 32px;
   letter-spacing: 1px;
 }
-/* line 46, ../scss/style.scss */
+/* line 48, ../scss/style.scss */
 header #nomApp h4 .red {
   font-style: italic;
 }
-/* line 52, ../scss/style.scss */
+/* line 54, ../scss/style.scss */
 header #menuDroite {
   width: 54%;
   display: inline-block;
   vertical-align: top;
 }
-/* line 57, ../scss/style.scss */
+/* line 59, ../scss/style.scss */
 header #menuDroite a {
   text-decoration: none;
-  color: #363634;
+  color: white;
 }
-/* line 62, ../scss/style.scss */
+/* line 64, ../scss/style.scss */
 header #menuDroite li {
   margin-top: 2%;
   text-transform: uppercase;
@@ -68,68 +68,68 @@ header #menuDroite li {
   margin-left: 9%;
 }
 
-/* line 72, ../scss/style.scss */
+/* line 74, ../scss/style.scss */
 label {
   font-weight: 300;
 }
 
-/* line 76, ../scss/style.scss */
+/* line 78, ../scss/style.scss */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
 }
 
-/* line 80, ../scss/style.scss */
+/* line 82, ../scss/style.scss */
 .red {
   color: #ec5148;
 }
 
-/* line 84, ../scss/style.scss */
+/* line 86, ../scss/style.scss */
 .blue {
   color: #007095;
 }
 
-/* line 87, ../scss/style.scss */
+/* line 89, ../scss/style.scss */
 nav {
-  height: 100%;
+  height: 873px;
   width: 240px;
   display: inline-block;
   background-color: white;
 }
-/* line 93, ../scss/style.scss */
+/* line 95, ../scss/style.scss */
 nav ul {
   margin-left: 0px;
 }
-/* line 97, ../scss/style.scss */
+/* line 99, ../scss/style.scss */
 nav li {
   list-style: none;
-  padding-top: 9%;
-  padding-bottom: 9%;
+  padding-top: 14%;
+  padding-bottom: 14%;
   border-top: 1px dashed #ec5148;
 }
-/* line 103, ../scss/style.scss */
+/* line 105, ../scss/style.scss */
 nav li .image {
   display: inline-block;
   margin-right: 15px;
   margin-left: 4%;
 }
-/* line 109, ../scss/style.scss */
+/* line 111, ../scss/style.scss */
 nav li a {
   color: #363634;
   display: inline-block;
 }
-/* line 115, ../scss/style.scss */
+/* line 117, ../scss/style.scss */
 nav li:hover {
   background-color: #cccccc;
 }
 
-/* line 120, ../scss/style.scss */
+/* line 122, ../scss/style.scss */
 article {
   display: inline-block;
   vertical-align: top;
   width: 72%;
 }
 
-/* line 126, ../scss/style.scss */
+/* line 128, ../scss/style.scss */
 #flash {
   width: 40%;
   background-color: #ec5148;
@@ -142,7 +142,7 @@ article {
   text-align: center;
 }
 
-/* line 136, ../scss/style.scss */
+/* line 138, ../scss/style.scss */
 .btn {
   background: #ec5148;
   padding: 10px 10px 10px 10px;
@@ -153,49 +153,49 @@ article {
   text-transform: uppercase;
 }
 
-/* line 144, ../scss/style.scss */
+/* line 146, ../scss/style.scss */
 .btnCenter {
   margin: 0 auto;
   width: 20%;
 }
 
-/* line 149, ../scss/style.scss */
+/* line 151, ../scss/style.scss */
 .formCenter {
   width: 80%;
   margin: 0 auto;
 }
 
-/* line 154, ../scss/style.scss */
+/* line 156, ../scss/style.scss */
 textarea {
   vertical-align: top;
 }
 
 /* Style for Tasks */
-/* line 162, ../scss/style.scss */
+/* line 164, ../scss/style.scss */
 #tasks .task {
   width: 100%;
   display: inline-block;
   margin-bottom: 1%;
 }
-/* line 168, ../scss/style.scss */
+/* line 170, ../scss/style.scss */
 #tasks .task .name, #tasks .task .dateStart, #tasks .task .dateEnd, #tasks .task .progression, #tasks .task .importance, #tasks .task a {
   display: inline-block;
   margin-left: 3%;
 }
-/* line 173, ../scss/style.scss */
+/* line 175, ../scss/style.scss */
 #tasks .task .name {
   width: 30%;
 }
-/* line 177, ../scss/style.scss */
+/* line 179, ../scss/style.scss */
 #tasks .task .dateStart, #tasks .task .dateEnd {
   width: 11%;
 }
-/* line 181, ../scss/style.scss */
+/* line 183, ../scss/style.scss */
 #tasks .task .progression, #tasks .task .importance {
   width: 7%;
   background-color: #f9f7ed;
 }
-/* line 186, ../scss/style.scss */
+/* line 188, ../scss/style.scss */
 #tasks .task a {
   list-style: none;
   text-decoration: none;
@@ -203,42 +203,42 @@ textarea {
 }
 
 /* Style for AddTask */
-/* line 197, ../scss/style.scss */
+/* line 199, ../scss/style.scss */
 #addTask .formCenter, #editTask .formCenter, #addBug .formCenter, #addMeeting .formCenter, #editMeeting .formCenter, #editBug .formCenter, #addUser .formCenter {
   width: 60%;
   margin: 0 auto;
 }
-/* line 202, ../scss/style.scss */
+/* line 204, ../scss/style.scss */
 #addTask input, #editTask input, #addBug input, #addMeeting input, #editMeeting input, #editBug input, #addUser input {
   width: 30%;
 }
-/* line 206, ../scss/style.scss */
+/* line 208, ../scss/style.scss */
 #addTask label, #editTask label, #addBug label, #addMeeting label, #editMeeting label, #editBug label, #addUser label {
   display: inline-block;
 }
-/* line 210, ../scss/style.scss */
+/* line 212, ../scss/style.scss */
 #addTask input, #editTask input, #addBug input, #addMeeting input, #editMeeting input, #editBug input, #addUser input {
   display: inline-block;
 }
-/* line 214, ../scss/style.scss */
+/* line 216, ../scss/style.scss */
 #addTask .dateNext, #editTask .dateNext, #addBug .dateNext, #addMeeting .dateNext, #editMeeting .dateNext, #editBug .dateNext, #addUser .dateNext {
   display: inline-block;
   width: 45%;
 }
-/* line 218, ../scss/style.scss */
+/* line 220, ../scss/style.scss */
 #addTask .dateNext input, #editTask .dateNext input, #addBug .dateNext input, #addMeeting .dateNext input, #editMeeting .dateNext input, #editBug .dateNext input, #addUser .dateNext input {
   width: auto;
 }
-/* line 223, ../scss/style.scss */
+/* line 225, ../scss/style.scss */
 #addTask textarea, #editTask textarea, #addBug textarea, #addMeeting textarea, #editMeeting textarea, #editBug textarea, #addUser textarea {
   width: 600px;
   height: 170px;
 }
-/* line 228, ../scss/style.scss */
+/* line 230, ../scss/style.scss */
 #addTask button, #editTask button, #addBug button, #addMeeting button, #editMeeting button, #editBug button, #addUser button {
   margin-left: 18%;
 }
-/* line 234, ../scss/style.scss */
+/* line 236, ../scss/style.scss */
 #addTask #progression .progressions, #editTask #progression .progressions, #addBug #progression .progressions, #addMeeting #progression .progressions, #editMeeting #progression .progressions, #editBug #progression .progressions, #addUser #progression .progressions {
   width: 15%;
   height: 21px;
@@ -247,45 +247,51 @@ textarea {
   color: #f9f7ed;
   text-align: center;
 }
-/* line 243, ../scss/style.scss */
+/* line 245, ../scss/style.scss */
 #addTask #progression #basse, #editTask #progression #basse, #addBug #progression #basse, #addMeeting #progression #basse, #editMeeting #progression #basse, #editBug #progression #basse, #addUser #progression #basse {
   background-color: #A7F547;
 }
-/* line 247, ../scss/style.scss */
+/* line 249, ../scss/style.scss */
 #addTask #progression #moyenne, #editTask #progression #moyenne, #addBug #progression #moyenne, #addMeeting #progression #moyenne, #editMeeting #progression #moyenne, #editBug #progression #moyenne, #addUser #progression #moyenne {
   background-color: #6789C9;
   border-bottom: 2px solid #ec5148;
   border-spacing: 15px 15px;
 }
-/* line 253, ../scss/style.scss */
+/* line 255, ../scss/style.scss */
 #addTask #progression #haute, #editTask #progression #haute, #addBug #progression #haute, #addMeeting #progression #haute, #editMeeting #progression #haute, #editBug #progression #haute, #addUser #progression #haute {
   background-color: #E9FA2A;
 }
-/* line 257, ../scss/style.scss */
+/* line 259, ../scss/style.scss */
 #addTask #progression #urgente, #editTask #progression #urgente, #addBug #progression #urgente, #addMeeting #progression #urgente, #editMeeting #progression #urgente, #editBug #progression #urgente, #addUser #progression #urgente {
   background-color: #FC9423;
 }
-/* line 262, ../scss/style.scss */
+/* line 264, ../scss/style.scss */
 #addTask #flash, #editTask #flash, #addBug #flash, #addMeeting #flash, #editMeeting #flash, #editBug #flash, #addUser #flash {
   width: 100%;
 }
 
-/* line 268, ../scss/style.scss */
+/* line 269, ../scss/style.scss */
+#part {
+  display: inline;
+}
+
+/* line 274, ../scss/style.scss */
 #addTask .usersselect, #editTask .usersselect, #addMeeting .usersselect, #editMeeting .usersselect, #addBug .usersselect, #editBug .usersselect {
   background-color: #ec5148;
   color: white;
   display: inline-block;
   vertical-align: top;
   height: 25px;
+  margin-right: 4%;
   padding-left: 3px;
   padding-right: 3px;
 }
-/* line 278, ../scss/style.scss */
+/* line 285, ../scss/style.scss */
 #addTask #usersSelect, #editTask #usersSelect, #addMeeting #usersSelect, #editMeeting #usersSelect, #addBug #usersSelect, #editBug #usersSelect {
   width: 35%;
   display: inline-block;
 }
-/* line 283, ../scss/style.scss */
+/* line 290, ../scss/style.scss */
 #addTask a, #editTask a, #addMeeting a, #editMeeting a, #addBug a, #editBug a {
   display: inline-block;
   vertical-align: top;
@@ -294,60 +300,60 @@ textarea {
 
 /** Style for Modify Task **/
 /** Modification for Edit info **/
-/* line 294, ../scss/style.scss */
+/* line 301, ../scss/style.scss */
 #editInfo {
   width: 90%;
   margin: 0 auto;
 }
-/* line 299, ../scss/style.scss */
+/* line 306, ../scss/style.scss */
 #editInfo h4 {
   color: #ec5148;
 }
-/* line 303, ../scss/style.scss */
+/* line 310, ../scss/style.scss */
 #editInfo h2 {
   margin-left: 5%;
 }
-/* line 307, ../scss/style.scss */
+/* line 314, ../scss/style.scss */
 #editInfo #info, #editInfo #password {
   display: inline-block;
   vertical-align: top;
 }
-/* line 311, ../scss/style.scss */
+/* line 318, ../scss/style.scss */
 #editInfo #info input, #editInfo #password input {
   width: 50%;
 }
-/* line 317, ../scss/style.scss */
+/* line 324, ../scss/style.scss */
 #editInfo #info {
   width: 54%;
   margin-left: 5%;
 }
-/* line 322, ../scss/style.scss */
+/* line 329, ../scss/style.scss */
 #editInfo #password {
   width: 40%;
 }
 
 /** Connexion **/
-/* line 328, ../scss/style.scss */
+/* line 335, ../scss/style.scss */
 #login {
   text-align: center;
 }
-/* line 331, ../scss/style.scss */
+/* line 338, ../scss/style.scss */
 #login input {
   width: 30%;
   margin: 0 auto;
 }
-/* line 336, ../scss/style.scss */
+/* line 343, ../scss/style.scss */
 #login h2 {
   color: #ec5148;
 }
 
 /* List Projects */
-/* line 342, ../scss/style.scss */
+/* line 349, ../scss/style.scss */
 #listProjects {
   width: 90%;
   margin: 0 auto;
 }
-/* line 347, ../scss/style.scss */
+/* line 354, ../scss/style.scss */
 #listProjects .project {
   height: 220px;
   width: 28%;
@@ -364,18 +370,18 @@ textarea {
   vertical-align: top;
   font-weight: 300;
 }
-/* line 361, ../scss/style.scss */
+/* line 368, ../scss/style.scss */
 #listProjects .project:last {
   margin-right: none;
 }
-/* line 365, ../scss/style.scss */
+/* line 372, ../scss/style.scss */
 #listProjects .project h5 {
   margin-top: 25px;
   font-size: 26px;
   color: #f9f7ed;
   font-weight: 300;
 }
-/* line 372, ../scss/style.scss */
+/* line 379, ../scss/style.scss */
 #listProjects .project a {
   display: block;
   color: #ec5148;
@@ -388,22 +394,22 @@ textarea {
   font-size: 15px;
   padding: 6px;
 }
-/* line 383, ../scss/style.scss */
+/* line 390, ../scss/style.scss */
 #listProjects .project p {
   font-weight: 300;
 }
-/* line 388, ../scss/style.scss */
+/* line 395, ../scss/style.scss */
 #listProjects .inlineblock {
   display: inline-block;
 }
-/* line 393, ../scss/style.scss */
+/* line 400, ../scss/style.scss */
 #listProjects #createProject {
   border: 1px solid #ec5148;
   background-color: white;
   color: #ec5148;
   margin: 0 auto;
 }
-/* line 399, ../scss/style.scss */
+/* line 406, ../scss/style.scss */
 #listProjects #createProject a {
   background-color: #ec5148;
   color: #f9f7ed;
@@ -411,7 +417,7 @@ textarea {
   font-size: 20px;
   padding: 10px;
 }
-/* line 408, ../scss/style.scss */
+/* line 415, ../scss/style.scss */
 #listProjects #addProject {
   position: absolute;
   width: 400px;
@@ -425,61 +431,61 @@ textarea {
   left: 50%;
   z-index: 10;
 }
-/* line 421, ../scss/style.scss */
+/* line 428, ../scss/style.scss */
 #listProjects #addProject input {
   width: 300px;
 }
-/* line 424, ../scss/style.scss */
+/* line 431, ../scss/style.scss */
 #listProjects #addProject .btn {
   margin-left: 10%;
 }
 
 /* Style for Register */
-/* line 432, ../scss/style.scss */
+/* line 439, ../scss/style.scss */
 #register {
   width: 40%;
   margin: 0 auto;
 }
-/* line 436, ../scss/style.scss */
+/* line 443, ../scss/style.scss */
 #register #flash {
   width: auto;
 }
 
 /* Style for Logs */
-/* line 443, ../scss/style.scss */
+/* line 450, ../scss/style.scss */
 #logs {
   width: 60%;
   margin: 0 auto;
 }
 
 /* Style for Params */
-/* line 451, ../scss/style.scss */
+/* line 458, ../scss/style.scss */
 #params h4 {
   display: inline-block;
   width: 44%;
 }
-/* line 456, ../scss/style.scss */
+/* line 463, ../scss/style.scss */
 #params p {
   width: 44%;
   display: inline-block;
 }
-/* line 461, ../scss/style.scss */
+/* line 468, ../scss/style.scss */
 #params a {
   margin-right: 2%;
 }
-/* line 465, ../scss/style.scss */
+/* line 472, ../scss/style.scss */
 #params #cat, #params .cat {
   font-size: 18px;
   display: inline-block;
   width: 20%;
   margin-top: 1%;
 }
-/* line 472, ../scss/style.scss */
+/* line 479, ../scss/style.scss */
 #params #categoriges {
   margin-bottom: 3%;
 }
 
-/* line 479, ../scss/style.scss */
+/* line 486, ../scss/style.scss */
 #addCategory, #modifyCategory, #deleteProject, #deleteCategory {
   position: absolute;
   width: 400px;
@@ -493,16 +499,114 @@ textarea {
   left: 50%;
   z-index: 10;
 }
-/* line 492, ../scss/style.scss */
+/* line 499, ../scss/style.scss */
 #addCategory input, #modifyCategory input, #deleteProject input, #deleteCategory input {
   width: 300px;
 }
-/* line 495, ../scss/style.scss */
+/* line 502, ../scss/style.scss */
 #addCategory .btn, #modifyCategory .btn, #deleteProject .btn, #deleteCategory .btn {
   margin-left: 10%;
 }
 
-/* line 500, ../scss/style.scss */
+/* line 507, ../scss/style.scss */
 #delProject {
   margin-top: 10%;
+}
+
+/* line 511, ../scss/style.scss */
+.doc {
+  display: inline-block;
+  width: 30%;
+  vertical-align: top;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* line 519, ../scss/style.scss */
+#modifDoc {
+  position: absolute;
+  width: 450px;
+  height: 270px;
+  background-color: #f9f7ed;
+  border: 1px solid #ec5148;
+  border-top: 2px solid red;
+  top: 50%;
+  margin-top: -180px;
+  margin-left: -210px;
+  left: 50%;
+  z-index: 10;
+}
+/* line 532, ../scss/style.scss */
+#modifDoc .btn {
+  margin-left: 10%;
+}
+
+/* line 537, ../scss/style.scss */
+#meetings {
+  font-size: 18px;
+}
+/* line 540, ../scss/style.scss */
+#meetings #meeting {
+  margin-bottom: 1%;
+}
+/* line 543, ../scss/style.scss */
+#meetings #meeting .name, #meetings #meeting .dateStart, #meetings #meeting .duree, #meetings #meeting .time, #meetings #meeting a {
+  display: inline-block;
+  margin-left: 3%;
+}
+/* line 548, ../scss/style.scss */
+#meetings #meeting .name {
+  width: 27%;
+}
+/* line 552, ../scss/style.scss */
+#meetings #meeting .dateStart {
+  width: 12%;
+}
+/* line 556, ../scss/style.scss */
+#meetings #meeting .duree {
+  width: 12%;
+}
+/* line 560, ../scss/style.scss */
+#meetings #meeting .time {
+  width: 12%;
+}
+/* line 564, ../scss/style.scss */
+#meetings #meeting a {
+  width: 20%;
+  color: #ec5148;
+}
+
+/* line 571, ../scss/style.scss */
+#bugs {
+  font-size: 18px;
+}
+/* line 574, ../scss/style.scss */
+#bugs #bug {
+  margin-bottom: 1%;
+}
+/* line 578, ../scss/style.scss */
+#bugs #bug .name, #bugs #bug .dateStart, #bugs #bug .creator, #bugs #bug .resolve, #bugs #bug a {
+  display: inline-block;
+  margin-left: 3%;
+}
+/* line 583, ../scss/style.scss */
+#bugs #bug .name {
+  width: 20%;
+}
+/* line 587, ../scss/style.scss */
+#bugs #bug .dateStart {
+  width: 12%;
+}
+/* line 591, ../scss/style.scss */
+#bugs #bug .creator {
+  width: 20%;
+}
+/* line 595, ../scss/style.scss */
+#bugs #bug .resolve {
+  width: 10%;
+}
+/* line 599, ../scss/style.scss */
+#bugs #bug a {
+  width: 20%;
+  color: #ec5148;
 }

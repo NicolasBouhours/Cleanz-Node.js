@@ -7,7 +7,12 @@
 			<h2> Liste des bugs </h2>
 
 			<div id="bug" ng-repeat="bug in bugs" >
-				<p><a href="#/project/{{ projectId }}/bugs/{{ bug.id }}"> {{ bug.name }} {{ bug.description }} {{ bug.created_at | date:'yyyy-MM-dd' }} {{ bug._creator.firstName }} {{ bug._creator.lastName }}  {{ bug.resolve }}</a> </p>
+
+				<div class="name"> {{ bug.name }}</div>
+				<div class="dateStart">{{ bug.created_at | date:'yyyy-MM-dd'}}</div>
+				<div class="creator">{{ bug._creator.firstName }} {{ bug._creator.lastName }}</div>
+				<div class="resolve">{{ bug.resolve }}</div>
+				<a href="#/project/{{ projectId }}/bugs/{{ bug.id }}"> Voir les détails</a>
 			</div>
 
 			<div id="flash" ng-show="flash">
@@ -15,7 +20,7 @@
 	   		</div>
 
 	   		<br/>
-	   		<a class="btn" href="#/project/{{ projectId }}/addBug"> Ajouter un bug</a>
+	   		<center><a class="btn" href="#/project/{{ projectId }}/addBug"> Ajouter un bug</a></center>
    		</div>
    	</article>
 
