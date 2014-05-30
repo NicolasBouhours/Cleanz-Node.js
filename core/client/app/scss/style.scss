@@ -602,3 +602,27 @@ textarea {
 		}
 	}
 }
+
+#stats {
+	height: 500px;
+
+	.stat {
+		width: 45%;
+		display: inline-block;
+		vertical-align: top;
+		text-align: center;
+		height: 200px;
+
+		h1 {
+			color: $red;
+			font-weight: 300;
+			font-size: 40px;
+		}
+
+		p {
+			font-weight: 300;
+			font-size: 22px;
+		}
+
+	}
+}

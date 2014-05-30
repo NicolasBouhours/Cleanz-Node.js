@@ -68,9 +68,16 @@ var ProjectController = angular.module('ProjectController', []);
 });
 
 // ## Controller for projectBoard.html
- ProjectController.controller('ProjectBoard', function($scope, $http, $location, $routeParams) {
+ ProjectController.controller('ProjectBoard', function($scope, $http, $location, $routeParams, DashboardService) {
 
     $scope.projectId = $routeParams.projectId;
+
+    $http.get('/cleanz/api/projects/' + $routeParams.projectId).success(function(project) {
+        $scope.project = project;
+        $scope.tasksIncompleted = DashboardService.getTasksUncompleted(project.tasks);
+        $scope.bugsUnresolved = DashboardService.getBugsUnresolved(project.bugs);
+        $scope.nextMeetings = DashboardService.getNextMeetings(project.meetings);
+    });
 
     // Send invitation for one user
     $scope.addProjectUser = function() {

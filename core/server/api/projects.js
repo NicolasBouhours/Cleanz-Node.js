@@ -38,6 +38,10 @@ projects = {
 	// return detail of one project
 	read: function read(req, res) {
 		console.log(req.params.id);
+
+		Project.findOne({id: req.params.id}).populate('tasks','progress').populate('meetings','dateStart').populate('bugs','resolve').exec(function(err, pro) {
+			return res.json(pro);
+		});
 	},
 
 	// #### Create

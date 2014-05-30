@@ -19,7 +19,7 @@ module.exports = function(server) {
 	server.get('/cleanz/api/projects/list', api.projects.list);
 	server.del('/cleanz/api/:projectId/projects/delete', api.projects.delete);
 	server.post('/cleanz/api/projects/add', api.projects.create);
-	server.get('/cleanz/api/:projectId/projects/:id', api.projects.read);
+	server.get('/cleanz/api/projects/:id', api.projects.read);
 	server.del('/cleanz/api/projects/:id', api.projects.delete);
 	server.get('/cleanz/api/projects/listUsers/:id', api.projects.listUsers)
 

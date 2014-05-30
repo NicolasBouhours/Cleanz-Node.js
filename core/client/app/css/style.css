@@ -610,3 +610,27 @@ textarea {
   width: 20%;
   color: #ec5148;
 }
+
+/* line 606, ../scss/style.scss */
+#stats {
+  height: 500px;
+}
+/* line 609, ../scss/style.scss */
+#stats .stat {
+  width: 45%;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  height: 200px;
+}
+/* line 616, ../scss/style.scss */
+#stats .stat h1 {
+  color: #ec5148;
+  font-weight: 300;
+  font-size: 40px;
+}
+/* line 622, ../scss/style.scss */
+#stats .stat p {
+  font-weight: 300;
+  font-size: 22px;
+}

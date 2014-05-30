@@ -47,9 +47,10 @@ documents = {
 	download: function download(req, res) {
 
 		// get document
-		Document.findOne({id: req.params.projectId}, function(err, doc) {
+		Document.findOne({id: req.params.id}, function(err, doc) {
 			if (err) console.log(err);
 
+			console.log(doc);
 			// get project
 			Project.findOne({_id: doc._project}, function(err, pro) {
 				if (err) console.log(err);

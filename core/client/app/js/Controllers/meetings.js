@@ -55,13 +55,11 @@ MeetingController.controller('EditMeeting', function($scope, $http, $routeParams
 	// get detail for one meeting
 	$http.get('/cleanz/api/' + $routeParams.projectId + '/meetings/' + $routeParams.meetingId).success(function(meeting) {
 		$scope.meeting = meeting;
+		$scope.catId = meeting._category.id;
 
         // format date
 		var date = new Date(meeting.dateStart);
         $scope.meeting.dateStart = DateService.format(date);
-        $scope.catId = meeting._category.id;
-        console.debug(meeting._category.id);
-        console.debug(meeting);
 
         // add user which are already into the meeting
         for (var i = 0; i < meeting.users.length; i++) {

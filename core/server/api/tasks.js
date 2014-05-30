@@ -57,13 +57,16 @@ tasks = {
 			task._project = req.body.projectId;
 			task.progress = 0;
 
-			// add users into tasks 
-			for (var i = 0; i < req.body.usersadd.length; i++) {
-				var split = req.body.usersadd[i].split(' ');
-				User.findOne().where('firstName').equals(split[0]).where('lastName').equals(split[1]).exec(function(err, usr) {
-					if (err) { console.log(err); }
-					task.users.push(usr);
-				});
+			if(req.body.usersadd != null) {
+
+				// add users into tasks 
+				for (var i = 0; i < req.body.usersadd.length; i++) {
+					var split = req.body.usersadd[i].split(' ');
+					User.findOne().where('firstName').equals(split[0]).where('lastName').equals(split[1]).exec(function(err, usr) {
+						if (err) { console.log(err); }
+						task.users.push(usr);
+					});
+				}
 			}
 
 			
@@ -121,13 +124,16 @@ tasks = {
 
         	ta.users = new Array();
 
-        	// add users into tasks 
-			for (var i = 0; i < req.body.usersadd.length; i++) {
-				var split = req.body.usersadd[i].split(' ');
-				User.findOne().where('firstName').equals(split[0]).where('lastName').equals(split[1]).exec(function(err, usr) {
-					if (err) { console.log(err); }
-					ta.users.push(usr);
-				});
+        	if(req.body.usersadd != null) {
+
+	        	// add users into tasks 
+				for (var i = 0; i < req.body.usersadd.length; i++) {
+					var split = req.body.usersadd[i].split(' ');
+					User.findOne().where('firstName').equals(split[0]).where('lastName').equals(split[1]).exec(function(err, usr) {
+						if (err) { console.log(err); }
+						ta.users.push(usr);
+					});
+				}
 			}
 
         	Importance.findOne({id: req.body.importance}, function(err, i) {
@@ -152,14 +158,20 @@ tasks = {
 			            	if (taS.progress == 100) {	
 
 			            		//find Importane name
-			            		Importance.findOne({id: 4}, function(err, imp) {
-			            			// search if log already exist
-				            		Log.findOne({'name' : ta.name, '_logmessage': imp._id})
+			            		Importance.findOne({id: req.body.importance}, function(err, imp) {
+			            			if(err) console.log(err);
 
-				            		// add into logs
-				            		Project.findOne({id: ta._project}, function(err, pro) {
-										var log = new Log({'name': ta.name,'_creator': req.session.user._id, '_project': pro._id});
-										LogApi.create(log, 3);
+			            			// search if log already exist
+				            		Log.findOne({'name' : ta.name, '_logmessage': imp._id}).exec(function(err, log) {
+
+				            			if (log == null) {
+
+						            		// add into logs
+						            		Project.findOne({id: ta._project}, function(err, pro) {
+												var log = new Log({'name': ta.name,'_creator': req.session.user._id, '_project': pro._id});
+												LogApi.create(log, 3);
+						            		});
+						            	}
 				            		});
 			            		});
 

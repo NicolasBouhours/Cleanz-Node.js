@@ -87,3 +87,48 @@ CleanzServices.factory('FileService', function() {
     }
   };
 });
+
+// ## Dashboard Services
+CleanzServices.factory('DashboardService', function() {
+  return {
+
+    //get tasks which progress isn't 100%
+    getTasksUncompleted: function(tasks) {
+      var tasksUncompleted = new Array();
+
+      for (var i = 0; i < tasks.length; i++) {
+        if (tasks[i].progress != '100') {
+          tasksUncompleted.push(tasks[i]);
+        }
+      }
+      return tasksUncompleted;
+    },
+
+    // get bugs which aren't resolved
+    getBugsUnresolved: function(bugs) {
+      var bugsUnresolved = new Array();
+
+      for (var i = 0; i < bugs.length; i++) {
+        if (bugs[i].resolve == '0') {
+          bugsUnresolved.push(bugs[i]);
+        }
+      }
+      return bugsUnresolved;
+    },
+
+    // get meetings which date isn't passed
+    getNextMeetings: function(meetings) {
+      var nextMeetings = new Array();
+      var dateNow = new Date();
+
+      for (var i = 0; i < meetings.length; i++) {
+        var dateMet = new Date(meetings[i].dateStart);
+        if (dateNow < dateMet) {
+          nextMeetings.push(meetings[i]);
+        }
+      }
+
+      return nextMeetings;
+    }
+  };
+});

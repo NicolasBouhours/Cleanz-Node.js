@@ -56,13 +56,16 @@ bugs = {
 	        bug._creator = req.session.user._id;
 	        bug.resolve = 0;
 
-	        // add users into bugs 
-			for (var i = 0; i < req.body.usersadd.length; i++) {
-				var split = req.body.usersadd[i].split(' ');
-				User.findOne().where('firstName').equals(split[0]).where('lastName').equals(split[1]).exec(function(err, usr) {
-					if (err) { console.log(err); }
-					bug.users.push(usr);
-				});
+	        if(req.body.usersadd != null) {
+
+		        // add users into bugs 
+				for (var i = 0; i < req.body.usersadd.length; i++) {
+					var split = req.body.usersadd[i].split(' ');
+					User.findOne().where('firstName').equals(split[0]).where('lastName').equals(split[1]).exec(function(err, usr) {
+						if (err) { console.log(err); }
+						bug.users.push(usr);
+					});
+				}
 			}
 
         	// add bug into project list
@@ -110,16 +113,20 @@ bugs = {
 			// modify bug information
 			bug.name = req.body.name;
 			bug.description = req.body.description;
+			bug.resolve = req.body.resolve;
 
 			bug.users = new Array();
 			
-			// add users into bugs 
-			for (var i = 0; i < req.body.usersadd.length; i++) {
-				var split = req.body.usersadd[i].split(' ');
-				User.findOne().where('firstName').equals(split[0]).where('lastName').equals(split[1]).exec(function(err, usr) {
-					if (err) { console.log(err); }
-					bug.users.push(usr);
-				});
+			if(req.body.usersadd != null) {
+
+				// add users into bugs 
+				for (var i = 0; i < req.body.usersadd.length; i++) {
+					var split = req.body.usersadd[i].split(' ');
+					User.findOne().where('firstName').equals(split[0]).where('lastName').equals(split[1]).exec(function(err, usr) {
+						if (err) { console.log(err); }
+						bug.users.push(usr);
+					});
+				}
 			}
 
 			//add category

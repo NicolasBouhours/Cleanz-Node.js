@@ -4,7 +4,11 @@
 
 	</div>
 	<article>
-
+	<br/> 
+	<div id="flash" ng-show="flash">
+        {{ flash }}
+   	</div>
+   	<br/>
 
 		<h4> Liste des vos documents</h4>
 
@@ -18,9 +22,6 @@
 
 		
 
-		<div id="flash" ng-show="flash">
-        	{{ flash }}
-   		</div>
 
    		<br/>
    		<center><a href="#/project/{{ projectId }}/addDocument" class="btn"> Ajouter un Document</a></center>

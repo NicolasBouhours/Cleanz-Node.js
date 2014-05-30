@@ -12,7 +12,8 @@
 	         Créateur : {{ bug._creator.firstName }} {{ bug._creator.lastName }}<br/>
 	         Catégorie : {{ bug._category.name }}<br/>
 	         Résolu : {{ bug.resolve }}<br/>
-	         <br/> Description : {{ bug.description }} 
+	         Participants : <div class="part" ng-repeat="user in bug.users"> - {{ user.firstName }} {{ user.lastName }}</div> <br/>
+	         <br/> Description : <p>{{ bug.description }}</p> 
 			</div>
 
 			<br/> 

@@ -60,13 +60,16 @@ meetings = {
 			meeting._creator = req.session.user._id;
 			meeting.id = newId;
 
-			// add users into meetings 
-			for (var i = 0; i < req.body.usersadd.length; i++) {
-				var split = req.body.usersadd[i].split(' ');
-				User.findOne().where('firstName').equals(split[0]).where('lastName').equals(split[1]).exec(function(err, usr) {
-					if (err) { console.log(err); }
-					meeting.users.push(usr);
-				});
+			if(req.body.usersadd != null) {
+
+				// add users into meetings 
+				for (var i = 0; i < req.body.usersadd.length; i++) {
+					var split = req.body.usersadd[i].split(' ');
+					User.findOne().where('firstName').equals(split[0]).where('lastName').equals(split[1]).exec(function(err, usr) {
+						if (err) { console.log(err); }
+						meeting.users.push(usr);
+					});
+				}
 			}
 
 			// get project
@@ -105,7 +108,7 @@ meetings = {
 	// edit meeting information into database and return flash message
 	edit: function edit(req, res) {
 
-        Meeting.findOne(req.params.id, function(err, me) {
+        Meeting.findOne({id: req.params.id}, function(err, me) {
         	me.name = req.body.name;
         	me.description = req.body.description;
         	me.dateStart = req.body.dateStart;
@@ -114,13 +117,16 @@ meetings = {
 
         	me.users = new Array();
 
-        	// add users into meetings 
-			for (var i = 0; i < req.body.usersadd.length; i++) {
-				var split = req.body.usersadd[i].split(' ');
-				User.findOne().where('firstName').equals(split[0]).where('lastName').equals(split[1]).exec(function(err, usr) {
-					if (err) { console.log(err); }
-					me.users.push(usr);
-				});
+        	if(req.body.usersadd != null) {
+
+	        	// add users into meetings 
+				for (var i = 0; i < req.body.usersadd.length; i++) {
+					var split = req.body.usersadd[i].split(' ');
+					User.findOne().where('firstName').equals(split[0]).where('lastName').equals(split[1]).exec(function(err, usr) {
+						if (err) { console.log(err); }
+						me.users.push(usr);
+					});
+				}
 			}
 
         	Category.findOne({id: req.body.category}, function(err, cat) {
