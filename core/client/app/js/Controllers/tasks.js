@@ -3,7 +3,7 @@ var TaskController = angular.module('TaskController', []);
 
 // ## Controller for tasks.html
  TaskController.controller('ProjectTasks', function($scope, $http, $location, $routeParams) {
-
+     $scope.flash = "";
      $scope.projectId = $routeParams.projectId;
 
      // List of Tasks for our project
@@ -18,7 +18,7 @@ var TaskController = angular.module('TaskController', []);
 
 // ## Controller for addTask.html 
 TaskController.controller('addTask', function($scope, $http, $routeParams) {
-     
+    $scope.flash = "";
     $scope.projectId = $routeParams.projectId;
     
      // Task to Dabatase
@@ -86,7 +86,7 @@ TaskController.controller('addTask', function($scope, $http, $routeParams) {
 
 // ## Controller for EditTask.html
  TaskController.controller('EditTask', function($scope, $http, $location, $routeParams, DateService) {
-
+     $scope.flash = "";
      $scope.taskId = $routeParams.taskId;
      $scope.projectId = $routeParams.projectId;
 

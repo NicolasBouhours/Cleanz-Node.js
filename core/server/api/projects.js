@@ -37,7 +37,6 @@ projects = {
 
 	// return detail of one project
 	read: function read(req, res) {
-		console.log(req.params.id);
 
 		Project.findOne({id: req.params.id}).populate('tasks','progress').populate('meetings','dateStart').populate('bugs','resolve').exec(function(err, pro) {
 			return res.json(pro);
@@ -104,14 +103,21 @@ projects = {
 
 	// delete project into database
 	delete: function remove(req, res) {
+
 		Project.findOne({id: req.params.id}, function(err,pro) {
-			if(err) console.log(err);
-			pro.remove(function(err) {
-				if (err) console.log(err);
-				else {
-					return res.json({'flash': 'Votre projet a été supprimé avec succès'});
-				}
-			});
+
+			if (pro._creator = req.session.user.id) {
+				if(err) console.log(err);
+				pro.remove(function(err) {
+					if (err) console.log(err);
+					else {
+						return res.json({'flash': 'Votre projet a été supprimé avec succès'});
+					}
+				});
+			}
+			else {
+				if (err) return res.send(500, {'flash': 'Seul le créateur du projet peut le supprimer' });
+			}
 		});
 	},
 

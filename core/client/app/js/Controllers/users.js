@@ -72,9 +72,9 @@ UserController.controller('EditUserInfo', function($scope, $http) {
     //Edit user password
     $scope.editPasswordUser = function() {
         $http.put('/cleanz/api/users/editPassword', $scope.user).success(function(data) {
-            $scope.flashpwd = data.flash;
+            $scope.flash = data.flash;
         }).error(function(data) {
-            $scope.flashpwd = data.flash;
+             $scope.flash = data.flash;
         });
     }
     getInfoUser();

@@ -3,6 +3,7 @@ var LogController = angular.module('LogController', []);
 
 // ## Controller for logs.html
 LogController.controller('Logs', function($scope, $http, $routeParams) {
+	$scope.flash = "";
 
     $scope.projectId = $routeParams.projectId;
 

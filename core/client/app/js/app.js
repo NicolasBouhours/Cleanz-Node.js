@@ -15,8 +15,8 @@ Cleanz.config(['$routeProvider','$httpProvider',
   function($routeProvider, $httpProvider) {
     $routeProvider.
       when('/', {
-        templateUrl: 'app/partials/users.html',
-        controller: 'UsersList'
+        templateUrl: 'app/partials/login.html',
+        controller: 'Login'
       }).
       when('/register', {
         templateUrl: 'app/partials/register.html',
@@ -106,6 +106,9 @@ Cleanz.config(['$routeProvider','$httpProvider',
         templateUrl: 'app/partials/params.html',
         controller: 'Params'
        }).
+       when('/project/:projectId/gantt', {
+        templateUrl: 'app/partials/gant.html'
+        }).
        when('/403', {
         templateUrl: 'app/partials/403.html'
        }).

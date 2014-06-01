@@ -3,7 +3,7 @@ var DocumentController = angular.module('DocumentController', []);
 
 // ## Controller for documents.html
 DocumentController.controller('Documents', function($scope, $http, $routeParams, FileService) {
-
+ 	$scope.flash = "";
 	$scope.projectId = $routeParams.projectId;
 	$scope.showDocForm = false;
 
@@ -57,6 +57,7 @@ DocumentController.controller('Documents', function($scope, $http, $routeParams,
 
 // ## Controller for addDocument.html
 DocumentController.controller('AddDocument', function($scope, $http, $routeParams, $upload) {
+	$scope.flash = "";
 
 	$scope.projectId = $routeParams.projectId;
 
@@ -77,7 +78,7 @@ DocumentController.controller('AddDocument', function($scope, $http, $routeParam
         progress: function(e){}
       }).then(function(data, status, headers, config) {
         // file is uploaded successfully
-        console.log(data);
+        $scope.flash = "Votre document a été ajouté avec succès.";
       }); 
     }
   }

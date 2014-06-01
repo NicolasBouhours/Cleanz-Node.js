@@ -3,7 +3,7 @@ var ProjectController = angular.module('ProjectController', []);
 
 // ## Controller for project.html
  ProjectController.controller('ProjectsList', function($scope, $http, $location) {
-    $scope.flash = '';
+    $scope.flash = "";
     $scope.showAdd
     Task = false;
 
@@ -69,6 +69,7 @@ var ProjectController = angular.module('ProjectController', []);
 
 // ## Controller for projectBoard.html
  ProjectController.controller('ProjectBoard', function($scope, $http, $location, $routeParams, DashboardService) {
+     $scope.flash = "";
 
     $scope.projectId = $routeParams.projectId;
 
@@ -92,6 +93,7 @@ var ProjectController = angular.module('ProjectController', []);
 
  //## Controller for params.html
  ProjectController.controller('Params', function($scope, $http, $routeParams, $location) {
+     $scope.flash = "";
 
     $scope.projectId = $routeParams.projectId;
     $scope.showAddCat = false;
@@ -119,6 +121,8 @@ var ProjectController = angular.module('ProjectController', []);
     // delete project
     $scope.deleteProject = function() {
         $http.delete('/cleanz/api/projects/' + $routeParams.projectId).success(function(data) {
+            $scope.flash = data.flash;
+        }).error(function(data) {
             $scope.flash = data.flash;
         });
     }
@@ -186,6 +190,7 @@ var ProjectController = angular.module('ProjectController', []);
 
 // ## Controller for project.html
  ProjectController.controller('GetCategories', function($scope, $http, $routeParams) {
+     $scope.flash = "";
 
     //get all categories
     $scope.getCategories = function() {
@@ -199,6 +204,7 @@ var ProjectController = angular.module('ProjectController', []);
 
  // ## Controller for usersList - Task, meeting and bug Forms
  ProjectController.controller('GetListUsers', function($scope, $http, $routeParams) {
+     $scope.flash = "";
 
     $scope.usersadd = [];
 

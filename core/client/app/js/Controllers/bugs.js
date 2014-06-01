@@ -3,6 +3,7 @@ var BugController = angular.module('BugController', []);
 
 // ## Controller for bugs.html
 BugController.controller('Bugs', function($scope, $http, $routeParams) {
+	 $scope.flash = "";
 
 	$scope.projectId = $routeParams.projectId;
 
@@ -32,6 +33,7 @@ BugController.controller('Bugs', function($scope, $http, $routeParams) {
 
 // ## Controller for addBug.html
 BugController.controller('addBug', function($scope, $http, $routeParams) {
+	 $scope.flash = "";
 
 	$scope.projectId = $routeParams.projectId;
 
@@ -50,6 +52,7 @@ BugController.controller('addBug', function($scope, $http, $routeParams) {
 
 // ## Controller for bug.html
 BugController.controller('Bug', function($scope, $http, $routeParams) {
+	 $scope.flash = "";
 
 	$scope.projectId = $routeParams.projectId;
 	$scope.bugId = $routeParams.bugId;
@@ -73,6 +76,7 @@ BugController.controller('Bug', function($scope, $http, $routeParams) {
 
 // ## Controller for editBug.html 
 BugController.controller('EditBug', function($scope, $http, $routeParams) {
+	 $scope.flash = "";
 
 	$scope.projectId = $routeParams.projectId;
 	$scope.bugId = $routeParams.bugId;

@@ -3,7 +3,7 @@ var MeetingController = angular.module('MeetingController', []);
 
 // ## Controller for meetings.html
 MeetingController.controller('Meetings', function($scope, $http, $routeParams) {
-
+	$scope.flash = "";
 	$scope.projectId = $routeParams.projectId;
 
 	// get list of our meetings
@@ -18,7 +18,7 @@ MeetingController.controller('Meetings', function($scope, $http, $routeParams) {
 
 // ## Controller for addMeeting.html
 MeetingController.controller('AddMeeting', function($scope, $http, $routeParams) {
-
+	$scope.flash = "";
 	$scope.projectId = $routeParams.projectId;
 
 	// get list of our meetings
@@ -49,7 +49,7 @@ MeetingController.controller('Meeting', function($scope, $http, $routeParams) {
 
 // ## Controller for editMeeting.html 
 MeetingController.controller('EditMeeting', function($scope, $http, $routeParams, $location,DateService) {
-
+	$scope.flash = "";
 	$scope.projectId = $routeParams.projectId;
 	$scope.meetingId = $routeParams.meetingId;
 	// get detail for one meeting

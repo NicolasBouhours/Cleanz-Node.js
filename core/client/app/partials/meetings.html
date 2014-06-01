@@ -1,3 +1,4 @@
+	<div header> </div>
 	<div class="container-fluid">
 
 	<div style="display:inline-block;height: 100%;" menuleft>
@@ -13,7 +14,7 @@
 					<div class="name"> {{ meeting.name }}</div>
 					<div class="dateStart">{{ meeting.dateStart | date:'yyyy-MM-dd'}}</div>
 					<div class="time">{{ meeting.timeStart }}</div>
-					<div class="duree">{{ meeting.duree }}</div>
+					<div class="duree">{{ meeting.duree }} min</div>
 					<a href="#/project/{{ projectId }}/meetings/{{ meeting.id }}"> Voir les détails</a>
 					<br/>
 				</div> <br/> <br/>
