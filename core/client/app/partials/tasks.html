@@ -10,6 +10,7 @@
 				<div class="input"><input placeholder="Rechercher une tache" ng-model="query"></div>
 				<ul>
 					<li><a ng-click="sortAllTasks()">Toutes les taches</a> <div class="value">{{ tasksInitial.length }}</div></li>
+					<li><a ng-click="sortTasksByProgress()">Taches non terminées</a><div class="value"> {{ taskProgress.length }}</div></li>
 					<li><a ng-click="sortTasksByUser()">Mes taches</a><div class="value"> {{ tasksUser.length }}</div></li>
 					<li ng-repeat="category in categories"><a ng-click="sortCategories($index)">{{category.name}}</a><div class="value">{{ tasksCategories[$index].length }}</div></li>
 				</ul>

@@ -10,6 +10,7 @@
 					<div class="input"><input placeholder="Rechercher une réunion" ng-model="query"></div>
 					<ul>
 						<li><a ng-click="sortAllMeetings()">Toutes les réunions</a> <div class="value">{{ meetingsInitial.length }}</div></li>
+						<li><a ng-click="sortNextMeetings()">Réunions a venir</a> <div class="value">{{ nextMeetings.length }}</div></li>
 						<li><a ng-click="sortMeetingsByUser()">Mes réunions</a><div class="value"> {{ meetingsUser.length }}</div></li>
 						<li ng-repeat="category in categories"><a ng-click="sortCategories($index)">{{category.name}}</a><div class="value">{{ meetingsCategories[$index].length }}</div></li>
 					</ul>

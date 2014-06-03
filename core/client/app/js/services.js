@@ -137,13 +137,13 @@ CleanzServices.factory('DashboardService', function() {
 CleanzServices.factory('SortService', function() {
   return {
     // return tasks for where user is assigned
-    getSortUser: function(tasks, name) {
+    getSortUser: function(data, name) {
       var sortUsers = new Array();
 
-      for (var i = 0; i < tasks.length; i++) {
-        for (var p = 0; p < tasks[i].users.length; p++) {
-          if ((tasks[i].users[p].firstName + ' ' + tasks[i].users[p].lastName) == name) {
-            sortUsers.push(tasks[i]);
+      for (var i = 0; i < data.length; i++) {
+        for (var p = 0; p < data[i].users.length; p++) {
+          if ((data[i].users[p].firstName + ' ' + data[i].users[p].lastName) == name) {
+            sortUsers.push(data[i]);
           }
         }
       }
@@ -151,17 +151,55 @@ CleanzServices.factory('SortService', function() {
       return sortUsers;
     },
 
-    //return tasks for this category
-    getSortCategories: function(tasks, category) {
+    //return data for this category
+    getSortCategories: function(data, category) {
       var sortCategories = new Array();
 
-      for(var i = 0; i < tasks.length; i++) {
-        if (tasks[i]._category.name == category) {
-          sortCategories.push(tasks[i]);
+      for(var i = 0; i < data.length; i++) {
+        if (data[i]._category.name == category) {
+          sortCategories.push(data[i]);
         }
       }
 
       return sortCategories;
-    }
+    },
+
+    getSortTaskProgress: function(data) {
+      var sortTaskProgress = new Array();
+
+      for(var i = 0; i < data.length; i++) {
+        if (data[i].progress != '100') {
+          sortTaskProgress.push(data[i]);
+        }
+      }
+
+      return sortTaskProgress;
+    },
+
+    getSortMeetingDate: function(data) {
+      var sortMeetingDate = new Array();
+      var dateNow = new Date();
+
+      for(var i = 0; i < data.length; i++) {
+        var date = new Date(data[i].dateStart);
+        if (dateNow < date) {
+          sortMeetingDate.push(data[i]);
+        }
+      }
+
+      return sortMeetingDate;
+    },
+
+    getSortBugUnresolved: function(data) {
+      var sortBugUnresolved = new Array();
+
+      for(var i = 0; i < data.length; i++) {
+        if (data[i].resolve != 'Oui') {
+          sortBugUnresolved.push(data[i]);
+        }
+      }
+
+      return sortBugUnresolved;
+    },
   };
 });

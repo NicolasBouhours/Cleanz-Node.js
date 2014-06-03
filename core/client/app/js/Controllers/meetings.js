@@ -15,6 +15,7 @@ MeetingController.controller('Meetings', function($scope, $http, $routeParams, S
 			$scope.meetingsInitial = meetings;
 			$scope.getMeetingsByUser();
 	        $scope.getMeetingsByCategories();
+	        $scope.getNextMeetings();
 		});
 	}
 
@@ -58,6 +59,16 @@ MeetingController.controller('Meetings', function($scope, $http, $routeParams, S
      //get all meetings for one user
      $scope.getMeetingsByUser =function() {
         $scope.meetingsUser = SortService.getSortUser($scope.meetingsInitial, $scope.user);
+     }
+
+     //show all meetings for one user
+     $scope.sortNextMeetings = function() {
+     	$scope.meetings = $scope.nextMeetings;
+     }
+
+     //get list of all next meetings
+     $scope.getNextMeetings = function() {
+     	$scope.nextMeetings = SortService.getSortMeetingDate($scope.meetingsInitial);
      }
 
      $scope.getUser();

@@ -9,6 +9,7 @@
 				<div class="input"><input placeholder="Rechercher une réunion" ng-model="query"></div>
 					<ul>
 						<li><a ng-click="sortAllBugs()">Tous les bugs</a> <div class="value">{{ bugsInitial.length }}</div></li>
+						<li><a ng-click="sortBugsUnresolved()">Bugs non résolus</a><div class="value"> {{ bugsUnresolved.length }}</div></li>
 						<li><a ng-click="sortBugsByUser()">Mes bugs</a><div class="value"> {{ bugsUser.length }}</div></li>
 						<li ng-repeat="category in categories"><a ng-click="sortCategories($index)">{{category.name}}</a><div class="value">{{ bugsCategories[$index].length }}</div></li>
 					</ul>

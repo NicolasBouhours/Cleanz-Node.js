@@ -29,6 +29,7 @@ BugController.controller('Bugs', function($scope, $http, $routeParams, SortServi
 			$scope.bugsInitial = bugs;
 			$scope.getBugsByUser();
 	        $scope.getBugsByCategories();
+	        $scope.getBugsUnresolved();
 		});
 	}
 
@@ -73,6 +74,17 @@ BugController.controller('Bugs', function($scope, $http, $routeParams, SortServi
      $scope.getBugsByUser =function() {
         $scope.bugsUser = SortService.getSortUser($scope.bugsInitial, $scope.user);
      }
+
+     //show bugs unresolved
+     $scope.sortBugsUnresolved = function() {
+     	$scope.bugs = $scope.bugsUnresolved;
+     }
+
+     //get bugs unresolved
+     $scope.getBugsUnresolved = function() {
+     	$scope.bugsUnresolved = SortService.getSortBugUnresolved($scope.bugsInitial);
+     }
+
 	 $scope.getBugs();
      $scope.getUser();
      $scope.getCategories();

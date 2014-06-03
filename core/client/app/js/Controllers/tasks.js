@@ -13,9 +13,10 @@ var TaskController = angular.module('TaskController', []);
         $http.get('cleanz/api/' + $routeParams.projectId + '/tasks/list').success(function(tasks) {
         $scope.tasks = tasks;
         $scope.tasksInitial = tasks;
-        
+
         $scope.getTasksByUser();
         $scope.getTasksByCategories();
+        $scope.getTasksByProgress();
        });
      }
 
@@ -59,6 +60,16 @@ var TaskController = angular.module('TaskController', []);
      //get all tasks for one user
      $scope.getTasksByUser =function() {
         $scope.tasksUser = SortService.getSortUser($scope.tasksInitial, $scope.user);
+     }
+
+     //show task uncompleted
+     $scope.sortTasksByProgress = function() {
+        $scope.tasks = $scope.taskProgress;
+     }
+
+     //get task uncompleted
+     $scope.getTasksByProgress = function() {
+        $scope.taskProgress = SortService.getSortTaskProgress($scope.tasksInitial);
      }
 
      $scope.getUser();
