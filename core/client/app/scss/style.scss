@@ -34,7 +34,7 @@ header {
 	background-color: $headerbc;
 
 	#nomApp {
-		width: 45%;
+		width: 55%;
 		display: inline-block;
 		vertical-align: top;
 
@@ -52,7 +52,7 @@ header {
 	}
 
 	#menuDroite {
-		width: 54%;
+		width: 44%;
 		display: inline-block;
 		vertical-align: top;
 
@@ -124,6 +124,7 @@ article {
 	display: inline-block;
 	vertical-align: top;
 	width: 87%;
+	margin-left: -3px;
 }
 
 #flash {
@@ -160,35 +161,100 @@ textarea {
 
 
 /* Style for Tasks */
+#listData {
 
-#tasks {
-	.task {
-
-		width: 100%;
+	#sort {
+		width: 15%;
+		height: 917px;
+		background-color: #666666;
 		display: inline-block;
-		margin-bottom: 1%;
+		color: #e2e2e2;
 
-		.name, .dateStart, .dateEnd, .progression, .importance, a{
-			display: inline-block;
-			margin-left: 3%;
+		.input {
+			height: 100px;
+			line-height: 100px;
+			border-bottom: 1px solid #616161;
+			text-align: center;
+
+			input {
+				background-color: #616161;
+				height: 34px;
+				color: #e2e2e2;
+				width: 80%;
+				border: none;
+				text-align: center;
+			}
+
+			input:focus {
+				border: none;
+			}
 		}
 
-		.name {
-			width: 30%;
-		}
-
-		.dateStart, .dateEnd {
-			width: 11%;
-		}
-
-		.progression, .importance{
-			width: 7%;
-		}
-
-		a{
+		ul {
 			list-style: none;
-			text-decoration: none;
-			color: $red;
+			margin-left: 0px;
+
+			li {
+				height: 60px;
+				line-height: 60px;
+				font-size: 18px;
+				border-bottom: 1px solid #616161;
+
+				a {
+					margin-left: 8px;
+					color: #e2e2e2;
+					display: inline-block;
+					width: 80%;
+				}
+
+				.value {
+					display: inline-block;
+					width: auto;
+					background-color: $red;
+					height: 22px;
+					line-height: 22px;
+					padding-right: 6px;
+					padding-left: 6px;
+				}
+			}
+
+			li:hover {
+				background-color: #616161;
+			}
+		}
+	}
+	#tasks {
+		display: inline-block;
+		vertical-align: top;
+		width: 82%;
+		.task {
+		
+			width: 100%;
+			display: inline-block;
+			margin-bottom: 1%;
+
+			.name, .dateStart, .dateEnd, .progression, .importance, a{
+				display: inline-block;
+				margin-left: 3%;
+			}
+
+			.name {
+				width: 30%;
+			}
+
+			.dateStart, .dateEnd {
+				width: 11%;
+			}
+
+			.progression, .importance{
+				width: 7%;
+			}
+
+			a{
+				list-style: none;
+				text-decoration: none;
+				color: $red;
+			}
 		}
 	}
 }
@@ -536,6 +602,9 @@ textarea {
 
 #meetings {
 	font-size: 18px;
+	width: 82%;
+	display: inline-block;
+	vertical-align: top;
 
 	#meeting {
 		margin-bottom: 1%;
@@ -570,6 +639,9 @@ textarea {
 
 #bugs {
 	font-size: 18px;
+	width: 82%;
+	display: inline-block;
+	vertical-align: top;
 
 	#bug {
 		margin-bottom: 1%;
@@ -634,7 +706,7 @@ textarea {
 		border-bottom: 1px solid #dadada;
 
 		#name {
-			width: 87%;
+			width: 88%;
 			display: inline-block;
 			
 			h2 {
@@ -643,7 +715,7 @@ textarea {
 		}
 
 		#button {
-			width: 12%;
+			width: 11%;
 			display: inline-block;
 
 			a {

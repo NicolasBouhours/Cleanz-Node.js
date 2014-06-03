@@ -2,18 +2,66 @@
 var MeetingController = angular.module('MeetingController', []);
 
 // ## Controller for meetings.html
-MeetingController.controller('Meetings', function($scope, $http, $routeParams) {
+MeetingController.controller('Meetings', function($scope, $http, $routeParams, SortService) {
 	$scope.flash = "";
 	$scope.projectId = $routeParams.projectId;
+	$scope.meetingsCategories = new Array();
+    $scope.meetingsUser = new Array();
 
 	// get list of our meetings
 	$scope.getMeetings = function() {
 		$http.get('/cleanz/api/' + $routeParams.projectId + '/meetings/list').success(function(meetings) {
 			$scope.meetings = meetings;
+			$scope.meetingsInitial = meetings;
+			$scope.getMeetingsByUser();
+	        $scope.getMeetingsByCategories();
 		});
 	}
 
-	$scope.getMeetings();
+     // get all categories for our project
+     $scope.getCategories = function() {
+        $http.get('cleanz/api/'+ $routeParams.projectId +'/categories/list').success(function(categories) {
+            $scope.categories = categories;
+            $scope.getMeetings();
+        });
+     }
+
+     // get firstName and lastName for our user
+     $scope.getUser = function() {
+        $http.get('/cleanz/api/users').success(function(user) {
+            $scope.user = user.firstName + ' ' + user.lastName;
+        });
+     }
+
+     // sort meetings by categories
+     $scope.sortCategories = function(index) {
+        $scope.meetings = $scope.meetingsCategories[index];
+     }
+
+     //fill tab meetingsCategories
+     $scope.getMeetingsByCategories = function() {
+        for (var i = 0 ; i < $scope.categories.length; i++) {
+            $scope.meetingsCategories.push(SortService.getSortCategories($scope.meetingsInitial, $scope.categories[i].name));
+        }
+     }
+
+     //show all meetings
+     $scope.sortAllMeetings = function() {
+        $scope.meetings = $scope.meetingsInitial;
+     }
+
+     //show all meetings for one user
+     $scope.sortMeetingsByUser = function() {
+        $scope.meetings = $scope.meetingsUser;
+     }
+
+     //get all meetings for one user
+     $scope.getMeetingsByUser =function() {
+        $scope.meetingsUser = SortService.getSortUser($scope.meetingsInitial, $scope.user);
+     }
+
+     $scope.getUser();
+     $scope.getCategories();
 });
 
 // ## Controller for addMeeting.html

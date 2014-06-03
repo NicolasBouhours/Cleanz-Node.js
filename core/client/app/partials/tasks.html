@@ -5,25 +5,35 @@
 
 	</div>
 	<article>
-		<div id="tasks">
-			<h2> Taches - {{ tasks.length }} </h2>
-
-			<div class="task" ng-repeat="task in tasks" >
-					<div class="name"> {{ task.name }}</div>
-					<div class="dateStart">{{ task.dateStart | date:'yyyy-MM-dd'}}</div>
-					<div class="dateEnd">{{ task.dateEnd | date:'yyyy-MM-dd'}}</div>
-					<div class="progression">{{ task.progress }}</div>
-					<div class="importance">{{ task._importance.name }}</div>
-					<a href="#/project/{{ projectId }}/tasks/{{ task.id }}"> Voir les détails</a>
-					<br/>
+		<div id="listData">
+			<div id="sort">
+				<div class="input"><input placeholder="Rechercher une tache" ng-model="query"></div>
+				<ul>
+					<li><a ng-click="sortAllTasks()">Toutes les taches</a> <div class="value">{{ tasksInitial.length }}</div></li>
+					<li><a ng-click="sortTasksByUser()">Mes taches</a><div class="value"> {{ tasksUser.length }}</div></li>
+					<li ng-repeat="category in categories"><a ng-click="sortCategories($index)">{{category.name}}</a><div class="value">{{ tasksCategories[$index].length }}</div></li>
+				</ul>
 			</div>
+			<div id="tasks">
+				<h2> Taches - {{ tasks.length }} </h2>
 
-			<div id="flash" ng-show="flash">
-	        	{{ flash }}
-	   		</div>
+				<div class="task" ng-repeat="task in tasks | filter:query" >
+						<div class="name"> {{ task.name }}</div>
+						<div class="dateStart">{{ task.dateStart | date:'yyyy-MM-dd'}}</div>
+						<div class="dateEnd">{{ task.dateEnd | date:'yyyy-MM-dd'}}</div>
+						<div class="progression">{{ task.progress }}</div>
+						<div class="importance">{{ task._importance.name }}</div>
+						<a href="#/project/{{ projectId }}/tasks/{{ task.id }}"> Voir les détails</a>
+						<br/>
+				</div>
 
-	   		<br/> <br/> <br/> 
-	   		<div class="btnCenter"><a href="#/project/{{ projectId }}/addTask" class="btn"> Ajouter une tache </a></div>
+				<div id="flash" ng-show="flash">
+		        	{{ flash }}
+		   		</div>
+
+		   		<br/> <br/> <br/> 
+		   		<div class="btnCenter"><a href="#/project/{{ projectId }}/addTask" class="btn"> Ajouter une tache </a></div>
+			</div>
 		</div>
 	</article>
 

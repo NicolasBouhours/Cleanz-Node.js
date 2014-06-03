@@ -132,3 +132,36 @@ CleanzServices.factory('DashboardService', function() {
     }
   };
 });
+
+// ## Sort Services
+CleanzServices.factory('SortService', function() {
+  return {
+    // return tasks for where user is assigned
+    getSortUser: function(tasks, name) {
+      var sortUsers = new Array();
+
+      for (var i = 0; i < tasks.length; i++) {
+        for (var p = 0; p < tasks[i].users.length; p++) {
+          if ((tasks[i].users[p].firstName + ' ' + tasks[i].users[p].lastName) == name) {
+            sortUsers.push(tasks[i]);
+          }
+        }
+      }
+
+      return sortUsers;
+    },
+
+    //return tasks for this category
+    getSortCategories: function(tasks, category) {
+      var sortCategories = new Array();
+
+      for(var i = 0; i < tasks.length; i++) {
+        if (tasks[i]._category.name == category) {
+          sortCategories.push(tasks[i]);
+        }
+      }
+
+      return sortCategories;
+    }
+  };
+});

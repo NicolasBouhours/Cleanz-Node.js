@@ -2,10 +2,11 @@
 var BugController = angular.module('BugController', []);
 
 // ## Controller for bugs.html
-BugController.controller('Bugs', function($scope, $http, $routeParams) {
-	 $scope.flash = "";
-
+BugController.controller('Bugs', function($scope, $http, $routeParams, SortService) {
+	$scope.flash = "";
 	$scope.projectId = $routeParams.projectId;
+	$scope.bugsCategories = new Array();
+    $scope.bugsUser = new Array();
 
 	// modify resolve to Oui ou Non
 	$scope.translateResolve = function(bugs) {
@@ -25,10 +26,56 @@ BugController.controller('Bugs', function($scope, $http, $routeParams) {
 	$scope.getBugs = function() {
 		$http.get('/cleanz/api/' + $routeParams.projectId + '/bugs/list').success(function(bugs) {
 			$scope.bugs = $scope.translateResolve(bugs);
+			$scope.bugsInitial = bugs;
+			$scope.getBugsByUser();
+	        $scope.getBugsByCategories();
 		});
 	}
 
-	$scope.getBugs();
+     // get all categories for our project
+     $scope.getCategories = function() {
+        $http.get('cleanz/api/'+ $routeParams.projectId +'/categories/list').success(function(categories) {
+            $scope.categories = categories;
+            $scope.getBugs();
+        });
+     }
+
+     // get firstName and lastName for our user
+     $scope.getUser = function() {
+        $http.get('/cleanz/api/users').success(function(user) {
+            $scope.user = user.firstName + ' ' + user.lastName;
+        });
+     }
+
+     // sort bugs by categories
+     $scope.sortCategories = function(index) {
+        $scope.bugs = $scope.bugsCategories[index];
+     }
+
+     //fill tab bugsCategories
+     $scope.getBugsByCategories = function() {
+        for (var i = 0 ; i < $scope.categories.length; i++) {
+            $scope.bugsCategories.push(SortService.getSortCategories($scope.bugsInitial, $scope.categories[i].name));
+        }
+     }
+
+     //show all bugs
+     $scope.sortAllBugs = function() {
+        $scope.bugs = $scope.bugsInitial;
+     }
+
+     //show all bugs for one user
+     $scope.sortBugsByUser = function() {
+        $scope.bugs = $scope.bugsUser;
+     }
+
+     //get all bugs for one user
+     $scope.getBugsByUser =function() {
+        $scope.bugsUser = SortService.getSortUser($scope.bugsInitial, $scope.user);
+     }
+	 $scope.getBugs();
+     $scope.getUser();
+     $scope.getCategories();
 });
 
 // ## Controller for addBug.html
