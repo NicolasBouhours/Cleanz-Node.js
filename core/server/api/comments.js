@@ -56,7 +56,7 @@ comments = {
 
 	        			//save it into logs
         				// add into logs
-						var log = new Log({'name': t.name,'_creator': req.session.user._id, '_project': t._id});
+						var log = new Log({'name': t.name,'_creator': req.session.user._id, '_project': t._project});
 						LogApi.create(log, 17);
 	        			return res.json({'flash' : 'Votre commentaire a bien été ajouté'});
 	        		});

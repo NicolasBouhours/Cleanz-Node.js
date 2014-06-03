@@ -38,6 +38,7 @@ TaskController.controller('addTask', function($scope, $http, $routeParams) {
  TaskController.controller('ProjectTask', function($scope, $http, $location, $routeParams, DateService) {
 
      $scope.taskId = $routeParams.taskId;
+     $scope.flash = "";
      $scope.projectId = $routeParams.projectId;
 
      // Detail of our Task
@@ -51,6 +52,7 @@ TaskController.controller('addTask', function($scope, $http, $routeParams) {
         $scope.task.dateEnd = DateService.format(dateE);
 
         $scope.task.importance = task._importance.id;
+
      });
 
      // Get comments for our task
@@ -113,6 +115,7 @@ TaskController.controller('addTask', function($scope, $http, $routeParams) {
      $scope.updateTask = function() {
         $scope.task.importance = $scope.task.importance;
         $scope.task.usersadd =  $scope.usersadd;
+        $scope.task.category = $scope.catId;
         $http.put('/cleanz/api/' + $routeParams.projectId + '/tasks/' + $routeParams.taskId, $scope.task).success(function(data) {
             $scope.flash = data.flash;
         }).error(function(data) {

@@ -124,6 +124,8 @@ tasks = {
 
         	ta.users = new Array();
 
+        	console.log(req.body);
+
         	if(req.body.usersadd != null) {
 
 	        	// add users into tasks 
@@ -145,8 +147,6 @@ tasks = {
 					if (cat != null) {
 						ta._category = cat._id;
 					}
-
-					console.log(ta);
 
 		            ta.save(function (err, taS) {
 

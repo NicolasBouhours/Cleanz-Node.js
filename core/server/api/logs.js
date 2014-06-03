@@ -47,11 +47,14 @@ logs = {
 					// add logs into projects log's list
 					Project.findOne({_id: log._project}, function(err, pro) {
 						if (err) console.log(err);
-						pro.logs.push(l);
 
-						pro.save(function(err,p) {
-							if (err) console.log(err);
-						});
+						if (pro != null) {
+							pro.logs.push(l);
+
+							pro.save(function(err,p) {
+								if (err) console.log(err);
+							});
+						}
 					});
 				});
 	        });

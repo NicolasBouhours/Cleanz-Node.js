@@ -11,7 +11,7 @@ html {
 
 /* line 19, ../scss/style.scss */
 body {
-  background-color: #f9f7ed;
+  background-color: white;
 }
 
 /* line 23, ../scss/style.scss */
@@ -94,42 +94,43 @@ nav {
   width: 240px;
   display: inline-block;
   background-color: white;
+  border-right: 1px solid #dadada;
 }
-/* line 95, ../scss/style.scss */
+/* line 96, ../scss/style.scss */
 nav ul {
   margin-left: 0px;
 }
-/* line 99, ../scss/style.scss */
+/* line 100, ../scss/style.scss */
 nav li {
   list-style: none;
   padding-top: 14%;
   padding-bottom: 14%;
-  border-top: 1px dashed #ec5148;
+  border-top: 1px solid #dadada;
 }
-/* line 105, ../scss/style.scss */
+/* line 106, ../scss/style.scss */
 nav li .image {
   display: inline-block;
   margin-right: 15px;
   margin-left: 4%;
 }
-/* line 111, ../scss/style.scss */
+/* line 112, ../scss/style.scss */
 nav li a {
   color: #363634;
   display: inline-block;
 }
-/* line 117, ../scss/style.scss */
+/* line 118, ../scss/style.scss */
 nav li:hover {
   background-color: #cccccc;
 }
 
-/* line 122, ../scss/style.scss */
+/* line 123, ../scss/style.scss */
 article {
   display: inline-block;
   vertical-align: top;
-  width: 72%;
+  width: 87%;
 }
 
-/* line 128, ../scss/style.scss */
+/* line 129, ../scss/style.scss */
 #flash {
   width: 40%;
   background-color: #ec5148;
@@ -142,7 +143,7 @@ article {
   text-align: center;
 }
 
-/* line 138, ../scss/style.scss */
+/* line 139, ../scss/style.scss */
 .btn {
   background: #ec5148;
   padding: 10px 10px 10px 10px;
@@ -153,47 +154,46 @@ article {
   text-transform: uppercase;
 }
 
-/* line 146, ../scss/style.scss */
+/* line 147, ../scss/style.scss */
 .btnCenter {
   margin: 0 auto;
   width: 20%;
 }
 
-/* line 151, ../scss/style.scss */
+/* line 152, ../scss/style.scss */
 .formCenter {
   width: 80%;
   margin: 0 auto;
 }
 
-/* line 156, ../scss/style.scss */
+/* line 157, ../scss/style.scss */
 textarea {
   vertical-align: top;
 }
 
 /* Style for Tasks */
-/* line 164, ../scss/style.scss */
+/* line 165, ../scss/style.scss */
 #tasks .task {
   width: 100%;
   display: inline-block;
   margin-bottom: 1%;
 }
-/* line 170, ../scss/style.scss */
+/* line 171, ../scss/style.scss */
 #tasks .task .name, #tasks .task .dateStart, #tasks .task .dateEnd, #tasks .task .progression, #tasks .task .importance, #tasks .task a {
   display: inline-block;
   margin-left: 3%;
 }
-/* line 175, ../scss/style.scss */
+/* line 176, ../scss/style.scss */
 #tasks .task .name {
   width: 30%;
 }
-/* line 179, ../scss/style.scss */
+/* line 180, ../scss/style.scss */
 #tasks .task .dateStart, #tasks .task .dateEnd {
   width: 11%;
 }
-/* line 183, ../scss/style.scss */
+/* line 184, ../scss/style.scss */
 #tasks .task .progression, #tasks .task .importance {
   width: 7%;
-  background-color: #f9f7ed;
 }
 /* line 188, ../scss/style.scss */
 #tasks .task a {
@@ -633,4 +633,73 @@ textarea {
 #stats .stat p {
   font-weight: 300;
   font-size: 22px;
+}
+
+/* line 631, ../scss/style.scss */
+#detail .top {
+  width: 100%;
+  height: 60px;
+  border-bottom: 1px solid #dadada;
+}
+/* line 636, ../scss/style.scss */
+#detail .top #name {
+  width: 87%;
+  display: inline-block;
+}
+/* line 640, ../scss/style.scss */
+#detail .top #name h2 {
+  margin-left: 4%;
+}
+/* line 645, ../scss/style.scss */
+#detail .top #button {
+  width: 12%;
+  display: inline-block;
+}
+/* line 649, ../scss/style.scss */
+#detail .top #button a {
+  margin-top: 10px;
+}
+/* line 655, ../scss/style.scss */
+#detail .content {
+  margin-left: 4%;
+  margin-top: 10px;
+}
+/* line 660, ../scss/style.scss */
+#detail #table {
+  height: auto;
+  width: 100%;
+  border-bottom: 1px solid #dadada;
+}
+/* line 665, ../scss/style.scss */
+#detail #table #description {
+  width: 85%;
+  height: auto;
+  display: inline-block;
+}
+/* line 672, ../scss/style.scss */
+#detail #table #info {
+  width: 14%;
+  text-align: center;
+  height: auto;
+  border-left: 1px solid #dadada;
+  display: inline-block;
+  vertical-align: top;
+}
+/* line 680, ../scss/style.scss */
+#detail #table #info .progression {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 30px;
+  color: #ec5148;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #dadada;
+}
+/* line 689, ../scss/style.scss */
+#detail #table #info .title {
+  font-size: 16px;
+  color: #989898;
+}
+/* line 694, ../scss/style.scss */
+#detail #table #info .participant {
+  height: 20px;
 }

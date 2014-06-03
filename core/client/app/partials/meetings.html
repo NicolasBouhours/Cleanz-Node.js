@@ -7,8 +7,8 @@
 		<article>
 			<div id="meetings">
 
-				<h4> Liste des vos réunions </h4>
-				<br/> <br/>
+				<h2> Réunions - {{ meetings.length }} </h2>
+				<br/>
 
 				<div id="meeting" ng-repeat="meeting in meetings" >
 					<div class="name"> {{ meeting.name }}</div>
