@@ -85,7 +85,6 @@ BugController.controller('Bugs', function($scope, $http, $routeParams, SortServi
      	$scope.bugsUnresolved = SortService.getSortBugUnresolved($scope.bugsInitial);
      }
 
-	 $scope.getBugs();
      $scope.getUser();
      $scope.getCategories();
 });

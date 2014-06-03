@@ -41,6 +41,7 @@ MeetingController.controller('Meetings', function($scope, $http, $routeParams, S
 
      //fill tab meetingsCategories
      $scope.getMeetingsByCategories = function() {
+     	console.debug($scope.categories);
         for (var i = 0 ; i < $scope.categories.length; i++) {
             $scope.meetingsCategories.push(SortService.getSortCategories($scope.meetingsInitial, $scope.categories[i].name));
         }

@@ -156,8 +156,10 @@ CleanzServices.factory('SortService', function() {
       var sortCategories = new Array();
 
       for(var i = 0; i < data.length; i++) {
-        if (data[i]._category.name == category) {
-          sortCategories.push(data[i]);
+        if (data[i]._category != null) {
+          if (data[i]._category.name == category) {
+            sortCategories.push(data[i]);
+          }
         }
       }
 
