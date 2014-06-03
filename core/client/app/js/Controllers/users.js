@@ -3,6 +3,8 @@ var UserController = angular.module('UserController', []);
 
 // ## Controller for register.html
 UserController.controller('UsersList', function($scope, AuthenticationService, $http, $location) {
+
+    $scope.flash= "";
    
     // List of all users
    $http.get('cleanz/api/users/list').success(function(users) {
@@ -32,11 +34,13 @@ UserController.controller('UsersList', function($scope, AuthenticationService, $
 
 // ## Controller for login.html
 UserController.controller('Login', function($scope, AuthenticationService, $location) {
+
 	$scope.login = function() {
 		AuthenticationService.login($scope.user).success(function(data) {
-			$location.path('project');
+            $location.path('project');
+		}).error(function(data) {
             $scope.flash = data.flash;
-		});
+        });
 	}
 });
 
@@ -49,6 +53,8 @@ UserController.controller('Logout', function(AuthenticationService, $location) {
 
 // ## Controller for editinfo.html
 UserController.controller('EditUserInfo', function($scope, $http) {
+
+    $scope.flash = "";
     // Get information about our user
     var getInfoUser = function () { 
       $http.get('/cleanz/api/users').success(function(user) {

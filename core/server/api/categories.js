@@ -32,13 +32,6 @@ categories = {
     create: function add(req, res) {
     	var category = new Category(req.body);
 
-    	// check if this category doesn't exist
-    	Category.findOne({'name': req.body.name}, function(err, cat) {
-    		console.log(cat);
-    		if (cat != null) {
-    			return res.json({'flash': 'Cette catégorie existe déja'});
-    		}
-    		else {
 
 	    	// get id for category
 			 Category.findOne().sort({'id': -1}).limit(1).findOne(function(err,cat) {
@@ -52,29 +45,36 @@ categories = {
 				//Find project
 				Project.findOne({id: req.body.projectId}).exec(function(err, pro) {
 
-					category._project = pro._id;
+					Category.findOne({name: req.body.name,_project: pro._id}).exec(function(err,cat) {
 
-	        		if (err) console.log(err);
-
-	        		//save category
-					category.save(function(err, cat) {
-						if (err) {
-							return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
+						if (cat != null) {
+							return res.send(500, {'flash': 'Cette catégorie existe déja' });
 						}
+
 						else {
-							pro.categories.push(cat);
+							category._project = pro._id;
 
-							pro.save(function(err) {
-								if (err) console.log(err);
+			        		if (err) console.log(err);
 
-								return res.json({'flash': 'Vous venez d\'ajouté la catégorie ' + cat.name});
+			        		//save category
+							category.save(function(err, cat) {
+								if (err) {
+									return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
+								}
+								else {
+									pro.categories.push(cat);
+
+									pro.save(function(err) {
+										if (err) console.log(err);
+
+										return res.json({'flash': 'Vous venez d\'ajouté la catégorie ' + cat.name});
+									});
+								}
 							});
 						}
-					});
+					})
 				});
 			});
-		    }
-    	});
 	},
 
 	// #### Edit

@@ -5,6 +5,12 @@
 var mongoose = require('mongoose');
 var User = require('../models/users');
 var Project = require('../models/projects');
+var Task = require('../models/tasks');
+var Meeting = require('../models/meetings');
+var Bug = require('../models/bugs');
+var Log = require('../models/logs');
+var Category = require('../models/categories');
+var Document = require('../models/documents');
 
 
 // ## Projects
@@ -106,18 +112,27 @@ projects = {
 
 		Project.findOne({id: req.params.id}, function(err,pro) {
 
-			if (pro._creator = req.session.user.id) {
-				if(err) console.log(err);
-				pro.remove(function(err) {
-					if (err) console.log(err);
-					else {
-						return res.json({'flash': 'Votre projet a été supprimé avec succès'});
-					}
-				});
-			}
-			else {
-				if (err) return res.send(500, {'flash': 'Seul le créateur du projet peut le supprimer' });
-			}
+			User.findOne({id: req.session.user.id}, function(err, usr){
+				if (err) return res.send(500, {'flash': 'Une erreure a été rencontrée' });
+
+				if (pro._creator == usr._id) {
+
+					//remove project
+					pro.remove(function(err) {
+						if (err) console.log(err);
+						else {
+							return res.json({'flash': 'Votre projet a été supprimé avec succès'});
+						}
+					});
+
+					//remove tasks
+					Task.find({_project: pro._id}).exec(function(err, tasks) { tasks.remove(); });
+
+				}
+				else {
+					return res.send(500, {'flash': 'Seul le créateur du projet peut le supprimer' });
+				}
+			});
 		});
 	},
 

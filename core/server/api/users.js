@@ -19,7 +19,7 @@ users = {
 
     // return user information to json
     read: function read(req,res, id) {
-        User.findOne(req.session.user._id, function(err,usr) {
+        User.findOne({id:req.session.user.id}, function(err,usr) {
             if (err) return res.json({'flash': 'Impossible d\'afficher vos informations'});
             return res.json(usr);
         });

@@ -17,7 +17,7 @@
 			<div id="bugs">
 				<h2> Liste des bugs </h2>
 
-				<div id="bug" ng-repeat="bug in bugs" >
+				<div id="bug" ng-repeat="bug in bugs | filter:query" >
 
 					<div class="name"> {{ bug.name }}</div>
 					<div class="dateStart">{{ bug.created_at | date:'yyyy-MM-dd'}}</div>
