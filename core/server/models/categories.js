@@ -8,8 +8,8 @@ var nameValidator = [validate('isAlphanumeric')];
 
 // ## Schema
 var categorySchema = new Schema({
-	id: { type: Number, required: true, validate: nameValidator},
-	name: { type: String, required: true },
+	id: { type: Number, required: true},
+	name: { type: String, required: true, validate: nameValidator},
 	_project: { type: Schema.Types.ObjectId, ref: 'Project', required: true },
 });
 

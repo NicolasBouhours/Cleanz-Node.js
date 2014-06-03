@@ -14,27 +14,33 @@ projects = {
 
 	// return list of all projects for one user
 	list: function list(req, res) {
-		/*
-		User.findOne({id: req.session.user.id}).select('projects').where('projects.valid', 1)
-		.populate('projects.project').where('projects.valid', 1).exec(function(err, usr) {
-			console.log(usr);
-			if (err) console.log(err);
-				return res.json(usr);
-		});
-*/		
-		User.findOne({id: req.session.user.id}).populate('projects.project').select('projects').exec(function(err, pros) {
-			if(err) console.log(err);
-			console.log(pros);
+
+		var pros = new Array();
+
+		// we get all project where user was in
+		Project.find().populate({
+			  path: 'users',
+			  match: { _id: { $gte: req.session.user._id }}}).exec(function(err, pro) {
+			for (var i = 0; i < pro.length; i++) {
+				if (pro[i].users.length > 0) {
+					console.log('ajout');
+					pros.push(pro[i]);
+					console.log(pros);
+				}
+			}
+
 			return res.json(pros);
 		});
-
 	},
 
 	// #### Read
 
 	// return detail of one project
 	read: function read(req, res) {
-		console.log(req.params.id);
+
+		Project.findOne({id: req.params.id}).populate('tasks','progress').populate('meetings','dateStart').populate('bugs','resolve').exec(function(err, pro) {
+			return res.json(pro);
+		});
 	},
 
 	// #### Create
@@ -97,16 +103,32 @@ projects = {
 
 	// delete project into database
 	delete: function remove(req, res) {
+
 		Project.findOne({id: req.params.id}, function(err,pro) {
-			if (err) return handleError(err);
-			pro.remove(function(err) {
-				if (err) return handleError(err);
-				else {
-					return res.json({'flash': 'Votre projet a été supprimé avec succès'});
-				}
-			});
+
+			if (pro._creator = req.session.user.id) {
+				if(err) console.log(err);
+				pro.remove(function(err) {
+					if (err) console.log(err);
+					else {
+						return res.json({'flash': 'Votre projet a été supprimé avec succès'});
+					}
+				});
+			}
+			else {
+				if (err) return res.send(500, {'flash': 'Seul le créateur du projet peut le supprimer' });
+			}
 		});
 	},
+
+	// #### List Users
+
+	// return list of users for one project
+	listUsers: function listUsers(req, res) {
+			Project.findOne({id: req.params.id}).select('users').populate('users','firstName lastName').exec(function(err,pro) {
+				return res.json(pro);
+		});
+	}
 
 };
 

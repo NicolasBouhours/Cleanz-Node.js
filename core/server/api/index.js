@@ -9,7 +9,8 @@ var users 			= require('./users'),
 	bugs 			= require('./bugs'),
     logs            = require('./logs'),
     meetings        = require('./meetings'),
-    documents       = require('./documents');
+    documents       = require('./documents'),
+    categories      = require('./categories');
 
 
 // ## Public API
@@ -23,4 +24,5 @@ module.exports = {
     logs: logs,
     meetings: meetings,
     documents: documents,
+    categories: categories,
 };

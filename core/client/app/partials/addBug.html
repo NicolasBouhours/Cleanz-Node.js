@@ -1,6 +1,7 @@
+<div header> </div>
 <div class="container-fluid">
 
-	<div menuleft>
+	<div style="display:inline-block;height: 100%;" menuleft>
 
 	</div>
 	<article>
@@ -22,7 +23,11 @@
 
 			        <label for="description">Description :</label>
 			        <textarea name="ameliorer" id="ameliorer" size="600" ng-model="bug.description" required></textarea> <br/>
-						<button type="submit" class="btn" ng-click="addBug()">Ajouter le bug</button>
+
+			        <div selectcategories> </div>
+			        <div selectusers> </div>
+					<button type="submit" class="btn" ng-click="addBug()">Ajouter le bug</button>
+					
 				</form>
 			</div>
 		</div>

@@ -19,7 +19,7 @@ logs = {
 		Project.findOne({id: req.params.projectId}, function(err, pro) {
 			if (err) console.log(err);
 			// get logs
-			Log.find({_project: pro._id}).populate('_creator', 'id firstName lastName').populate('_logmessage').exec(function(err, logs) {
+			Log.find({_project: pro._id}).populate('_creator', 'id firstName lastName').populate('_logmessage').sort('-created_at').exec(function(err, logs) {
 				if (err) console.log(err);
 				return res.json(logs);
 			});
@@ -47,12 +47,14 @@ logs = {
 					// add logs into projects log's list
 					Project.findOne({_id: log._project}, function(err, pro) {
 						if (err) console.log(err);
-						console.log(pro);
-						pro.logs.push(l);
 
-						pro.save(function(err,p) {
-							if (err) console.log(err);
-						});
+						if (pro != null) {
+							pro.logs.push(l);
+
+							pro.save(function(err,p) {
+								if (err) console.log(err);
+							});
+						}
 					});
 				});
 	        });

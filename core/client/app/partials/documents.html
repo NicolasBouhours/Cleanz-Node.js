@@ -1,32 +1,35 @@
+<div header> </div>
 <div class="container-fluid">
 
-	<div menuleft>
+	<div style="display:inline-block;height: 100%;" menuleft>
 
 	</div>
-	</article>
-
-		<h2> Liste des bugs de votre projet {{ projectId}} </h2>
+	<article>
+	<br/> 
+	<div id="flash" ng-show="flash">
+        {{ flash }}
+   	</div>
+   	<br/>
 
 		<h4> Liste des vos documents</h4>
 
-		<div id="doc" ng-repeat="doc in docs" >
-			<p><a href="C:\Users\Nico\Desktop\Cleanz\content\0\accueil.png" ng-click="getDocument(doc)"> {{ doc.name }} {{ doc.description }} {{ doc.created_at | date:'yyyy-MM-dd' }}  {{ doc.size}} {{ bug._creator.firstName }} {{ bug._creator.lastName }} </a> </p>
-			<a href="/cleanz/api/documents/get/{{ doc.id }}">download</a>
-			<a ng-click="getDoc(doc)"> Modifier le document</a>
+		<div class="doc" ng-repeat="doc in docs" >
+		
+			<img src="images/iconfile/96/{{ doc.ext }}.png"/>
+			<h4>{{ doc.name }} </h4>
+			<a href="/cleanz/api/{{ projectId }}/documents/get/{{ doc.id }}"><img src="images/download.png"/></a>
+			<a ng-click="showForm();getDoc(doc);"><img src="images/pencil.png"/></a>
 		</div>
 
 		
 
-		<div id="flash" ng-show="flash">
-        	{{ flash }}
-   		</div>
 
    		<br/>
-   		<a href="#/project/{{ projectId }}/addDocument"> Ajouter un Document</a>
+   		<center><a href="#/project/{{ projectId }}/addDocument" class="btn"> Ajouter un Document</a></center>
 
-   		<h4> Modifier le document </h4>
 		
-		<div id="modifDoc">
+		<div id="modifDoc" ng-show="showDocForm">
+		<h4> Modifier le document </h4>
 			<form>
 				<label for="name"> Nom du document : </label>
 				<input type="text" ng-model="doc.name" id="name"/>
@@ -34,10 +37,9 @@
 				<label for="descr"> Description du document : </label>
 				<textarea name="descr" id="descr" ng-model="doc.description" cols="30" rows="50"></textarea>
 
-				<button type="submit" class="button" ng-click="editDoc(doc)">Modifié le document</button>
+				<button type="submit" class="btn" ng-click="editDoc(doc)">Modifier le document</button>
+				<button class="btn" ng-click="closeModif()">Annuler</button>
 			</form>
-			<a ng-click="deleteDoc(doc)" class="button">Supprimer le document</a>
-
 		</div>
 	</article>
 </div>

@@ -1,59 +1,65 @@
 /** Import **/
 /** Constants **/
 /** CSS **/
-/* line 11, ../scss/style.scss */
+/* line 13, ../scss/style.scss */
 html {
   font-family: 'Lato', sans-serif;
   font-weight: 300;
   color: #363634;
+  height: 760px;
 }
 
-/* line 16, ../scss/style.scss */
+/* line 19, ../scss/style.scss */
 body {
-  background-color: #f9f7ed;
+  background-color: white;
 }
 
-/* line 20, ../scss/style.scss */
+/* line 23, ../scss/style.scss */
 .btn {
   font-size: 13px;
 }
 
-/* line 24, ../scss/style.scss */
+/* line 27, ../scss/style.scss */
+.ng-scope, container-fluid ng-scope {
+  height: 100%;
+}
+
+/* line 31, ../scss/style.scss */
 header {
   width: 100%;
   padding-top: 0px;
-  background-color: white;
+  background-color: #363634;
 }
-/* line 29, ../scss/style.scss */
+/* line 36, ../scss/style.scss */
 header #nomApp {
-  width: 45%;
+  width: 55%;
   display: inline-block;
   vertical-align: top;
 }
-/* line 34, ../scss/style.scss */
+/* line 41, ../scss/style.scss */
 header #nomApp h4 {
   margin-top: 1%;
   margin-left: 7%;
-  color: #363634;
+  color: white;
   font-size: 32px;
   letter-spacing: 1px;
 }
-/* line 41, ../scss/style.scss */
+/* line 48, ../scss/style.scss */
 header #nomApp h4 .red {
   font-style: italic;
 }
-/* line 47, ../scss/style.scss */
+/* line 54, ../scss/style.scss */
 header #menuDroite {
-  width: 54%;
+  width: 44%;
   display: inline-block;
   vertical-align: top;
 }
-/* line 52, ../scss/style.scss */
+/* line 59, ../scss/style.scss */
 header #menuDroite a {
   text-decoration: none;
-  color: #363634;
+  color: white;
 }
-/* line 57, ../scss/style.scss */
+/* line 64, ../scss/style.scss */
 header #menuDroite li {
   margin-top: 2%;
   text-transform: uppercase;
@@ -62,58 +68,70 @@ header #menuDroite li {
   margin-left: 9%;
 }
 
-/* line 67, ../scss/style.scss */
+/* line 74, ../scss/style.scss */
 label {
   font-weight: 300;
 }
 
-/* line 71, ../scss/style.scss */
+/* line 78, ../scss/style.scss */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
 }
 
-/* line 75, ../scss/style.scss */
+/* line 82, ../scss/style.scss */
 .red {
   color: #ec5148;
 }
 
-/* line 79, ../scss/style.scss */
+/* line 86, ../scss/style.scss */
 .blue {
   color: #007095;
 }
 
-/* line 82, ../scss/style.scss */
+/* line 89, ../scss/style.scss */
 nav {
-  width: 15%;
-  height: 100%;
+  height: 873px;
+  width: 240px;
   display: inline-block;
   background-color: white;
+  border-right: 1px solid #dadada;
 }
-/* line 88, ../scss/style.scss */
+/* line 96, ../scss/style.scss */
+nav ul {
+  margin-left: 0px;
+}
+/* line 100, ../scss/style.scss */
 nav li {
   list-style: none;
-  padding: 6%;
-  border-top: 1px dashed #ec5148;
+  padding-top: 14%;
+  padding-bottom: 14%;
+  border-top: 1px solid #dadada;
 }
-/* line 93, ../scss/style.scss */
+/* line 106, ../scss/style.scss */
 nav li .image {
   display: inline-block;
-  width: 80px;
+  margin-right: 15px;
+  margin-left: 4%;
 }
-/* line 98, ../scss/style.scss */
+/* line 112, ../scss/style.scss */
 nav li a {
   color: #363634;
   display: inline-block;
 }
+/* line 118, ../scss/style.scss */
+nav li:hover {
+  background-color: #cccccc;
+}
 
-/* line 105, ../scss/style.scss */
+/* line 123, ../scss/style.scss */
 article {
   display: inline-block;
   vertical-align: top;
-  width: 84%;
+  width: 87%;
+  margin-left: -3px;
 }
 
-/* line 111, ../scss/style.scss */
+/* line 130, ../scss/style.scss */
 #flash {
   width: 40%;
   background-color: #ec5148;
@@ -126,7 +144,7 @@ article {
   text-align: center;
 }
 
-/* line 121, ../scss/style.scss */
+/* line 140, ../scss/style.scss */
 .btn {
   background: #ec5148;
   padding: 10px 10px 10px 10px;
@@ -137,92 +155,158 @@ article {
   text-transform: uppercase;
 }
 
-/* line 129, ../scss/style.scss */
+/* line 148, ../scss/style.scss */
 .btnCenter {
   margin: 0 auto;
   width: 20%;
 }
 
-/* line 134, ../scss/style.scss */
+/* line 153, ../scss/style.scss */
 .formCenter {
   width: 80%;
   margin: 0 auto;
 }
 
-/* line 139, ../scss/style.scss */
+/* line 158, ../scss/style.scss */
 textarea {
   vertical-align: top;
 }
 
 /* Style for Tasks */
-/* line 147, ../scss/style.scss */
-#tasks .task {
+/* line 166, ../scss/style.scss */
+#listData #sort {
+  width: 15%;
+  height: 917px;
+  background-color: #666666;
+  display: inline-block;
+  color: #e2e2e2;
+}
+/* line 173, ../scss/style.scss */
+#listData #sort .input {
+  height: 100px;
+  line-height: 100px;
+  border-bottom: 1px solid #616161;
+  text-align: center;
+}
+/* line 179, ../scss/style.scss */
+#listData #sort .input input {
+  background-color: #616161;
+  height: 34px;
+  color: #e2e2e2;
+  width: 80%;
+  border: none;
+  text-align: center;
+}
+/* line 188, ../scss/style.scss */
+#listData #sort .input input:focus {
+  border: none;
+}
+/* line 193, ../scss/style.scss */
+#listData #sort ul {
+  list-style: none;
+  margin-left: 0px;
+}
+/* line 197, ../scss/style.scss */
+#listData #sort ul li {
+  height: 60px;
+  line-height: 60px;
+  font-size: 18px;
+  border-bottom: 1px solid #616161;
+}
+/* line 203, ../scss/style.scss */
+#listData #sort ul li a {
+  margin-left: 8px;
+  color: #e2e2e2;
+  display: inline-block;
+  width: 80%;
+}
+/* line 210, ../scss/style.scss */
+#listData #sort ul li .value {
+  display: inline-block;
+  width: auto;
+  background-color: #ec5148;
+  height: 22px;
+  line-height: 22px;
+  padding-right: 6px;
+  padding-left: 6px;
+}
+/* line 221, ../scss/style.scss */
+#listData #sort ul li:hover {
+  background-color: #616161;
+}
+/* line 226, ../scss/style.scss */
+#listData #tasks {
+  display: inline-block;
+  vertical-align: top;
+  width: 82%;
+}
+/* line 230, ../scss/style.scss */
+#listData #tasks .task {
   width: 100%;
   display: inline-block;
   margin-bottom: 1%;
 }
-/* line 153, ../scss/style.scss */
-#tasks .task .name, #tasks .task .dateStart, #tasks .task .dateEnd, #tasks .task .progression, #tasks .task .importance, #tasks .task a {
+/* line 236, ../scss/style.scss */
+#listData #tasks .task .name, #listData #tasks .task .dateStart, #listData #tasks .task .dateEnd, #listData #tasks .task .progression, #listData #tasks .task .importance, #listData #tasks .task a {
   display: inline-block;
   margin-left: 3%;
 }
-/* line 158, ../scss/style.scss */
-#tasks .task .name {
+/* line 241, ../scss/style.scss */
+#listData #tasks .task .name {
   width: 30%;
 }
-/* line 162, ../scss/style.scss */
-#tasks .task .dateStart, #tasks .task .dateEnd {
+/* line 245, ../scss/style.scss */
+#listData #tasks .task .dateStart, #listData #tasks .task .dateEnd {
   width: 11%;
 }
-/* line 166, ../scss/style.scss */
-#tasks .task .progression, #tasks .task .importance {
+/* line 249, ../scss/style.scss */
+#listData #tasks .task .progression, #listData #tasks .task .importance {
   width: 7%;
-  background-color: #f9f7ed;
 }
-/* line 171, ../scss/style.scss */
-#tasks .task a {
+/* line 253, ../scss/style.scss */
+#listData #tasks .task a {
   list-style: none;
   text-decoration: none;
   color: #ec5148;
 }
 
 /* Style for AddTask */
-/* line 182, ../scss/style.scss */
+/* line 265, ../scss/style.scss */
 #addTask .formCenter, #editTask .formCenter, #addBug .formCenter, #addMeeting .formCenter, #editMeeting .formCenter, #editBug .formCenter, #addUser .formCenter {
   width: 60%;
   margin: 0 auto;
 }
-/* line 187, ../scss/style.scss */
+/* line 270, ../scss/style.scss */
 #addTask input, #editTask input, #addBug input, #addMeeting input, #editMeeting input, #editBug input, #addUser input {
   width: 30%;
 }
-/* line 191, ../scss/style.scss */
+/* line 274, ../scss/style.scss */
 #addTask label, #editTask label, #addBug label, #addMeeting label, #editMeeting label, #editBug label, #addUser label {
   display: inline-block;
 }
-/* line 195, ../scss/style.scss */
+/* line 278, ../scss/style.scss */
 #addTask input, #editTask input, #addBug input, #addMeeting input, #editMeeting input, #editBug input, #addUser input {
   display: inline-block;
 }
-/* line 199, ../scss/style.scss */
+/* line 282, ../scss/style.scss */
 #addTask .dateNext, #editTask .dateNext, #addBug .dateNext, #addMeeting .dateNext, #editMeeting .dateNext, #editBug .dateNext, #addUser .dateNext {
   display: inline-block;
   width: 45%;
 }
-/* line 203, ../scss/style.scss */
+/* line 286, ../scss/style.scss */
 #addTask .dateNext input, #editTask .dateNext input, #addBug .dateNext input, #addMeeting .dateNext input, #editMeeting .dateNext input, #editBug .dateNext input, #addUser .dateNext input {
   width: auto;
 }
-/* line 208, ../scss/style.scss */
+/* line 291, ../scss/style.scss */
 #addTask textarea, #editTask textarea, #addBug textarea, #addMeeting textarea, #editMeeting textarea, #editBug textarea, #addUser textarea {
   width: 600px;
   height: 170px;
 }
-/* line 213, ../scss/style.scss */
+/* line 296, ../scss/style.scss */
 #addTask button, #editTask button, #addBug button, #addMeeting button, #editMeeting button, #editBug button, #addUser button {
   margin-left: 18%;
 }
-/* line 219, ../scss/style.scss */
+/* line 302, ../scss/style.scss */
 #addTask #progression .progressions, #editTask #progression .progressions, #addBug #progression .progressions, #addMeeting #progression .progressions, #editMeeting #progression .progressions, #editBug #progression .progressions, #addUser #progression .progressions {
   width: 15%;
   height: 21px;
@@ -231,81 +315,113 @@ textarea {
   color: #f9f7ed;
   text-align: center;
 }
-/* line 228, ../scss/style.scss */
+/* line 311, ../scss/style.scss */
 #addTask #progression #basse, #editTask #progression #basse, #addBug #progression #basse, #addMeeting #progression #basse, #editMeeting #progression #basse, #editBug #progression #basse, #addUser #progression #basse {
   background-color: #A7F547;
 }
-/* line 232, ../scss/style.scss */
+/* line 315, ../scss/style.scss */
 #addTask #progression #moyenne, #editTask #progression #moyenne, #addBug #progression #moyenne, #addMeeting #progression #moyenne, #editMeeting #progression #moyenne, #editBug #progression #moyenne, #addUser #progression #moyenne {
   background-color: #6789C9;
   border-bottom: 2px solid #ec5148;
   border-spacing: 15px 15px;
 }
-/* line 238, ../scss/style.scss */
+/* line 321, ../scss/style.scss */
 #addTask #progression #haute, #editTask #progression #haute, #addBug #progression #haute, #addMeeting #progression #haute, #editMeeting #progression #haute, #editBug #progression #haute, #addUser #progression #haute {
   background-color: #E9FA2A;
 }
-/* line 242, ../scss/style.scss */
+/* line 325, ../scss/style.scss */
 #addTask #progression #urgente, #editTask #progression #urgente, #addBug #progression #urgente, #addMeeting #progression #urgente, #editMeeting #progression #urgente, #editBug #progression #urgente, #addUser #progression #urgente {
   background-color: #FC9423;
+}
+/* line 330, ../scss/style.scss */
+#addTask #flash, #editTask #flash, #addBug #flash, #addMeeting #flash, #editMeeting #flash, #editBug #flash, #addUser #flash {
+  width: 100%;
+}
+
+/* line 335, ../scss/style.scss */
+#part {
+  display: inline;
+}
+
+/* line 340, ../scss/style.scss */
+#addTask .usersselect, #editTask .usersselect, #addMeeting .usersselect, #editMeeting .usersselect, #addBug .usersselect, #editBug .usersselect {
+  background-color: #ec5148;
+  color: white;
+  display: inline-block;
+  vertical-align: top;
+  height: 25px;
+  margin-right: 4%;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+/* line 351, ../scss/style.scss */
+#addTask #usersSelect, #editTask #usersSelect, #addMeeting #usersSelect, #editMeeting #usersSelect, #addBug #usersSelect, #editBug #usersSelect {
+  width: 35%;
+  display: inline-block;
+}
+/* line 356, ../scss/style.scss */
+#addTask a, #editTask a, #addMeeting a, #editMeeting a, #addBug a, #editBug a {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 4%;
 }
 
 /** Style for Modify Task **/
 /** Modification for Edit info **/
-/* line 252, ../scss/style.scss */
+/* line 367, ../scss/style.scss */
 #editInfo {
   width: 90%;
   margin: 0 auto;
 }
-/* line 257, ../scss/style.scss */
+/* line 372, ../scss/style.scss */
 #editInfo h4 {
   color: #ec5148;
 }
-/* line 261, ../scss/style.scss */
+/* line 376, ../scss/style.scss */
 #editInfo h2 {
   margin-left: 5%;
 }
-/* line 265, ../scss/style.scss */
+/* line 380, ../scss/style.scss */
 #editInfo #info, #editInfo #password {
   display: inline-block;
   vertical-align: top;
 }
-/* line 269, ../scss/style.scss */
+/* line 384, ../scss/style.scss */
 #editInfo #info input, #editInfo #password input {
   width: 50%;
 }
-/* line 275, ../scss/style.scss */
+/* line 390, ../scss/style.scss */
 #editInfo #info {
   width: 54%;
   margin-left: 5%;
 }
-/* line 280, ../scss/style.scss */
+/* line 395, ../scss/style.scss */
 #editInfo #password {
   width: 40%;
 }
 
 /** Connexion **/
-/* line 286, ../scss/style.scss */
+/* line 401, ../scss/style.scss */
 #login {
   text-align: center;
 }
-/* line 289, ../scss/style.scss */
+/* line 404, ../scss/style.scss */
 #login input {
   width: 30%;
   margin: 0 auto;
 }
-/* line 294, ../scss/style.scss */
+/* line 409, ../scss/style.scss */
 #login h2 {
   color: #ec5148;
 }
 
 /* List Projects */
-/* line 300, ../scss/style.scss */
+/* line 415, ../scss/style.scss */
 #listProjects {
   width: 90%;
   margin: 0 auto;
 }
-/* line 305, ../scss/style.scss */
+/* line 420, ../scss/style.scss */
 #listProjects .project {
   height: 220px;
   width: 28%;
@@ -322,18 +438,18 @@ textarea {
   vertical-align: top;
   font-weight: 300;
 }
-/* line 319, ../scss/style.scss */
+/* line 434, ../scss/style.scss */
 #listProjects .project:last {
   margin-right: none;
 }
-/* line 323, ../scss/style.scss */
+/* line 438, ../scss/style.scss */
 #listProjects .project h5 {
   margin-top: 25px;
   font-size: 26px;
   color: #f9f7ed;
   font-weight: 300;
 }
-/* line 330, ../scss/style.scss */
+/* line 445, ../scss/style.scss */
 #listProjects .project a {
   display: block;
   color: #ec5148;
@@ -346,18 +462,22 @@ textarea {
   font-size: 15px;
   padding: 6px;
 }
-/* line 341, ../scss/style.scss */
+/* line 456, ../scss/style.scss */
 #listProjects .project p {
   font-weight: 300;
 }
-/* line 346, ../scss/style.scss */
+/* line 461, ../scss/style.scss */
+#listProjects .inlineblock {
+  display: inline-block;
+}
+/* line 466, ../scss/style.scss */
 #listProjects #createProject {
   border: 1px solid #ec5148;
   background-color: white;
   color: #ec5148;
   margin: 0 auto;
 }
-/* line 352, ../scss/style.scss */
+/* line 472, ../scss/style.scss */
 #listProjects #createProject a {
   background-color: #ec5148;
   color: #f9f7ed;
@@ -365,7 +485,7 @@ textarea {
   font-size: 20px;
   padding: 10px;
 }
-/* line 361, ../scss/style.scss */
+/* line 481, ../scss/style.scss */
 #listProjects #addProject {
   position: absolute;
   width: 400px;
@@ -379,29 +499,281 @@ textarea {
   left: 50%;
   z-index: 10;
 }
-/* line 374, ../scss/style.scss */
+/* line 494, ../scss/style.scss */
 #listProjects #addProject input {
   width: 300px;
 }
-/* line 377, ../scss/style.scss */
+/* line 497, ../scss/style.scss */
 #listProjects #addProject .btn {
   margin-left: 10%;
 }
 
 /* Style for Register */
-/* line 385, ../scss/style.scss */
+/* line 505, ../scss/style.scss */
 #register {
   width: 40%;
   margin: 0 auto;
 }
-/* line 389, ../scss/style.scss */
+/* line 509, ../scss/style.scss */
 #register #flash {
   width: auto;
 }
 
 /* Style for Logs */
-/* line 396, ../scss/style.scss */
+/* line 516, ../scss/style.scss */
 #logs {
   width: 60%;
   margin: 0 auto;
+}
+
+/* Style for Params */
+/* line 524, ../scss/style.scss */
+#params h4 {
+  display: inline-block;
+  width: 44%;
+}
+/* line 529, ../scss/style.scss */
+#params p {
+  width: 44%;
+  display: inline-block;
+}
+/* line 534, ../scss/style.scss */
+#params a {
+  margin-right: 2%;
+}
+/* line 538, ../scss/style.scss */
+#params #cat, #params .cat {
+  font-size: 18px;
+  display: inline-block;
+  width: 20%;
+  margin-top: 1%;
+}
+/* line 545, ../scss/style.scss */
+#params #categoriges {
+  margin-bottom: 3%;
+}
+
+/* line 552, ../scss/style.scss */
+#addCategory, #modifyCategory, #deleteProject, #deleteCategory {
+  position: absolute;
+  width: 400px;
+  height: 250px;
+  background-color: #f9f7ed;
+  border: 1px solid #ec5148;
+  border-top: 2px solid red;
+  top: 50%;
+  margin-top: -80px;
+  margin-left: -200px;
+  left: 50%;
+  z-index: 10;
+}
+/* line 565, ../scss/style.scss */
+#addCategory input, #modifyCategory input, #deleteProject input, #deleteCategory input {
+  width: 300px;
+}
+/* line 568, ../scss/style.scss */
+#addCategory .btn, #modifyCategory .btn, #deleteProject .btn, #deleteCategory .btn {
+  margin-left: 10%;
+}
+
+/* line 573, ../scss/style.scss */
+#delProject {
+  margin-top: 10%;
+}
+
+/* line 577, ../scss/style.scss */
+.doc {
+  display: inline-block;
+  width: 30%;
+  vertical-align: top;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* line 585, ../scss/style.scss */
+#modifDoc {
+  position: absolute;
+  width: 450px;
+  height: 270px;
+  background-color: #f9f7ed;
+  border: 1px solid #ec5148;
+  border-top: 2px solid red;
+  top: 50%;
+  margin-top: -180px;
+  margin-left: -210px;
+  left: 50%;
+  z-index: 10;
+}
+/* line 598, ../scss/style.scss */
+#modifDoc .btn {
+  margin-left: 10%;
+}
+
+/* line 603, ../scss/style.scss */
+#meetings {
+  font-size: 18px;
+  width: 82%;
+  display: inline-block;
+  vertical-align: top;
+}
+/* line 609, ../scss/style.scss */
+#meetings #meeting {
+  margin-bottom: 1%;
+}
+/* line 612, ../scss/style.scss */
+#meetings #meeting .name, #meetings #meeting .dateStart, #meetings #meeting .duree, #meetings #meeting .time, #meetings #meeting a {
+  display: inline-block;
+  margin-left: 3%;
+}
+/* line 617, ../scss/style.scss */
+#meetings #meeting .name {
+  width: 27%;
+}
+/* line 621, ../scss/style.scss */
+#meetings #meeting .dateStart {
+  width: 12%;
+}
+/* line 625, ../scss/style.scss */
+#meetings #meeting .duree {
+  width: 12%;
+}
+/* line 629, ../scss/style.scss */
+#meetings #meeting .time {
+  width: 12%;
+}
+/* line 633, ../scss/style.scss */
+#meetings #meeting a {
+  width: 20%;
+  color: #ec5148;
+}
+
+/* line 640, ../scss/style.scss */
+#bugs {
+  font-size: 18px;
+  width: 82%;
+  display: inline-block;
+  vertical-align: top;
+}
+/* line 646, ../scss/style.scss */
+#bugs #bug {
+  margin-bottom: 1%;
+}
+/* line 650, ../scss/style.scss */
+#bugs #bug .name, #bugs #bug .dateStart, #bugs #bug .creator, #bugs #bug .resolve, #bugs #bug a {
+  display: inline-block;
+  margin-left: 3%;
+}
+/* line 655, ../scss/style.scss */
+#bugs #bug .name {
+  width: 20%;
+}
+/* line 659, ../scss/style.scss */
+#bugs #bug .dateStart {
+  width: 12%;
+}
+/* line 663, ../scss/style.scss */
+#bugs #bug .creator {
+  width: 20%;
+}
+/* line 667, ../scss/style.scss */
+#bugs #bug .resolve {
+  width: 10%;
+}
+/* line 671, ../scss/style.scss */
+#bugs #bug a {
+  width: 20%;
+  color: #ec5148;
+}
+
+/* line 678, ../scss/style.scss */
+#stats {
+  height: 500px;
+}
+/* line 681, ../scss/style.scss */
+#stats .stat {
+  width: 45%;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  height: 200px;
+}
+/* line 688, ../scss/style.scss */
+#stats .stat h1 {
+  color: #ec5148;
+  font-weight: 300;
+  font-size: 40px;
+}
+/* line 694, ../scss/style.scss */
+#stats .stat p {
+  font-weight: 300;
+  font-size: 22px;
+}
+
+/* line 703, ../scss/style.scss */
+#detail .top {
+  width: 100%;
+  height: 60px;
+  border-bottom: 1px solid #dadada;
+}
+/* line 708, ../scss/style.scss */
+#detail .top #name {
+  width: 88%;
+  display: inline-block;
+}
+/* line 712, ../scss/style.scss */
+#detail .top #name h2 {
+  margin-left: 4%;
+}
+/* line 717, ../scss/style.scss */
+#detail .top #button {
+  width: 11%;
+  display: inline-block;
+}
+/* line 721, ../scss/style.scss */
+#detail .top #button a {
+  margin-top: 10px;
+}
+/* line 727, ../scss/style.scss */
+#detail .content {
+  margin-left: 4%;
+  margin-top: 10px;
+}
+/* line 732, ../scss/style.scss */
+#detail #table {
+  height: auto;
+  width: 100%;
+  border-bottom: 1px solid #dadada;
+}
+/* line 737, ../scss/style.scss */
+#detail #table #description {
+  width: 85%;
+  height: auto;
+  display: inline-block;
+}
+/* line 744, ../scss/style.scss */
+#detail #table #info {
+  width: 14%;
+  text-align: center;
+  height: auto;
+  border-left: 1px solid #dadada;
+  display: inline-block;
+  vertical-align: top;
+}
+/* line 752, ../scss/style.scss */
+#detail #table #info .progression {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 30px;
+  color: #ec5148;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #dadada;
+}
+/* line 761, ../scss/style.scss */
+#detail #table #info .title {
+  font-size: 16px;
+  color: #989898;
+}
+/* line 766, ../scss/style.scss */
+#detail #table #info .participant {
+  height: 20px;
 }

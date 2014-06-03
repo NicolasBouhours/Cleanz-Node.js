@@ -1,4 +1,5 @@
-	<div menuleft>
+	<div header> </div>
+	<div style="display:inline-block;height: 100%;" menuleft>
 
 	</div>
 	<article>
@@ -23,13 +24,16 @@
 		        <input type="text" id="place"  ng-model="meeting.place" required> <br/>
 						
 				<label for="dateS"> Date de début :</label>
-		        <datepicker ng-model='dateEnd' disable-clear-button="true" placeholder='Date de fin' date-format="dd/MM/yyyy" disable-timepicker="true"></datepicker> <br/>
+		        <input type="date" id="dateS" ng-model="meeting.dateStart" />
 
 		        <label for="dateT"> Heure de début :</label>
 		        <input type="text" id="dateT" ng-model="meeting.timeStart" /> <br/>
 
 		        <label for="duree"> Duree :</label>
-		        <input type="text" id="duree" ng-model="meeting.duree" /> <br/> 
+		        <input type="text" id="duree" ng-model="meeting.duree" /> min<br/> 
+
+		        <div selectcategories> </div>
+		        <div selectusers> </div>
 	 
 				<button type="submit" class="btn" ng-click="addMeeting()">Ajouter la réunion</button>
 

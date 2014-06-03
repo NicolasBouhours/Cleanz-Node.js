@@ -1,4 +1,5 @@
-	<div menuleft>
+<div header> </div>
+	<div style="display:inline-block;height: 100%;" menuleft>
 
 	</div>
 
@@ -14,9 +15,9 @@
 				<form class="form-horizontal">
 
 			        <label for="name">Nom de la réunion</label>
-			        <input type="text" id="name"  ng-model="meeting.name" required>
+			        <input type="text" id="name"  ng-model="meeting.name" required> <br/>
 
-			        <label for="description">description de la réunion</label>
+			        <label for="description">Description de la réunion</label>
 			        <textarea name="ameliorer" id="ameliorer" size="500" ng-model="meeting.description" required></textarea>
 
 			        <label for="place">Lieu de la réunion</label>
@@ -32,12 +33,14 @@
 			        <label for="duree"> Durée</label>
 			        <input type="text" id="duree" ng-model="meeting.duree" />
 
-					<button type="submit" ng-click="editMeeting()">Modifier la réunion</button>
+			        <div selectcategories> </div>
+			        <div selectusers> </div>
+
+					<button type="submit" class="btn" ng-click="editMeeting()">Modifier la réunion</button>
 
 				</form>
 
 	   			<br/>
-				<a class="btn" ng-click="removeMeeting()">Supprimer la réunion </a>
 			    <br/>
 
 	    	</div>

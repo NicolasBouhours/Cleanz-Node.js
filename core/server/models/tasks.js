@@ -22,7 +22,8 @@ var taskSchema = new Schema({
 	_creator: { type: Number, ref: 'User', required: true },
 	_project: { type: Number, ref: 'Project', required: true },
 	_importance: { type: Schema.Types.ObjectId, ref: 'Importance'},
-	_category: { type: Number, ref: 'Category' },
+	_category: { type: Schema.Types.ObjectId, ref: 'Category' },
+	users: [{ type: Schema.Types.ObjectId, ref: 'User'}],
 	comments: [{ type: Schema.Types.ObjectId, ref: 'Comment'}],
 });
 

@@ -1,23 +1,31 @@
+<div header> </div>
 <div class="container-fluid">
 
-	<div menuleft>
+	<div style="display:inline-block;height: 100%;" menuleft>
 
 	</div>
 	<article>
-		<div id="bug">
-			<h2> Vos différents bugs</h2>
+		<div id="detail" >
+				<div class="top"><div id="name"><h2>{{ bug.name }} </h2></div> <div id="button"><a href="#/project/{{ projectId }}/editBug/{{ bug.id }}" class="btn">Editer le bug</a></div></div>
+				<div id="table">
+					<div id="description"><div class="content">{{ bug.description}}</div></div>
+					<div id="info"> <br/>
+						<div class="title"> Date de création :</div>
+						{{ bug.created_at | date:'yyyy/MM/dd' }} 
+						<hr/>
+						<div class="title"> Résolu :</div>
+						{{ bug.resolve}} 
+						<hr/>
+						<div class="title">Créateur :</div>
+						{{ bug._creator.firstName }} {{ bug._creator.lastName }} 
+						<hr/>
+						<div class="title">Catégorie :</div>
+						{{ bug._category.name }} 
+						<hr/>
 
-			<div id="project" >
-	         <p>{{ bug.name }} {{ bug.description }} {{ bug.created_at | date:'yyyy-MM-dd' }}  {{ bug.resolve}} {{ bug._creator.firstName }} {{ bug._creator.lastName }}  {{ bug.resolve }} </p>
-			</div>
-
-			<br/> 
-			<a href="#/project/{{ projectId }}/editBug/{{ bug.id }}" class="btn"> Modifier le bug </a>
-			<br/>
-
-			<div id="flash" ng-show="flash">
-		        {{ flash }}
-		    </div>
-	    </div>
+						<div class="title">Participants :</div>
+						<div class="participant" ng-repeat="user in bug.users"> - {{ user.firstName }} {{ user.lastName }}<br/></div><br/> 
+					</div>
+			</div>	
 	</article>
 </div>

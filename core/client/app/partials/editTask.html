@@ -1,12 +1,14 @@
+<div header> </div>
 <div class="container-fluid">
 
-	<div menuleft>
+	<div style="display:inline-block;height: 100%;" menuleft>
 
 	</div>
 	<article>
 
 		<div id="editTask">
 			<div class="formCenter">
+			<br/>
 				<div id="flash" ng-show="flash">
 			        {{ flash }}
 			    </div>
@@ -31,12 +33,18 @@
 					<label for="dateS"> Date de début :</label>
 			        <input type="date" id="dateS" ng-model="task.dateEnd" />
 			        </div> <br/> 
+
+			        <label for="progress">Progression :</label>
+			        <input type="text" id="progress" ng-model="task.progress" required> <br/>
 					
 					<label for="importance"> Importance :</label> <br/>
 			        <input type="radio" name="importance" id="urgent" value="3" ng-model="task.importance"/> <label for="urgent">Urgent</label> <br />
 		       		<input type="radio" name="importance" id="haute" value="2" ng-model="task.importance" /> <label for="haute">Haute</label>    <br />
 		     		<input type="radio" name="importance" id="moyenne" value="1" ng-model="task.importance" /> <label for="moyenne">Moyenne</label><br />
 		     		<input type="radio" name="importance" id="basse" value="0" ng-model="task.importance" /> <label for="basse">Basse</label>    <br /> 
+
+		     		<div selectcategories> </div>
+		     		<div selectusers> </div>
 
 					<button type="submit" class="btn" ng-click="updateTask()">Mettre a jour la tache</button>
 

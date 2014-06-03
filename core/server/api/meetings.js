@@ -7,6 +7,7 @@ var User = require('../models/users');
 var Project = require('../models/projects');
 var Meeting = require('../models/meetings');
 var Log = require('../models/logs');
+var Category = require('../models/categories');
 var LogApi = require('../api/logs');
 
 // ## Meetings
@@ -21,7 +22,7 @@ meetings = {
 		Project.findOne({id: req.params.projectId}, function(err, pro) {
 
 			//get meetings
-			Meeting.find({_project: pro._id}).exec(function(err, meetings) {
+			Meeting.find({_project: pro._id}).populate('_category','name').populate('users','firstName lastName').exec(function(err, meetings) {
 				if (err) console.log(err);
 				return res.json(meetings);
 			});	
@@ -31,11 +32,14 @@ meetings = {
 	// #### Read
 
 	// return all details for one meeting
+
 	read: function read(req, res) {
-		Meeting.findOne({id: req.params.id}).exec(function(err, meeting) {
+
+		Meeting.findOne({id: req.params.id}).populate('_category','name id')
+		.populate('users','firstName lastName').exec(function(err, meeting) {
 			if (err) console.log(err);
 			return res.json(meeting);
-		});
+		});	
 	},
 
 	// #### Create
@@ -47,36 +51,54 @@ meetings = {
 
 		// get id for meeting
 		 Meeting.findOne().sort({'id': -1}).limit(1).findOne(function(err,me) {
-			console.log(me);
-		 	if (me === null) { id = 0; console.log('me vaut null'); }
+		 	if (me === null) { newId = 0; }
 		 	else {
 	             newId = (parseInt(me.id) + 1);
-	             meeting.id = newId;
 	        }
-	    });
-		// attribute info to meeting
-		meeting._creator = req.session.user._id;
 
-		// get project
-		Project.findOne({'id': req.body.projectId}, function(err, pro){
-			if (err) return console.log(err);
-			meeting._project = pro._id;
+			// attribute info to meeting
+			meeting._creator = req.session.user._id;
+			meeting.id = newId;
 
-			// save meeting
-			meeting.save(function(err, me) {
-				if (err) return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
+			if(req.body.usersadd != null) {
 
-					// add into logs
-					var log = new Log({'name': me.name,'_creator': req.session.user._id, '_project': pro._id});
-					LogApi.create(log, 4);
+				// add users into meetings 
+				for (var i = 0; i < req.body.usersadd.length; i++) {
+					var split = req.body.usersadd[i].split(' ');
+					User.findOne().where('firstName').equals(split[0]).where('lastName').equals(split[1]).exec(function(err, usr) {
+						if (err) { console.log(err); }
+						meeting.users.push(usr);
+					});
+				}
+			}
 
-					// save task into project's list
-					pro.meetings.push(me);
-					pro.save(function(err, pr) {
-						if (err) console.log(err);
-							return res.json({'flash': 'Vous venez d\'ajouté la réunion ' + me.name});
+			// get project
+			Project.findOne({'id': req.body.projectId}, function(err, pro){
+				if (err) return console.log(err);
+				meeting._project = pro._id;
+
+				Category.findOne({id: req.body.category}, function(err, cat) {
+					if (cat != null) {
+						meeting._category = cat._id;
+					}
+
+					// save meeting
+					meeting.save(function(err, me) {
+						if (err) return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
+
+						// add into logs
+						var log = new Log({'name': me.name,'_creator': req.session.user._id, '_project': pro._id});
+						LogApi.create(log, 4);
+
+						// save task into project's list
+						pro.meetings.push(me);
+						pro.save(function(err, pr) {
+							if (err) console.log(err);
+								return res.json({'flash': 'Vous venez d\'ajouté la réunion ' + me.name});
+						});
 					});
 				});
+			});
 		});
 
 	},
@@ -86,22 +108,42 @@ meetings = {
 	// edit meeting information into database and return flash message
 	edit: function edit(req, res) {
 
-        Meeting.findOne(req.params.id, function(err, me) {
+        Meeting.findOne({id: req.params.id}, function(err, me) {
         	me.name = req.body.name;
         	me.description = req.body.description;
         	me.dateStart = req.body.dateStart;
         	me.timeStart = req.body.timeStart;
         	me.duree = req.body.duree;
 
-        	// save meeting
-            me.save(function (err, meet) {
-            	if (err) return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
-	        	 // add into logs
-				var log = new Log({'name': meet.name,'_creator': req.session.user._id, '_project': meet._project});
-				LogApi.create(log, 5);
+        	me.users = new Array();
 
-                res.json({'flash': 'Votre réunion a bien été modifié'});
-            });
+        	if(req.body.usersadd != null) {
+
+	        	// add users into meetings 
+				for (var i = 0; i < req.body.usersadd.length; i++) {
+					var split = req.body.usersadd[i].split(' ');
+					User.findOne().where('firstName').equals(split[0]).where('lastName').equals(split[1]).exec(function(err, usr) {
+						if (err) { console.log(err); }
+						me.users.push(usr);
+					});
+				}
+			}
+
+        	Category.findOne({id: req.body.category}, function(err, cat) {
+				if (cat != null) {
+					me._category = cat._id;
+				}
+
+	        	// save meeting
+	            me.save(function (err, meet) {
+	            	if (err) return res.send(500, {'flash': 'Veuillez rentrer des informations correctes' });
+		        	 // add into logs
+					var log = new Log({'name': meet.name,'_creator': req.session.user._id, '_project': meet._project});
+					LogApi.create(log, 5);
+
+	                res.json({'flash': 'Votre réunion a bien été modifié'});
+	            });
+	        });
         });
 	},
 

@@ -1,21 +1,35 @@
+	<div header> </div>
 	<div class="container-fluid">
 
-	<div menuleft>
+	<div style="display:inline-block;height: 100%;" menuleft>
 
 	</div>
 		<article>
 
-			<div id="meeting">
-				<h4> Detail de votre réunion </h4>
+			<div id="detail" >
+				<div class="top"><div id="name"><h2>{{ meeting.name }} </h2></div> <div id="button"><a href="#/project/{{ projectId }}/editMeeting/{{ meeting.id }}" class="btn">Editer la réunion</a></div></div>
+				<div id="table">
+				<div id="description"><div class="content">{{ meeting.description}}</div></div>
+				<div id="info"> <br/>
+					<div class="title"> Lieu :</div>
+					{{ meeting.place }} 
+					<hr/>
+					<div class="title"> Date :</div>
+					{{ meeting.dateStart | date:'yyyy/MM/dd'}} 
+					<hr/>
+					<div class="title">Heure :</div>
+					{{ meeting.timeStart }} 
+					<hr/>
+					<div class="title">Durée :</div>
+					{{ meeting.duree }} min
+					<hr/>
+					<div class="title">Catégorie :</div>
+					{{ meeting._category.name }} 
+					<hr/>
 
-
-				<p>{{ meeting.name }} {{ meeting.description }} {{ meeting.dateStart | date:'yyyy-MM-dd' }} {{ meeting.timeStart }} {{ meeting.duree }}</p>
-
+					<div class="title">Participants :</div>
+					<div class="participant" ng-repeat="user in meeting.users"> - {{ user.firstName }} {{ user.lastName }}<br/></div><br/> 
 				</div>
-
-				<br/>
-
-				<a class="button" href='#/project/{{ projectId }}/editMeeting/{{ meeting.id }}'>Modifier la réunion</a>
 			</div>
 		</article>
 	</div>

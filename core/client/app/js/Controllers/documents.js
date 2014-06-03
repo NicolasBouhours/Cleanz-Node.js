@@ -2,20 +2,31 @@
 var DocumentController = angular.module('DocumentController', []);
 
 // ## Controller for documents.html
-DocumentController.controller('Documents', function($scope, $http, $routeParams) {
-
+DocumentController.controller('Documents', function($scope, $http, $routeParams, FileService) {
+ 	$scope.flash = "";
 	$scope.projectId = $routeParams.projectId;
+	$scope.showDocForm = false;
 
 	$scope.getDocuments = function() {
 		$http.get('/cleanz/api/' + $routeParams.projectId + '/documents/list').success(function(docs) {
+			for(var i = 0; i < docs.length; i++) {
+				docs[i].ext = FileService.getExtention(docs[i].name);
+			}
 			$scope.docs = docs;
 		});
 	}
 
+	$scope.showForm = function() {
+		$scope.showDocForm = true;
+	}
+
+	$scope.closeModif = function() {
+		$scope.showDocForm = false;
+	}
 	$scope.getDocument = function(doc) {
 		$http.get('/cleanz/api/' + $routeParams.projectId + '/documents/get/' + doc.id).success(function(doc) {
 			$scope.flash = 'Le téléchargement de votre fichier va démarré';
-		});
+		}); 
 	}
 
 	$scope.getDoc = function(doc) {
@@ -27,6 +38,7 @@ DocumentController.controller('Documents', function($scope, $http, $routeParams)
 	$scope.editDoc = function(doc) {
 		$http.put('/cleanz/api/' + $routeParams.projectId + '/documents/' + $scope.doc.id, $scope.doc).success(function(data) {
 			$scope.flash = data.flash;
+			$scope.getDocuments();
 		}).error(function(data) {
             $scope.flash = data.flash;
         });
@@ -45,6 +57,7 @@ DocumentController.controller('Documents', function($scope, $http, $routeParams)
 
 // ## Controller for addDocument.html
 DocumentController.controller('AddDocument', function($scope, $http, $routeParams, $upload) {
+	$scope.flash = "";
 
 	$scope.projectId = $routeParams.projectId;
 
@@ -52,7 +65,6 @@ DocumentController.controller('AddDocument', function($scope, $http, $routeParam
 
 	 $scope.onFileSelec = function($files) {
 		fileUpload = $files;
-		$scope.flash = 'coucou';
 	 }
 
 	//send file to api
@@ -66,7 +78,7 @@ DocumentController.controller('AddDocument', function($scope, $http, $routeParam
         progress: function(e){}
       }).then(function(data, status, headers, config) {
         // file is uploaded successfully
-        console.log(data);
+        $scope.flash = "Votre document a été ajouté avec succès.";
       }); 
     }
   }

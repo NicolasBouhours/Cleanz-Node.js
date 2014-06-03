@@ -40,6 +40,13 @@ UserController.controller('Login', function($scope, AuthenticationService, $loca
 	}
 });
 
+// ## Controller for login.html
+UserController.controller('Logout', function(AuthenticationService, $location) {
+        AuthenticationService.logout().success(function() {
+            $location.path('/login');
+        });
+});
+
 // ## Controller for editinfo.html
 UserController.controller('EditUserInfo', function($scope, $http) {
     // Get information about our user
@@ -65,9 +72,9 @@ UserController.controller('EditUserInfo', function($scope, $http) {
     //Edit user password
     $scope.editPasswordUser = function() {
         $http.put('/cleanz/api/users/editPassword', $scope.user).success(function(data) {
-            $scope.flashpwd = data.flash;
+            $scope.flash = data.flash;
         }).error(function(data) {
-            $scope.flashpwd = data.flash;
+             $scope.flash = data.flash;
         });
     }
     getInfoUser();

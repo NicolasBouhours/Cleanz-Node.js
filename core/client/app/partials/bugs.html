@@ -1,22 +1,39 @@
+<div header> </div>
 <div class="container-fluid">
-	<div menuleft>
+	<div style="display:inline-block;height: 100%;" menuleft>
 
 	</div>
 	<article>
-		<div id="bugs">
-			<h2> Liste des bugs </h2>
+		<div id="listData">
+			<div id="sort">
+				<div class="input"><input placeholder="Rechercher une réunion" ng-model="query"></div>
+					<ul>
+						<li><a ng-click="sortAllBugs()">Tous les bugs</a> <div class="value">{{ bugsInitial.length }}</div></li>
+						<li><a ng-click="sortBugsUnresolved()">Bugs non résolus</a><div class="value"> {{ bugsUnresolved.length }}</div></li>
+						<li><a ng-click="sortBugsByUser()">Mes bugs</a><div class="value"> {{ bugsUser.length }}</div></li>
+						<li ng-repeat="category in categories"><a ng-click="sortCategories($index)">{{category.name}}</a><div class="value">{{ bugsCategories[$index].length }}</div></li>
+					</ul>
+				</div>
+			<div id="bugs">
+				<h2> Liste des bugs </h2>
 
-			<div id="bug" ng-repeat="bug in bugs" >
-				<p><a href="#/project/{{ projectId }}/bugs/{{ bug.id }}"> {{ bug.name }} {{ bug.description }} {{ bug.created_at | date:'yyyy-MM-dd' }} {{ bug._creator.firstName }} {{ bug._creator.lastName }}  {{ bug.resolve }}</a> </p>
-			</div>
+				<div id="bug" ng-repeat="bug in bugs" >
 
-			<div id="flash" ng-show="flash">
-	        	{{ flash }}
+					<div class="name"> {{ bug.name }}</div>
+					<div class="dateStart">{{ bug.created_at | date:'yyyy-MM-dd'}}</div>
+					<div class="creator">{{ bug._creator.firstName }} {{ bug._creator.lastName }}</div>
+					<div class="resolve">{{ bug.resolve }}</div>
+					<a href="#/project/{{ projectId }}/bugs/{{ bug.id }}"> Voir les détails</a>
+				</div>
+
+				<div id="flash" ng-show="flash">
+		        	{{ flash }}
+		   		</div>
+
+		   		<br/>
+		   		<center><a class="btn" href="#/project/{{ projectId }}/addBug"> Ajouter un bug</a></center>
 	   		</div>
-
-	   		<br/>
-	   		<a class="btn" href="#/project/{{ projectId }}/addBug"> Ajouter un bug</a>
-   		</div>
+	   	</div>
    	</article>
 
 </div>

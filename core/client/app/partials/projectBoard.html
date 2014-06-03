@@ -1,22 +1,44 @@
+<div header> </div>
 <div class="container-fluid">
 
-	<div menuleft>
+	<div style="display:inline-block;height: 100%;" menuleft>
 
 	</div>
 	<article>
 
-		<h2> Dashboard </h2> <br/>
+		<center><h2> Dashboard </h2> </center><br/>
 				<div id="flash" ng-show="flash">
 			        {{ flash }}
-			    </div> <br/> <br/>
+			    </div> <br/>
+		<div id="stats">
+			<div class="stat">
+				<h1> {{ tasksIncompleted.length }}</h1>
+				<p> taches non résolues sur les {{ project.tasks.length }} taches </p>
+			</div>
+			<div class="stat">
+				<h1> {{ nextMeetings.length }}</h1>
+				<p> réunions a venir sur les {{ project.meetings.length }} réunions </p>
+			</div>
+
+			<div class="stat">
+				<h1> {{ bugsUnresolved.length }}</h1>
+				<p> bugs non corrigés sur les {{ project.bugs.length }} bugs </p>
+			</div>
+
+			<div class="stat">
+				<h1> {{ project.documents.length }}</h1>
+				<p> documents </p>
+			</div>
+		</div>
 
 		<div id="addUser">
 			<form class="form-horizontal">
-
-				<label for="email">Email de l'utilisateur : </label>
-				<input type="text" id="email"  ng-model="userAdd.email" required>
-						
-				<button type="submit" class="btn" ng-click="addProjectUser()">Ajouter l'utilisateur au projet</button>
+				<center>
+					<label for="email">Email de l'utilisateur : </label>
+					<input type="text" id="email"  ng-model="userAdd.email" required>
+							
+					<button type="submit" class="btn" ng-click="addProjectUser()">Ajouter l'utilisateur au projet</button>
+				</center>
 		    </form>
 	    </div>
 	</article>

@@ -12,9 +12,9 @@ var dateValidator = [validate('isDate')];
 // ## Schema
 var documentSchema = new Schema({
 	id: { type: Number, required: true },
-	name: { type: String, required: true, validate: nameValidator},
-	description: { type: String, validate: descrValidator},
-	size: { type: Number, validate: numericValidator},
+	name: { type: String, required: true},
+	description: { type: String},
+	size: { type: Number},
 	type: { type: String},
 	created_at: { type: Date, default: Date.now, validate: dateValidator},
 	_creator: { type: Schema.Types.ObjectId, ref: 'User', required: true },

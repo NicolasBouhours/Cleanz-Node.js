@@ -1,23 +1,32 @@
+<div header> </div>
 <div class="container-fluid">
 
-	<div menuleft>
+	<div style="display:inline-block;height: 100%;" menuleft>
 
 	</div>
 	<article>
-		<h2> Détail de la tache {{ task.name }} </h2>
 
-		<div id="detailTask" >
+		<div id="detail" >
+		<div class="top"><div id="name"><h2>{{ task.name }} </h2></div> <div id="button"><a href="#/project/{{ projectId }}/editTask/{{ task.id }}" class="btn">Editer la tache</a></div></div>
+		<div id="table">
+			<div id="description"><div class="content">{{ task.description}}</div></div>
+			<div id="info">
+				<div class="progression">{{ task.progress}}% </div>
+				<div class="title"> Date de début :</div>
+				{{ task.dateStart | date:'yyyy/MM/dd'}} 
+				<hr/>
+				<div class="title">Date de fin :</div>
+				{{ task.dateEnd | date:'dd/MM/yyyy'}} 
+				<hr/>
+				<div class="title">Catégorie :</div>
+				{{ task._category.name }} 
+				<hr/>
 
-		<h4> {{ task.name }} </h4>
-		Date de début : {{ task.dateStart | date:'yyyy/MM/dd'}} <br/>
-		Date de fin : {{ task.dateEnd | date:'dd/MM/yyyy'}} <br/>
-		Progression : {{ task.progress}}% <br/>
+				<div class="title">Participants :</div>
+				<div class="participant" ng-repeat="user in task.users"> - {{ user.firstName }} {{ user.lastName }}<br/></div> <br/>
+			</div>
+		</div>
 
-		<br/> Description : <br/>
-		{{ task.description }}
-		</div> <br/>
-
-		<a href="#/project/{{ projectId }}/editTask/{{ task.id }}" class="btn">Editer la tache</a>
 		<br/><br/>
 
 
@@ -30,7 +39,9 @@
 		<h4> Commentaires - {{ comments.length}} </h4>
 		<div id="comments">
 			<div id="comment" ng-repeat="com in comments">
-				{{ com.description }} {{ com.created_at }} par {{ com._creator.firstName }} {{ com._creator.lastName }}
+				<p>{{ com.created_at | date:'dd/MM/yyyy'}} par {{ com._creator.firstName }} {{ com._creator.lastName }}</p> 
+				{{ com.description }} 
+				<br/> <br/>
 			</div>
 		</div>
 

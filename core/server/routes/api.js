@@ -17,10 +17,11 @@ module.exports = function(server) {
 
 	// ## Route for Project
 	server.get('/cleanz/api/projects/list', api.projects.list);
-	server.del('/cleanz/api/:projectId/projects/:id', api.projects.delete);
+	server.del('/cleanz/api/:projectId/projects/delete', api.projects.delete);
 	server.post('/cleanz/api/projects/add', api.projects.create);
-	server.get('/cleanz/api/:projectId/projects/:id', api.projects.read);
-	// server.del('/cleanz/api/project/:id', api.projects.delUser);
+	server.get('/cleanz/api/projects/:id', api.projects.read);
+	server.del('/cleanz/api/projects/:id', api.projects.delete);
+	server.get('/cleanz/api/projects/listUsers/:id', api.projects.listUsers)
 
 	// ## Route for Documents
 	server.get('/cleanz/api/:projectId/documents/list', api.documents.list);
@@ -60,6 +61,12 @@ module.exports = function(server) {
 	server.get('/cleanz/api/:projectId/bugs/:id', security.checkUserProject, api.bugs.read);
 	server.put('/cleanz/api/:projectId/bugs/:id', security.checkUserProject, api.bugs.edit);
 	server.del('/cleanz/api/:projectId/bugs/:id', security.checkUserProject, api.bugs.delete);
+
+	// ## Route for Categories
+	server.get('/cleanz/api/:projectId/categories/list', security.checkUserProject, api.categories.list);
+	server.post('/cleanz/api/:projectId/categories/create', security.checkUserProject, api.categories.create);
+	server.put('/cleanz/api/:projectId/categories/:id', security.checkUserProject, api.categories.edit);
+	server.del('/cleanz/api/:projectId/categories/:id', security.checkUserProject, api.categories.delete);
 
 	// ## Route for Logs
 	server.get('/cleanz/api/:projectId/logs/list', security.checkUserProject, api.logs.list);

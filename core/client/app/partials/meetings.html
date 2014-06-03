@@ -1,21 +1,37 @@
+	<div header> </div>
 	<div class="container-fluid">
 
-	<div menuleft>
+	<div style="display:inline-block;height: 100%;" menuleft>
 
 	</div>
 		<article>
+			<div id="listData">
+				<div id="sort">
+					<div class="input"><input placeholder="Rechercher une réunion" ng-model="query"></div>
+					<ul>
+						<li><a ng-click="sortAllMeetings()">Toutes les réunions</a> <div class="value">{{ meetingsInitial.length }}</div></li>
+						<li><a ng-click="sortNextMeetings()">Réunions a venir</a> <div class="value">{{ nextMeetings.length }}</div></li>
+						<li><a ng-click="sortMeetingsByUser()">Mes réunions</a><div class="value"> {{ meetingsUser.length }}</div></li>
+						<li ng-repeat="category in categories"><a ng-click="sortCategories($index)">{{category.name}}</a><div class="value">{{ meetingsCategories[$index].length }}</div></li>
+					</ul>
+				</div>
+				<div id="meetings">
 
-		<h4> Liste des vos réunions </h4>
-		<br/> <br/>
+					<h2> Réunions - {{ meetings.length }} </h2>
+					<br/>
 
-		<div id="meeting" ng-repeat="meeting in meetings" >
+					<div id="meeting" ng-repeat="meeting in meetings | filter:query" >
+						<div class="name"> {{ meeting.name }}</div>
+						<div class="dateStart">{{ meeting.dateStart | date:'yyyy-MM-dd'}}</div>
+						<div class="time">{{ meeting.timeStart }}</div>
+						<div class="duree">{{ meeting.duree }} min</div>
+						<a href="#/project/{{ projectId }}/meetings/{{ meeting.id }}"> Voir les détails</a>
+						<br/>
+					</div> <br/> <br/>
 
-			<p><a href="#/project/{{ projectId }}/meetings/{{ meeting.id }}"> {{ meeting.name }} {{ meeting.description }} {{ meeting.dateStart | date:'yyyy-MM-dd' }} {{ meeting.timeStart }} {{ meeting.duree }}</a> </p>
-
-		</div> <br/> <br/>
-
-		<a href="#/project/{{ projectId }}/addMeeting" class="btn">Ajouter une réunion</a>
-
+					<center><a href="#/project/{{ projectId }}/addMeeting" class="btn">Ajouter une réunion</a></center>
+				</div>
+			</div>
 		</article>
 
 	</div>

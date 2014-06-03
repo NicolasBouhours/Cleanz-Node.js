@@ -12,7 +12,7 @@ authController = {
 		User.findOne({ email: req.body.email, password: req.body.password}, function(err,usr) {
 			if (usr != null) {
 				req.session.user = usr;
-				return res.json({ 'flash': 'Vous êtes conneecté'});
+				return res.json({ 'flash': req.session.user});
 			}
 			else {
 				res.send(500, {'flash': 'Mauvais identifiants' });

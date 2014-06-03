@@ -6,35 +6,42 @@ $red: #ec5148;
 $text: #363634;
 $background: #f9f7ed;
 $blue: #007095;
+$headerbc: #363634;
+$headertext: white;
 
 /** CSS **/
 html {
 	font-family: 'Lato', sans-serif; font-weight: 300;
 	color: $text;
+	height: 760px;
 }
 
 body {
-	background-color: $background;
+	background-color: white;
 }
 
 .btn {
 	font-size: 13px;
 }
 
+.ng-scope, container-fluid ng-scope {
+	height: 100%;
+}
+
 header {
 	width: 100%;
 	padding-top: 0px;
-	background-color: white;
+	background-color: $headerbc;
 
 	#nomApp {
-		width: 45%;
+		width: 55%;
 		display: inline-block;
 		vertical-align: top;
 
 		h4 {
 			margin-top: 1%;
 			margin-left: 7%;
-			color: $text;
+			color: $headertext;
 			font-size: 32px;
 			letter-spacing: 1px;
 
@@ -45,13 +52,13 @@ header {
 	}
 
 	#menuDroite {
-		width: 54%;
+		width: 44%;
 		display: inline-block;
 		vertical-align: top;
 
 		a {
 			text-decoration: none;
-			color: $text;
+			color: $headertext;
 		}
 
 		li {
@@ -80,19 +87,26 @@ h1,h2,h3,h4,h5,h6 {
 	color: $blue;
 }
 nav {
-	width: 15%;
-	height: 100%;
+	height: 873px;
+	width: 240px;
 	display: inline-block;
 	background-color: white;
+	border-right: 1px solid #dadada;
+
+	ul {
+		margin-left: 0px;
+	}
 
 	li {
 		list-style: none;
-		padding: 6%;
-		border-top: 1px dashed $red;
+		padding-top: 14%;
+		padding-bottom: 14%;
+		border-top: 1px solid #dadada;
 
 		.image {
 			display: inline-block;
-			width: 80px;
+			margin-right: 15px;
+			margin-left: 4%;
 		}
 
 		a {
@@ -100,12 +114,17 @@ nav {
 			display: inline-block;
 		}
 	}
+
+	li:hover {
+		background-color: #cccccc;
+	}
 }
 
 article {
 	display: inline-block;
 	vertical-align: top;
-	width: 84%;
+	width: 87%;
+	margin-left: -3px;
 }
 
 #flash {
@@ -142,36 +161,100 @@ textarea {
 
 
 /* Style for Tasks */
+#listData {
 
-#tasks {
-	.task {
-
-		width: 100%;
+	#sort {
+		width: 15%;
+		height: 917px;
+		background-color: #666666;
 		display: inline-block;
-		margin-bottom: 1%;
+		color: #e2e2e2;
 
-		.name, .dateStart, .dateEnd, .progression, .importance, a{
-			display: inline-block;
-			margin-left: 3%;
+		.input {
+			height: 100px;
+			line-height: 100px;
+			border-bottom: 1px solid #616161;
+			text-align: center;
+
+			input {
+				background-color: #616161;
+				height: 34px;
+				color: #e2e2e2;
+				width: 80%;
+				border: none;
+				text-align: center;
+			}
+
+			input:focus {
+				border: none;
+			}
 		}
 
-		.name {
-			width: 30%;
-		}
-
-		.dateStart, .dateEnd {
-			width: 11%;
-		}
-
-		.progression, .importance{
-			width: 7%;
-			background-color: $background;
-		}
-
-		a{
+		ul {
 			list-style: none;
-			text-decoration: none;
-			color: $red;
+			margin-left: 0px;
+
+			li {
+				height: 60px;
+				line-height: 60px;
+				font-size: 18px;
+				border-bottom: 1px solid #616161;
+
+				a {
+					margin-left: 8px;
+					color: #e2e2e2;
+					display: inline-block;
+					width: 80%;
+				}
+
+				.value {
+					display: inline-block;
+					width: auto;
+					background-color: $red;
+					height: 22px;
+					line-height: 22px;
+					padding-right: 6px;
+					padding-left: 6px;
+				}
+			}
+
+			li:hover {
+				background-color: #616161;
+			}
+		}
+	}
+	#tasks {
+		display: inline-block;
+		vertical-align: top;
+		width: 82%;
+		.task {
+		
+			width: 100%;
+			display: inline-block;
+			margin-bottom: 1%;
+
+			.name, .dateStart, .dateEnd, .progression, .importance, a{
+				display: inline-block;
+				margin-left: 3%;
+			}
+
+			.name {
+				width: 30%;
+			}
+
+			.dateStart, .dateEnd {
+				width: 11%;
+			}
+
+			.progression, .importance{
+				width: 7%;
+			}
+
+			a{
+				list-style: none;
+				text-decoration: none;
+				color: $red;
+			}
 		}
 	}
 }
@@ -242,6 +325,38 @@ textarea {
 		#urgente {
 			background-color: #FC9423; 
 		}
+	}
+
+	#flash {
+		width: 100%;
+	}
+}
+
+#part {
+	display: inline;
+}
+
+#addTask, #editTask, #addMeeting, #editMeeting, #addBug, #editBug{
+	.usersselect {
+		background-color: $red;
+		color: white;
+		display: inline-block;
+		vertical-align: top;
+		height: 25px;
+		margin-right: 4%;
+		padding-left: 3px;
+		padding-right: 3px;
+	}
+
+	#usersSelect {
+		width: 35%;
+		display: inline-block;
+	}
+
+	a {
+		display: inline-block;
+		vertical-align: top;
+		margin-left: 4%;
 	}
 }
 
@@ -343,6 +458,11 @@ textarea {
 		}
 	}
 
+	.inlineblock {
+		display: inline-block;
+	}
+
+
 	#createProject {
 		border: 1px solid $red;
 		background-color: white;
@@ -396,4 +516,256 @@ textarea {
 #logs {
 	width: 60%;
 	margin: 0 auto;
+}
+
+/* Style for Params */
+
+#params {
+	h4 {
+		display: inline-block;
+		width: 44%;
+	}
+
+	p {
+		width: 44%;
+		display: inline-block;
+	}
+
+	a {
+		margin-right: 2%;
+	}
+
+	#cat, .cat {
+		font-size: 18px;
+		display: inline-block;
+		width: 20%;
+		margin-top: 1%;
+	}
+
+	#categoriges {
+		margin-bottom: 3%;
+	}
+}
+
+
+
+#addCategory, #modifyCategory, #deleteProject, #deleteCategory {
+	position: absolute;
+	width: 400px;
+	height: 250px;
+	background-color: $background;
+	border: 1px solid $red;
+	border-top: 2px solid red;
+	top: 50%;
+	margin-top: -80px;
+	margin-left: -200px;
+	left: 50%;
+	z-index: 10;
+
+	input {
+		width: 300px;
+	}
+	.btn {
+		margin-left: 10%;
+	}
+}
+
+#delProject {
+	margin-top: 10%;
+}
+
+.doc {
+	display: inline-block;
+	width: 30%;
+	vertical-align: top;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+#modifDoc {
+	position: absolute;
+	width: 450px;
+	height: 270px;
+	background-color: $background;
+	border: 1px solid $red;
+	border-top: 2px solid red;
+	top: 50%;
+	margin-top: -180px;
+	margin-left: -210px;
+	left: 50%;
+	z-index: 10;
+
+	.btn {
+		margin-left: 10%;
+	}
+}
+
+#meetings {
+	font-size: 18px;
+	width: 82%;
+	display: inline-block;
+	vertical-align: top;
+
+	#meeting {
+		margin-bottom: 1%;
+
+		.name, .dateStart, .duree, .time, a{
+			display: inline-block;
+			margin-left: 3%;
+		}
+
+		.name {
+			width: 27%;
+		}
+
+		.dateStart {
+			width: 12%;
+		}
+
+		.duree {
+			width: 12%;
+		}
+
+		.time {
+			width: 12%;
+		}
+
+		a {
+			width: 20%;
+			color: $red;
+		}
+	}
+}
+
+#bugs {
+	font-size: 18px;
+	width: 82%;
+	display: inline-block;
+	vertical-align: top;
+
+	#bug {
+		margin-bottom: 1%;
+
+
+		.name, .dateStart, .creator, .resolve, a {
+			display: inline-block;
+			margin-left: 3%;
+		}
+
+		.name {
+			width: 20%;
+		}
+
+		.dateStart {
+			width: 12%;
+		}
+
+		.creator {
+			width: 20%;
+		}
+
+		.resolve {
+			width: 10%;
+		}
+
+		a {
+			width: 20%;
+			color: $red;
+		}
+	}
+}
+
+#stats {
+	height: 500px;
+
+	.stat {
+		width: 45%;
+		display: inline-block;
+		vertical-align: top;
+		text-align: center;
+		height: 200px;
+
+		h1 {
+			color: $red;
+			font-weight: 300;
+			font-size: 40px;
+		}
+
+		p {
+			font-weight: 300;
+			font-size: 22px;
+		}
+
+	}
+}
+
+#detail{
+	.top {
+		width: 100%;
+		height: 60px;
+		border-bottom: 1px solid #dadada;
+
+		#name {
+			width: 88%;
+			display: inline-block;
+			
+			h2 {
+				margin-left: 4%;
+			}
+		}
+
+		#button {
+			width: 11%;
+			display: inline-block;
+
+			a {
+				margin-top: 10px;
+			}
+		}
+	}
+
+	.content {
+		margin-left: 4%;
+		margin-top: 10px;
+	}
+
+	#table {
+		height: auto;
+		width: 100%;
+		border-bottom: 1px solid #dadada;
+
+		#description {
+
+			width: 85%;
+			height: auto;
+			display: inline-block;
+		}
+
+		#info {
+			width: 14%;
+			text-align: center;
+			height: auto;
+			border-left: 1px solid #dadada;
+			display: inline-block;
+			vertical-align: top;
+
+			.progression {
+				margin-top: 8px;
+				text-align: center;
+				font-size: 30px;
+				color: $red;
+				margin-bottom: 8px;
+				border-bottom: 1px solid #dadada;
+			}
+
+			.title {
+				font-size: 16px;
+				color: #989898;
+			}
+
+			.participant {
+				height: 20px;
+			}
+		}
+	}
 }

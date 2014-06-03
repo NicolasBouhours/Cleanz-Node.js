@@ -1,0 +1,83 @@
+<div header> </div>
+<div class="container-fluid">
+
+	<div style="display:inline-block;height: 100%;" menuleft>
+
+	</div>
+	<article>
+		<div id="params">
+			<h2> Paramètre de votre application </h2>
+			<div id="flash" ng-show="flash">
+		        {{ flash }} 
+		    </div> <br/>
+
+			<br/> 
+			<h4> Liste des catégories de votre application </h4> <a class="btn" ng-click="addCategoryShow()">+ Ajouter</a> <a class="btn" ng-click="modifyCategoryShow()">+ Modifier</a> <a class="btn" ng-click="deleteCategoryShow()"> - Supprimer</a>
+			<div id="categories">
+				<div id="cat" ng-repeat="cat in categories">
+					{{ cat.name }}
+				</div>
+			</div>
+
+			<br/>
+			<div id="delProject">
+				<h4> Supprimer votre projet </h4> <br/>
+				<p>Attention toute supression sera définitive</p>
+				<a class="btn" ng-click="deleteProjectShow()">- Supprimer le projet</a>
+			</div>
+		</div>
+
+		<div id="addCategory" ng-show="showAddCat">
+			<form class="form-horizontal">
+				<div class="formCenter">
+					<h4> Ajouter une catégorie </h4> <br/>
+				    <label for="firstname">Nom de la catégorie :</label> 
+				    <input type="text" id="firstname"  ng-model="category.name" required> <br/>
+		        </div>
+				
+				<button  class="btn" type="submit" ng-click="addCategory()">Ajouter la catégorie</button>
+				<a class="btn" ng-click="addCategoryHide()"> Annuler</a>
+			</form>
+		</div>
+
+		<div id="modifyCategory" ng-show="showModifyCat">
+			<form class="form-horizontal">
+				<div class="formCenter">
+					<h4> Modifier une catégorie </h4> <br/> 
+					       <select name="categories" ng-model="catId" id="categoriesSelect">
+					           <option ng-repeat="cat in categories" value="{{ cat.id }}">{{ cat.name }}</option>
+					       </select>
+				    <label for="firstname">Nouveau nom de la catégorie :</label> 
+				    <input type="text" id="firstname"  ng-model="catM.name" required> <br/>
+		        </div>
+		         <button  class="btn" type="submit" ng-click="modifyCategory()">Modifier la catégorie</button>
+				<a class="btn" ng-click="modifyCategoryHide()"> Annuler</a>
+			</form>
+		</div>
+
+		<div id="deleteCategory" ng-show="showDeleteCat">
+			<form class="form-horizontal">
+				<div class="formCenter">
+					<h4> Supprimer une catégorie </h4> <br/> 
+					       <select name="pays" ng-model="catId" id="pays">
+					           <option ng-repeat="cat in categories" value="{{ cat.id }}">{{ cat.name }}</option>
+					       </select>
+		        </div>
+		        <button  class="btn" type="submit" ng-click="deleteCategory()">Supprimer la catégorie</button>
+				<a class="btn" ng-click="deleteCategoryHide()"> Annuler</a>
+			</form>
+		</div>
+
+		<div id="deleteProject" ng-show="showDeletePro">
+			<form class="form-horizontal">
+				<div class="formCenter">
+					<h4> Supression d'un projet </h4> <br/>
+				
+				<button  class="btn" type="submit" ng-click="deleteProject()">Supprimer le projet</button>
+				<a class="btn" ng-click="deleteProjectHide()"> Annuler</a>
+			</form>
+		</div>
+
+	</article>
+</div>
+

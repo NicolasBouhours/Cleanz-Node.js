@@ -1,12 +1,13 @@
+<div header> </div>
 <div class="container-fluid">
 	<div id="listProjects">
-		<h2> Vos projets </h2> <br/> <br/>
+		<h2> Vos projets :</h2> <br/> <br/>
 
 	    <div class="project" ng-repeat="project in projects">
-			<h5> {{ project.project.name }} </h5> <br/>
-			<p> {{ project.project.users.length }} participants </p>
-			<p> {{ project.project.tasks.length }} taches </p>
-			<a href="#/project/{{project.project.id}}"> Se rendre sur le projet</a>
+			<h5> {{ project.name }} </h5> <br/>
+			<p> {{ project.users.length }} participants </p>
+			<p> {{ project.tasks.length }} taches </p>
+			<a href="#/project/{{project.id}}"> Se rendre sur le projet</a>
 		</div>
 		<div  class="project" id="createProject">
 			<a class="btn" ng-click="addTaskShow()"> AJOUTER UN PROJET </a>
@@ -34,8 +35,8 @@
 
 	    <div id="invitations">
 	    	<div id="invit" ng-repeat="invit in invits">
-		    	{{ invit.name }} <a ng-click="acceptInvit(invit)" class="button">Accepter l'invitation</a>
-		    	<a ng-click="refuseInvit(invit)" class="button">Refuser l'invitation</a> <br/>
+		    	{{ invit.name }} <a class="btn" ng-click="acceptInvit(invit)" >Accepter l'invitation</a>
+		    	<a class="btn" ng-click="refuseInvit(invit)">Refuser l'invitation</a> <br/>
 	    	</div>
 	    </div>
 	</div>
